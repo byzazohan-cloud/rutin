@@ -1282,29 +1282,29 @@ textarea{resize:vertical}
   }
 }
 
-/* V6.18 — Mobil PIN tuşları */
-.premiumLock,.pinPad,.pinPad button{
-  touch-action:manipulation!important;
-  -webkit-user-select:none!important;
-  user-select:none!important;
-  -webkit-tap-highlight-color:transparent!important;
-}
+
+/* V6.19 — doğrudan mobil PIN bağlama */
 .pinPad{
   position:relative!important;
-  z-index:20!important;
-}
-.pinPad button{
+  z-index:999!important;
   pointer-events:auto!important;
-  position:relative!important;
-  z-index:10!important;
-  cursor:pointer!important;
 }
-.pinPad button:active{
-  transform:scale(.94)!important;
+.pinDirect{
+  pointer-events:auto!important;
+  touch-action:manipulation!important;
+  -webkit-tap-highlight-color:transparent!important;
+  -webkit-user-select:none!important;
+  user-select:none!important;
+}
+.pinDirect:active{
   background:var(--gold)!important;
   color:#000!important;
+  transform:scale(.92)!important;
 }
-.premiumLock{
-  overflow-y:auto!important;
-  overscroll-behavior:contain!important;
+.lockVersion{
+  margin-top:7px;
+  color:#fff!important;
+  font-size:6px;
+  letter-spacing:1.5px;
+  opacity:.75!important;
 }

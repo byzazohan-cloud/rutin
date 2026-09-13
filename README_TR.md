@@ -165,3 +165,9 @@ Bu V2 tasarım ve işlev omurgasıdır. Kullanıcı geri bildirimine göre sonra
 - Mobilde pahalı blur/gölge efektleri azaltıldı; tasarım dili korunur.
 - Uygulama kapalıyken arka planda işlem çalıştırmaz.
 - Mevcut kilit, profil, tema, takvim ve rapor özellikleri korunur.
+
+## V6.19
+- Mobil PIN tuşları render sonrasında doğrudan her tuşa bağlanır.
+- Click + touchend desteklenir.
+- Eski Service Worker / JavaScript kalmasını önlemek için navigasyon, JS ve CSS network-first güncellenir.
+- Parola ekranında V6.19 sürüm etiketi görünür; böylece telefonda yeni sürümün gerçekten yüklendiği kontrol edilebilir.
