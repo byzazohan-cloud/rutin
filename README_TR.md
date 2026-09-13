@@ -101,3 +101,11 @@ Bu V2 tasarım ve işlev omurgasıdır. Kullanıcı geri bildirimine göre sonra
 - Ayarlarda KARANLIK MOD / AÇIK MOD aktif hale getirildi.
 - Tema Stüdyosu içinde de görünüm modu seçilebilir.
 - Açık mod gerçek açık renk temaya, karanlık mod tam siyah temaya geçer.
+
+## V6.5
+- Günlük kayıt hatırlatmaları eklendi.
+- Sabah varsayılan hatırlatma: 07:00.
+- Gece varsayılan hatırlatma: 22:00.
+- Hatırlatma saatleri Ayarlar > Hatırlatıcılar içinden değiştirilebilir.
+- Harcama Ekle ekranında kategori ve ödeme butonları küçültüldü.
+- Harcama Ekle ikonları ve yazıları daha büyük ve okunaklı hale getirildi.

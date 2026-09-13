@@ -925,3 +925,54 @@ html[data-appearance="light"] .day.off{background:#fff!important;color:#111!impo
 html[data-appearance="light"] .calendarTitleRow b,
 html[data-appearance="light"] .calendarTitleRow small{color:#111!important}
 html[data-appearance="light"] .day.today{outline-color:#111!important}
+
+
+/* V6.5 — Harcama Ekle: daha küçük buton, daha büyük ikon/yazı */
+.categoryIcons{
+  grid-template-columns:repeat(4,1fr)!important;
+  gap:4px!important;
+}
+.catChip{
+  min-height:50px!important;
+  padding:3px 2px!important;
+  border-radius:9px!important;
+}
+.catChip i{
+  font-size:24px!important;
+  line-height:1!important;
+  margin-bottom:1px!important;
+}
+.catChip span{
+  font-size:8.8px!important;
+  line-height:1.05!important;
+  font-weight:900!important;
+}
+.payIcons{
+  gap:4px!important;
+}
+.payIcons label{
+  min-height:49px!important;
+  padding:3px 2px!important;
+  border-radius:9px!important;
+}
+.payIcons i{
+  font-size:24px!important;
+  line-height:1!important;
+}
+.payIcons span{
+  font-size:8.6px!important;
+  line-height:1.05!important;
+  font-weight:900!important;
+}
+.recordHero{
+  padding:8px 9px!important;
+}
+.recordHero b{
+  font-size:11.5px!important;
+}
+.recordHero small{
+  font-size:7.5px!important;
+}
+.dailyReminder{
+  border-color:var(--gold)!important;
+}
