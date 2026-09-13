@@ -1401,3 +1401,16 @@ textarea{resize:vertical}
   touch-action:manipulation!important;
 }
 .setupPinOk:active{transform:scale(.98)!important}
+
+/* V6.24 — PIN dokunmatik + klavye tek sistem */
+.setupPinDirect,.setupPinOk,.pinDirect{
+  touch-action:manipulation!important;
+  -webkit-tap-highlight-color:transparent!important;
+  -webkit-user-select:none!important;
+  user-select:none!important;
+  pointer-events:auto!important;
+}
+.setupPinOk{position:relative!important;z-index:30!important}
+.setupPinDirect:active,.setupPinOk:active,.pinDirect:active{
+  transform:scale(.94)!important;
+}
