@@ -1281,3 +1281,30 @@ textarea{resize:vertical}
     transition:none!important;
   }
 }
+
+/* V6.18 — Mobil PIN tuşları */
+.premiumLock,.pinPad,.pinPad button{
+  touch-action:manipulation!important;
+  -webkit-user-select:none!important;
+  user-select:none!important;
+  -webkit-tap-highlight-color:transparent!important;
+}
+.pinPad{
+  position:relative!important;
+  z-index:20!important;
+}
+.pinPad button{
+  pointer-events:auto!important;
+  position:relative!important;
+  z-index:10!important;
+  cursor:pointer!important;
+}
+.pinPad button:active{
+  transform:scale(.94)!important;
+  background:var(--gold)!important;
+  color:#000!important;
+}
+.premiumLock{
+  overflow-y:auto!important;
+  overscroll-behavior:contain!important;
+}
