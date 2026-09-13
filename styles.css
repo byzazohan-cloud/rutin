@@ -1283,114 +1283,49 @@ textarea{resize:vertical}
 }
 
 
-/* V6.19 — doğrudan mobil PIN bağlama */
-.pinPad{
-  position:relative!important;
-  z-index:999!important;
-  pointer-events:auto!important;
-}
-.pinDirect{
-  pointer-events:auto!important;
+/* V6.25 — PIN/Kilit sıfırdan tek bileşen */
+.unifiedPinScreen{
   touch-action:manipulation!important;
-  -webkit-tap-highlight-color:transparent!important;
-  -webkit-user-select:none!important;
-  user-select:none!important;
 }
-.pinDirect:active{
-  background:var(--gold)!important;
-  color:#000!important;
-  transform:scale(.92)!important;
-}
-.lockVersion{
+.pinInstruction{
   margin-top:7px;
-  color:#fff!important;
-  font-size:6px;
-  letter-spacing:1.5px;
-  opacity:.75!important;
-}
-
-/* V6.20 — PIN sıfırlama */
-.forgotPinBtn{
-  border:0!important;
-  background:transparent!important;
-  color:#fff!important;
-  font-size:6.5px!important;
-  padding:7px 2px!important;
-  margin:0!important;
-  min-height:30px!important;
-  box-shadow:none!important;
-}
-.forgotPinBtn:active{color:var(--gold)!important}
-
-/* V6.21 — Stabil PIN giriş */
-.pinDirect{
-  touch-action:manipulation!important;
-  -webkit-tap-highlight-color:transparent!important;
-  -webkit-user-select:none!important;
-  user-select:none!important;
-}
-.pinDirect:active{
-  transform:scale(.92)!important;
-  background:var(--gold)!important;
-  color:#000!important;
-}
-
-
-/* V6.22 — PIN oluşturma ekranı da premium tuş takımlı */
-.setupPremiumLock{
-  padding-bottom:26px!important;
-}
-.setupPinTitle{
-  margin-top:10px;
-  font-size:15px;
-  font-weight:900;
-  color:#fff!important;
-  letter-spacing:.4px;
-}
-.setupPinInstruction{
-  margin-top:4px;
-  font-size:8px;
   color:var(--gold)!important;
-  letter-spacing:1.2px;
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:1px;
 }
-.setupPinPad{
-  margin-top:2px;
+.unifiedPinPad{
+  position:relative!important;
+  z-index:20!important;
 }
-.setupPinBtn,.setupPinGhost{
+.unifiedPinBtn{
   width:64px!important;
   height:54px!important;
   border-radius:50%!important;
   border:1.5px solid var(--gold)!important;
-  background:linear-gradient(145deg,#25221d,#080808)!important;
+  background:#000!important;
   color:#fff!important;
   font-size:22px!important;
-  font-weight:700!important;
+  font-weight:800!important;
   padding:0!important;
   touch-action:manipulation!important;
   -webkit-tap-highlight-color:transparent!important;
+  -webkit-user-select:none!important;
+  user-select:none!important;
 }
-.setupPinBtn:active{
+.unifiedPinBtn:active{
   background:var(--gold)!important;
   color:#000!important;
   transform:scale(.94)!important;
 }
-.setupPinGhost{
-  opacity:.35!important;
+.pinGhost{
+  opacity:.45!important;
 }
-.setupPinNote{
-  margin:12px auto 0;
-  max-width:300px;
-  font-size:7px;
-  color:#fff!important;
-  letter-spacing:.5px;
-}
-
-/* V6.23 — PIN onay butonu */
-.setupPinOk{
+.pinOkBtn{
   width:min(280px,82vw)!important;
   min-height:42px!important;
-  margin:12px auto 0!important;
   display:block!important;
+  margin:12px auto 0!important;
   border:1px solid var(--gold)!important;
   border-radius:12px!important;
   background:var(--gold)!important;
@@ -1400,17 +1335,19 @@ textarea{resize:vertical}
   letter-spacing:.8px!important;
   touch-action:manipulation!important;
 }
-.setupPinOk:active{transform:scale(.98)!important}
-
-/* V6.24 — PIN dokunmatik + klavye tek sistem */
-.setupPinDirect,.setupPinOk,.pinDirect{
-  touch-action:manipulation!important;
-  -webkit-tap-highlight-color:transparent!important;
-  -webkit-user-select:none!important;
-  user-select:none!important;
-  pointer-events:auto!important;
+.pinOkBtn:active{
+  transform:scale(.98)!important;
 }
-.setupPinOk{position:relative!important;z-index:30!important}
-.setupPinDirect:active,.setupPinOk:active,.pinDirect:active{
-  transform:scale(.94)!important;
+.pinHelp{
+  margin-top:9px;
+  text-align:center;
+  font-size:7px;
+  color:#fff!important;
+}
+.lockVersion{
+  margin-top:7px;
+  color:#fff!important;
+  font-size:6px;
+  letter-spacing:1.5px;
+  opacity:.75!important;
 }
