@@ -1221,3 +1221,17 @@ linear-gradient(180deg,#090909,#000 45%,#050403);color:#fff;text-align:center;pa
 .cropHint{text-align:center;font-size:7px;color:#fff;margin:7px 0 10px}
 .cropActions{display:grid;grid-template-columns:1fr 1fr;gap:7px}
 .cropActions button{margin:0!important}
+
+/* V6.15 — Mobil klavye / form kapanma düzeltmesi */
+input,textarea,select{
+  font-size:16px!important; /* iOS Safari input focus zoomunu engeller */
+}
+.sheet,.modalCard,.cropSheet{
+  touch-action:manipulation;
+}
+input,textarea,select,label{
+  touch-action:manipulation;
+  -webkit-user-select:text;
+  user-select:text;
+}
+textarea{resize:vertical}
