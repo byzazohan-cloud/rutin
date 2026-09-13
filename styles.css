@@ -976,3 +976,33 @@ html[data-appearance="light"] .day.today{outline-color:#111!important}
 .dailyReminder{
   border-color:var(--gold)!important;
 }
+
+/* V6.6 — Premium RUTİN parola ekranı */
+.premiumLock{position:fixed;inset:0;z-index:9999;overflow:auto;background:
+radial-gradient(circle at 50% 20%,rgba(215,180,92,.16),transparent 28%),
+linear-gradient(180deg,#090909,#000 45%,#050403);color:#fff;text-align:center;padding:28px 18px 24px}
+.lockAura{position:absolute;right:-80px;top:110px;width:250px;height:360px;border-radius:50%;background:radial-gradient(ellipse,rgba(215,180,92,.12),transparent 68%);pointer-events:none}
+.lockTop{max-width:430px;margin:auto;display:grid;grid-template-columns:1fr 1.5fr 1fr;align-items:center}
+.lockSideQuote{font-size:9px;line-height:1.45;color:#f4d783!important;text-align:left;letter-spacing:.8px}
+.lockSideQuote.right{text-align:right}
+.lockBrand strong{display:block;font-size:31px;letter-spacing:1px;background:linear-gradient(#fff0b0,#b47a24);-webkit-background-clip:text;color:transparent!important}
+.lockBrand small{font-size:6px;letter-spacing:3px;color:#fff!important}
+.lockLogo{margin:auto;width:29px;height:29px;border:2px solid var(--gold);border-radius:7px;color:var(--gold);font-size:21px;line-height:25px}
+.lockProfile{width:122px;height:122px;margin:15px auto 7px;border-radius:50%;padding:4px;border:2px solid var(--gold);box-shadow:0 0 22px rgba(215,180,92,.38)}
+.lockProfile img,.lockAvatar{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.lockAvatar{display:grid;place-items:center;background:#17130c;color:var(--gold);font-size:40px}
+.premiumLock h1{margin:3px 0 0;font-size:23px}
+.lockSub{font-size:7px;letter-spacing:3px;margin-top:2px}
+.lockGreeting{font-size:20px;font-weight:900;color:var(--gold)!important;margin-top:9px}
+.lockGreetingSub{font-size:8px;color:#f6e6b1!important;margin:3px auto 10px;max-width:320px}
+.pinDots{display:flex;justify-content:center;gap:18px;margin:9px 0 13px}
+.pinDots i{width:17px;height:17px;border-radius:50%;border:2px solid var(--gold);background:#111}
+.pinDots i.filled{background:linear-gradient(#ffe89b,#c99135);box-shadow:0 0 8px rgba(215,180,92,.6)}
+.pinPad{display:grid;grid-template-columns:repeat(3,64px);gap:8px 18px;justify-content:center}
+.pinPad button{width:64px!important;height:54px!important;border-radius:50%!important;border:1.5px solid var(--gold)!important;background:linear-gradient(145deg,#25221d,#080808)!important;color:#fff!important;font-size:22px!important;font-weight:700!important;padding:0!important}
+.pinPad button:active{background:var(--gold)!important;color:#000!important;transform:scale(.94)}
+.pinPad .bioKey{color:var(--gold)!important;font-size:26px!important}.pinPad .delKey{font-size:20px!important}
+.lockBottom{max-width:400px;margin:14px auto 8px;display:grid;grid-template-columns:1fr 1.2fr 1fr;align-items:center;gap:8px}
+.lockBottom span{font-size:6.5px;color:#fff!important}.lockBottom b{font-size:9px;line-height:1.4;color:var(--gold)!important;font-family:Georgia,serif;font-style:italic}
+.lockQuote{max-width:350px;margin:10px auto 0;padding:9px 12px;border:1px solid #28231b;border-radius:12px;background:linear-gradient(90deg,#111,rgba(215,180,92,.07));font-size:7.5px;color:#fff!important}
+@media(max-height:720px){.premiumLock{padding-top:10px}.lockProfile{width:86px;height:86px;margin-top:7px}.lockBrand strong{font-size:24px}.pinPad{gap:5px 16px}.pinPad button{width:56px!important;height:43px!important}.lockBottom{margin-top:8px}.lockQuote{display:none}}
