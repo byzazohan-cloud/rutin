@@ -117,3 +117,11 @@ Bu V2 tasarım ve işlev omurgasıdır. Kullanıcı geri bildirimine göre sonra
 - Doğru PIN yalnız o açık oturum için kilidi açar; yenilemede tekrar PIN gerekir.
 - Ayarlar > Uygulama Kilidi bölümünden kilit sonradan kapatılabilir.
 - Kilit kapatılırsa PIN temizlenir.
+
+## V6.10
+- Eski kurulumlarda kalmış `lock:false` ayarı için tek seferlik güvenlik göçü eklendi.
+- V6.10 ilk açılışta uygulama kilidini zorunlu olarak açar.
+- PIN yoksa PIN oluşturma ekranı gelir; PIN varsa mevcut PIN istenir.
+- Kullanıcı daha sonra Ayarlar'dan kilidi kapatırsa bu tercih korunur.
+- Uygulama arka plana geçtiğinde kilitliysa oturum tekrar kilitlenir.
+- Service Worker yeni sürümü bekletmeden aktive olacak şekilde güncellendi.
