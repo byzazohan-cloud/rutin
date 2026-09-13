@@ -1,16 +1,10 @@
-# RUTİN CLEAN V1
+# RUTİN CLEAN V2
 
-Temiz kurulum paketi.
+CLEAN V1 temel alınmıştır.
 
-Dosya yapısı:
-- index.html
-- styles.css
-- app.js
-- sw.js
-- manifest.json
-- icon.svg
-- icon-180.png
-- icon-512.png
-
-Temel: RUTİN V6.17 sağlam sürüm.
-PIN sistemi sıfırdan tek parça olarak yeniden kurulmuştur.
+Düzeltme:
+- PIN doğrulamasından sonra ana sayfanın açılmasını engelleyen eksik
+  `getReminderCache()` referansı kaldırıldı.
+- Hatırlatma fonksiyonları doğrudan çalışan fonksiyonlara bağlandı.
+- PIN sistemi değiştirilmedi.
+- Tek app.js yapısı korunur.

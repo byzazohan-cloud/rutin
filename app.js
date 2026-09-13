@@ -533,7 +533,7 @@ function cleanPinScreen(){
       : `<div class="cleanPinHelp">4 HANELİ PINİNİ GİRİP TAMAM'A BAS.</div>`
     }
 
-    <div class="lockVersion">CLEAN V1</div>
+    <div class="lockVersion">CLEAN V2</div>
   </div>`;
 }
 
@@ -1105,8 +1105,8 @@ function dailyReminderMessageRaw(){
  }
  return msgs;
 }
-function dailyReminderMessage(){return getReminderCache().daily}
-function reminderItems(){return getReminderCache().payments}
+function dailyReminderMessage(){return dailyReminderMessageRaw()}
+function reminderItems(){return reminderItemsRaw()}
 function dailyReminderBanner(){
  const a=dailyReminderMessage();if(!a.length)return'';
  return `<div class="reminderBanner dailyReminder"><b>◔ GÜNLÜK HATIRLATMA</b>${a.map(x=>`<span>${x}</span>`).join('')}</div>`;
