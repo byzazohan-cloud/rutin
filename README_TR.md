@@ -166,14 +166,10 @@ Bu V2 tasarım ve işlev omurgasıdır. Kullanıcı geri bildirimine göre sonra
 - Uygulama kapalıyken arka planda işlem çalıştırmaz.
 - Mevcut kilit, profil, tema, takvim ve rapor özellikleri korunur.
 
-## V6.25 — PIN sistemi sıfırdan yeniden kuruldu
-- V6.17 sağlam sürümü temel alındı.
-- Eski PIN oluşturma ve giriş yamaları kaldırıldı.
-- PIN oluşturma ve PIN giriş ekranı aynı bileşeni kullanır.
-- PIN oluştur: 4 rakam > TAMAM > tekrar 4 rakam > TAMAM.
-- Normal giriş: 4 rakam > TAMAM.
-- Ekran tuşları ve klavye 0-9 desteklenir.
-- Backspace/Delete siler.
-- Enter TAMAM görevi görür.
-- Yenilemede kilit yeniden gelir.
-- Ayarlardan kilit kapatılabilir.
+## V6.27 — RUTİN cache / Service Worker zorunlu yenileme
+- Yalnız `/rutin/` kapsamındaki Service Worker kayıtları ilk açılışta kaldırılır.
+- Yalnız `rutin-*` isimli cache'ler temizlenir.
+- HANE veya aynı domaindeki başka uygulamaların cache/verilerine dokunulmaz.
+- Sayfa bir kez `?fresh=v627` ile yeniden açılır.
+- Sonrasında yeni V6.27 Service Worker kurulup ağdan güncel JS/CSS öncelikli yüklenir.
+- PIN ekranında V6.27 etiketi görünür.
