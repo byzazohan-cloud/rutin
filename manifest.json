@@ -1,0 +1,10 @@
+{
+  "name": "RUTİN",
+  "short_name": "RUTİN",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "description": "Kişisel çalışma, kazanç, harcama ve yatırım günlüğü."
+}
