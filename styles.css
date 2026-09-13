@@ -1006,3 +1006,11 @@ linear-gradient(180deg,#090909,#000 45%,#050403);color:#fff;text-align:center;pa
 .lockBottom span{font-size:6.5px;color:#fff!important}.lockBottom b{font-size:9px;line-height:1.4;color:var(--gold)!important;font-family:Georgia,serif;font-style:italic}
 .lockQuote{max-width:350px;margin:10px auto 0;padding:9px 12px;border:1px solid #28231b;border-radius:12px;background:linear-gradient(90deg,#111,rgba(215,180,92,.07));font-size:7.5px;color:#fff!important}
 @media(max-height:720px){.premiumLock{padding-top:10px}.lockProfile{width:86px;height:86px;margin-top:7px}.lockBrand strong{font-size:24px}.pinPad{gap:5px 16px}.pinPad button{width:56px!important;height:43px!important}.lockBottom{margin-top:8px}.lockQuote{display:none}}
+
+/* V6.7 PIN form fix */
+.field input[name="pin"]{
+  text-align:center;
+  letter-spacing:8px;
+  font-size:18px!important;
+  font-weight:800;
+}
