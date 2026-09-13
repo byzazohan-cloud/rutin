@@ -47,3 +47,12 @@ Bu V2 tasarım ve işlev omurgasıdır. Kullanıcı geri bildirimine göre sonra
 - Ödeme tarihi yaklaşan kart/esnek hesaplar için uygulama içi hatırlatma eklendi.
 - RUTİN yedek dosyası oluşturma ve geri yükleme eklendi.
 - Veri dışa aktarma eklendi.
+
+## V5
+- Seçilen R✓ siyah-altın RUTİN logosu eklendi.
+- Web/PWA uygulama ikonu ve Apple ana ekran ikonu eklendi.
+- Sağ üstteki profil/nokta ikonu kaldırıldı; sağ üstte Ayarlar kaldı.
+- Raporlar ekranında Gelir ve Harcama ayrı ayrı yuvarlak grafik olarak gösterilir.
+- Detaylı raporda da ayrı Gelir/Harcama yuvarlak grafikleri bulunur.
+- Uygulama içi ikonlar daha büyük, sade ve lüks/premium görünüme çekildi.
+- V4.1 takvim, Tema Stüdyosu, yedekleme, PIN ve diğer işlevler korunmuştur.
