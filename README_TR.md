@@ -171,3 +171,11 @@ Bu V2 tasarım ve işlev omurgasıdır. Kullanıcı geri bildirimine göre sonra
 - Click + touchend desteklenir.
 - Eski Service Worker / JavaScript kalmasını önlemek için navigasyon, JS ve CSS network-first güncellenir.
 - Parola ekranında V6.19 sürüm etiketi görünür; böylece telefonda yeni sürümün gerçekten yüklendiği kontrol edilebilir.
+
+## V6.21
+- PIN girerken her rakamda ekranın tamamı yeniden çizilmez.
+- Sadece PIN noktaları güncellenir.
+- 4. rakam dokunma sorunu giderildi.
+- Mobilde click ve touch çift tetikleme riski kaldırıldı.
+- Silme tuşu yalnız noktaları günceller.
+- Doğru 4 haneli PIN girildiğinde uygulama açılır.

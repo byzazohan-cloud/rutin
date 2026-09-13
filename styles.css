@@ -1308,3 +1308,29 @@ textarea{resize:vertical}
   letter-spacing:1.5px;
   opacity:.75!important;
 }
+
+/* V6.20 — PIN sıfırlama */
+.forgotPinBtn{
+  border:0!important;
+  background:transparent!important;
+  color:#fff!important;
+  font-size:6.5px!important;
+  padding:7px 2px!important;
+  margin:0!important;
+  min-height:30px!important;
+  box-shadow:none!important;
+}
+.forgotPinBtn:active{color:var(--gold)!important}
+
+/* V6.21 — Stabil PIN giriş */
+.pinDirect{
+  touch-action:manipulation!important;
+  -webkit-tap-highlight-color:transparent!important;
+  -webkit-user-select:none!important;
+  user-select:none!important;
+}
+.pinDirect:active{
+  transform:scale(.92)!important;
+  background:var(--gold)!important;
+  color:#000!important;
+}
