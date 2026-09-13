@@ -1256,3 +1256,28 @@ textarea{resize:vertical}
   position:relative;
   z-index:2;
 }
+
+
+/* V6.17 — Pil optimizasyonu: görseli bozmadan pahalı efektleri azalt */
+@media (max-width:600px){
+  .topbar,.nav{
+    backdrop-filter:none!important;
+    -webkit-backdrop-filter:none!important;
+    background:#000!important;
+  }
+  .rutinLogo,.luxGlyph,.nav .luxGlyph,.settingIcon,
+  .profileRing,.lockProfile,.pinDots i.filled{
+    box-shadow:none!important;
+    text-shadow:none!important;
+  }
+  .clickableChart,.nav button,button{
+    transition-duration:.06s!important;
+  }
+}
+@media (prefers-reduced-motion: reduce){
+  *{
+    scroll-behavior:auto!important;
+    animation:none!important;
+    transition:none!important;
+  }
+}

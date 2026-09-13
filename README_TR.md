@@ -156,3 +156,12 @@ Bu V2 tasarım ve işlev omurgasıdır. Kullanıcı geri bildirimine göre sonra
 - Sayfa yenileme / uygulama yeniden açma zaten PIN ister.
 - Parola ekranı ve ilk PIN oluşturma ekranı artık ana uygulamadaki aynı R✓ RUTİN logosunu kullanır.
 - Modal dışına dokunma davranışı input odaklıyken güvenli hale getirildi.
+
+## V6.17 — Pil Optimizasyonu
+- Arka planda sürekli çalışan interval/polling kullanılmaz.
+- Hatırlatma kontrolleri aynı dakika içinde tekrar hesaplanmaz.
+- Uygulama görünür değilken gereksiz render yapılmaz.
+- Service Worker sade cache-first yapıya geçirildi; periyodik kontrol yapmaz.
+- Mobilde pahalı blur/gölge efektleri azaltıldı; tasarım dili korunur.
+- Uygulama kapalıyken arka planda işlem çalıştırmaz.
+- Mevcut kilit, profil, tema, takvim ve rapor özellikleri korunur.
