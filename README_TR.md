@@ -1,16 +1,32 @@
-# RUTİN V1
-Kişisel çalışma, kazanç, harcama, kredi kartı, esnek hesap, yatırım ve not takibi için PWA.
+# RUTİN V2
+Bu sürüm, kullanıcı tarafından seçilen referans tasarıma göre sıfırdan kurulmuştur.
 
-## İlk sürüm
-- Günlük çalışma: tek tuşla BUGÜN ÇALIŞTIM
-- Saatlik çalışma: süre sayacı yok; çalışılan saat elle girilir
-- Mesai: saatlik çalışmadan ayrı kayıt türü
-- Yol masrafı zorunlu değil; harcama olarak gerektiğinde eklenir
-- Harcama: nakit / kredi kartı / esnek hesap
-- Kredi kartı ve esnek hesap
-- Küçük yatırımlar
+## Ekranlar
+- Ana Sayfa
+- Gelir / Harcama Ekle
+- Günlük Çalışma
+- Saatlik Çalışma
+- Mesai
+- Finans / Hesaplar
+- Takvim
+- Rapor / Analiz
+- Detaylı Rapor
+- Yatırımlar
 - Notlar
-- Çalışma takvimi renkleri
-- Gün/hafta/ay/yıl/tarih aralığı için tasarlanmış rapor ekranı (V1 arayüzünde ay görünümü aktiftir)
-- Profil ve ücret ayarları
-- Veriler cihazda localStorage içinde saklanır
+- Profil
+- Ayarlar
+
+## Temel mantık
+- Günlük çalışma: tek kayıt
+- Saatlik çalışma: kronometre yok, saat elle girilir
+- Mesai: saatlik çalışmadan ayrı tutulur
+- Yol masrafı isteğe bağlı
+- Kredi kartı, esnek hesap ve nakit
+- Küçük yatırım kayıtları
+- Notlar
+- Çalışma takviminde günlük/saatlik/mesai/çalışılmayan gün renkleri
+- Aylık rapor ve detaylı rapor
+- Veriler cihazda localStorage içinde tutulur
+
+## Not
+Bu V2 tasarım ve işlev omurgasıdır. Kullanıcı geri bildirimine göre sonraki sürümlerde birebir ince ayar yapılacaktır.
