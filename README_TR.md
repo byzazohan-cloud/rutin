@@ -109,3 +109,11 @@ Bu V2 tasarım ve işlev omurgasıdır. Kullanıcı geri bildirimine göre sonra
 - Hatırlatma saatleri Ayarlar > Hatırlatıcılar içinden değiştirilebilir.
 - Harcama Ekle ekranında kategori ve ödeme butonları küçültüldü.
 - Harcama Ekle ikonları ve yazıları daha büyük ve okunaklı hale getirildi.
+
+## V6.9
+- Uygulama kilidi yeni kurulumlarda varsayılan AÇIK.
+- PIN yoksa uygulama ilk açılışta 4 haneli PIN oluşturma ekranı gösterir.
+- PIN oluşturulduktan sonra her sayfa yenileme / uygulama yeniden açılışında parola ekranı gelir.
+- Doğru PIN yalnız o açık oturum için kilidi açar; yenilemede tekrar PIN gerekir.
+- Ayarlar > Uygulama Kilidi bölümünden kilit sonradan kapatılabilir.
+- Kilit kapatılırsa PIN temizlenir.
