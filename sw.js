@@ -1,5 +1,5 @@
-const C='rutin-v6-21';
-const STATIC=['./','./index.html','./styles.css?v=6.21','./app-v6-21.js?v=6.21','./manifest.json','./icon.svg','./icon-180.png','./icon-512.png'];
+const C='rutin-v6-22';
+const STATIC=['./','./index.html','./styles.css?v=6.22','./app-v6-22.js?v=6.22','./manifest.json','./icon.svg','./icon-180.png','./icon-512.png'];
 
 self.addEventListener('install',e=>{
   self.skipWaiting();

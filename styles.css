@@ -1334,3 +1334,53 @@ textarea{resize:vertical}
   background:var(--gold)!important;
   color:#000!important;
 }
+
+
+/* V6.22 — PIN oluşturma ekranı da premium tuş takımlı */
+.setupPremiumLock{
+  padding-bottom:26px!important;
+}
+.setupPinTitle{
+  margin-top:10px;
+  font-size:15px;
+  font-weight:900;
+  color:#fff!important;
+  letter-spacing:.4px;
+}
+.setupPinInstruction{
+  margin-top:4px;
+  font-size:8px;
+  color:var(--gold)!important;
+  letter-spacing:1.2px;
+}
+.setupPinPad{
+  margin-top:2px;
+}
+.setupPinBtn,.setupPinGhost{
+  width:64px!important;
+  height:54px!important;
+  border-radius:50%!important;
+  border:1.5px solid var(--gold)!important;
+  background:linear-gradient(145deg,#25221d,#080808)!important;
+  color:#fff!important;
+  font-size:22px!important;
+  font-weight:700!important;
+  padding:0!important;
+  touch-action:manipulation!important;
+  -webkit-tap-highlight-color:transparent!important;
+}
+.setupPinBtn:active{
+  background:var(--gold)!important;
+  color:#000!important;
+  transform:scale(.94)!important;
+}
+.setupPinGhost{
+  opacity:.35!important;
+}
+.setupPinNote{
+  margin:12px auto 0;
+  max-width:300px;
+  font-size:7px;
+  color:#fff!important;
+  letter-spacing:.5px;
+}

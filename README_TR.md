@@ -179,3 +179,10 @@ Bu V2 tasarım ve işlev omurgasıdır. Kullanıcı geri bildirimine göre sonra
 - Mobilde click ve touch çift tetikleme riski kaldırıldı.
 - Silme tuşu yalnız noktaları günceller.
 - Doğru 4 haneli PIN girildiğinde uygulama açılır.
+
+## V6.22
+- İlk PIN oluşturma ekranı artık metin kutusu kullanmaz.
+- Premium parola ekranıyla aynı 0-9 tuş takımı kullanılır.
+- Önce yeni 4 haneli PIN girilir, sonra ikinci kez tekrar girilir.
+- Eşleşirse PIN kaydedilir ve uygulama açılır.
+- Telefon klavyesi hiç açılmaz.
