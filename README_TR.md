@@ -56,3 +56,21 @@ Bu V2 tasarım ve işlev omurgasıdır. Kullanıcı geri bildirimine göre sonra
 - Detaylı raporda da ayrı Gelir/Harcama yuvarlak grafikleri bulunur.
 - Uygulama içi ikonlar daha büyük, sade ve lüks/premium görünüme çekildi.
 - V4.1 takvim, Tema Stüdyosu, yedekleme, PIN ve diğer işlevler korunmuştur.
+
+## V6
+- Uygulama genel yüzeyi tam siyah yapıldı.
+- Soluk/gri metinler beyaza çevrildi.
+- Aktif, seçili ve basılan butonlar gold görünür.
+- Takvim referans RUTİN tasarımına yaklaştırıldı.
+- Takvim günleri yuvarlak ve daha kompakt.
+- Günlük / Saatlik / Mesai takvim renkleri artık solid/saydam olmayan renklerdir.
+- Bugünün tarihi beyaz çerçeve ile vurgulanır.
+- Takvim altındaki detaylı çalışma özeti korunur.
+- Premium ikonlar biraz büyütüldü ve daha net hale getirildi.
+- R✓ logo, ayrı Gelir/Harcama yuvarlak grafikleri, Tema Stüdyosu ve V5 özellikleri korunmuştur.
+
+## V6.1
+- Alt menüde ANA yerine ANA SAYFA yazısı kullanılır.
+- Alt menü ikonları büyütüldü.
+- İkonlar daha temiz ve premium sembollerle yenilendi.
+- Aktif sekmenin ikonu gold dolgu ve hafif parlama ile vurgulanır.
