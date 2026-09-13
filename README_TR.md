@@ -125,3 +125,11 @@ Bu V2 tasarım ve işlev omurgasıdır. Kullanıcı geri bildirimine göre sonra
 - Kullanıcı daha sonra Ayarlar'dan kilidi kapatırsa bu tercih korunur.
 - Uygulama arka plana geçtiğinde kilitliysa oturum tekrar kilitlenir.
 - Service Worker yeni sürümü bekletmeden aktive olacak şekilde güncellendi.
+
+## V6.11 — Kilit ve kayıt kalıcılığı kesin düzeltme
+- Uygulama artık tek bir kalıcı depolama anahtarı (`rutin-main`) kullanır.
+- Eski `rutin-v4`, `rutin-v3`, `rutin-v2`, `rutin-v1` verileri otomatik okunup yeni depoya taşınır.
+- PIN ve kilit ayarı sayfa yenilemede kaybolmaz.
+- Eksik olan `pinKey()` rakam tuşu doğrulama fonksiyonu eklendi.
+- V6.11'e ilk geçişte kilit bir kez zorunlu açılır; PIN varsa ister, yoksa oluşturma ekranı gelir.
+- Kullanıcı Ayarlar'dan daha sonra kilidi kapatırsa bu tercih kalıcıdır.
