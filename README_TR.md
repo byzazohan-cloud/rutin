@@ -173,3 +173,12 @@ Bu V2 tasarım ve işlev omurgasıdır. Kullanıcı geri bildirimine göre sonra
 - Sayfa bir kez `?fresh=v627` ile yeniden açılır.
 - Sonrasında yeni V6.27 Service Worker kurulup ağdan güncel JS/CSS öncelikli yüklenir.
 - PIN ekranında V6.27 etiketi görünür.
+
+## V6.28 — PIN akışı düzeltildi
+- Ekran rakam tuşları geri eklendi.
+- PIN yalnız TAMAM butonuna basınca işlenir.
+- PIN oluşturma: 4 rakam > TAMAM > tekrar 4 rakam > TAMAM.
+- Normal giriş: 4 rakam > TAMAM.
+- Sonsuz tekrar şifre isteme döngüsü kaldırıldı.
+- Klavye 0-9, Backspace/Delete ve Enter desteği korunur.
+- Cache yenileme V6.28 olarak güncellendi.

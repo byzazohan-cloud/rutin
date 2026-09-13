@@ -1309,3 +1309,46 @@ textarea{resize:vertical}
   letter-spacing:1.5px!important;
   opacity:.9!important;
 }
+
+/* V6.28 — Stabil PIN akışı */
+.fixedPinPad{
+  position:relative!important;
+  z-index:20!important;
+}
+.fixedPinBtn{
+  width:64px!important;
+  height:54px!important;
+  border-radius:50%!important;
+  border:1.5px solid var(--gold)!important;
+  background:#000!important;
+  color:#fff!important;
+  font-size:22px!important;
+  font-weight:800!important;
+  padding:0!important;
+  touch-action:manipulation!important;
+  -webkit-tap-highlight-color:transparent!important;
+}
+.fixedPinBtn:active{
+  background:var(--gold)!important;
+  color:#000!important;
+  transform:scale(.94)!important;
+}
+.fixedPinOk{
+  width:min(280px,82vw)!important;
+  min-height:44px!important;
+  margin:12px auto 0!important;
+  display:block!important;
+  border:1px solid var(--gold)!important;
+  border-radius:12px!important;
+  background:var(--gold)!important;
+  color:#000!important;
+  font-size:12px!important;
+  font-weight:900!important;
+}
+.pinInstruction{
+  margin-top:7px;
+  color:var(--gold)!important;
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:1px;
+}

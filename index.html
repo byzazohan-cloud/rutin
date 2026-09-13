@@ -13,14 +13,14 @@
 <meta name="apple-mobile-web-app-title" content="RUTİN">
 <title>RUTİN</title>
 <link rel="manifest" href="manifest.json">
-<link rel="stylesheet" href="styles.css?v=6.27.3">
+<link rel="stylesheet" href="styles.css?v=6.28.2">
 
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icon-180.png">
 
 <script>
 (function(){
-  const FLAG='rutin-v627-refresh-done';
+  const FLAG='rutin-v628-refresh-done';
   async function hardRefreshRutin(){
     try{
       if(sessionStorage.getItem(FLAG)==='1') return;
@@ -42,8 +42,8 @@
       }
 
       const u=new URL(location.href);
-      if(u.searchParams.get('fresh')!=='v627'){
-        u.searchParams.set('fresh','v627');
+      if(u.searchParams.get('fresh')!=='v628'){
+        u.searchParams.set('fresh','v628');
         location.replace(u.toString());
       }
     }catch(e){}
@@ -55,6 +55,6 @@
 </head>
 <body>
 <div id="app"></div>
-<script src="app-v6-27.js?v=6.27.3"></script>
+<script src="app-v6-28.js?v=6.28.2"></script>
 </body>
 </html>

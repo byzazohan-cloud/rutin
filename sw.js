@@ -1,9 +1,9 @@
-const C='rutin-v6-27-3';
+const C='rutin-v6-28-2';
 const STATIC=[
   './',
   './index.html',
-  './styles.css?v=6.27.3',
-  './app-v6-27.js?v=6.27.3',
+  './styles.css?v=6.28.2',
+  './app-v6-28.js?v=6.28.2',
   './manifest.json',
   './icon.svg',
   './icon-180.png',
@@ -24,27 +24,26 @@ self.addEventListener('activate',event=>{
 });
 
 self.addEventListener('fetch',event=>{
-  const req=event.request;
-  if(req.method!=='GET') return;
-  const url=new URL(req.url);
+  if(event.request.method!=='GET') return;
+  const url=new URL(event.request.url);
   if(url.origin!==self.location.origin) return;
 
-  const freshFirst=req.mode==='navigate' || url.pathname.endsWith('.js') || url.pathname.endsWith('.css');
+  const freshFirst=event.request.mode==='navigate' || url.pathname.endsWith('.js') || url.pathname.endsWith('.css');
 
   if(freshFirst){
     event.respondWith(
-      fetch(req,{cache:'no-store'})
+      fetch(event.request,{cache:'no-store'})
         .then(res=>{
           if(res && res.ok){
             const copy=res.clone();
-            caches.open(C).then(cache=>cache.put(req,copy)).catch(()=>{});
+            caches.open(C).then(cache=>cache.put(event.request,copy)).catch(()=>{});
           }
           return res;
         })
-        .catch(()=>caches.match(req).then(hit=>hit||caches.match('./index.html')))
+        .catch(()=>caches.match(event.request).then(hit=>hit||caches.match('./index.html')))
     );
     return;
   }
 
-  event.respondWith(caches.match(req).then(hit=>hit||fetch(req)));
+  event.respondWith(caches.match(event.request).then(hit=>hit||fetch(event.request)));
 });
