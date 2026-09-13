@@ -1384,3 +1384,20 @@ textarea{resize:vertical}
   color:#fff!important;
   letter-spacing:.5px;
 }
+
+/* V6.23 — PIN onay butonu */
+.setupPinOk{
+  width:min(280px,82vw)!important;
+  min-height:42px!important;
+  margin:12px auto 0!important;
+  display:block!important;
+  border:1px solid var(--gold)!important;
+  border-radius:12px!important;
+  background:var(--gold)!important;
+  color:#000!important;
+  font-size:12px!important;
+  font-weight:900!important;
+  letter-spacing:.8px!important;
+  touch-action:manipulation!important;
+}
+.setupPinOk:active{transform:scale(.98)!important}
