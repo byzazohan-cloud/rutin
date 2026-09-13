@@ -74,3 +74,10 @@ Bu V2 tasarım ve işlev omurgasıdır. Kullanıcı geri bildirimine göre sonra
 - Alt menü ikonları büyütüldü.
 - İkonlar daha temiz ve premium sembollerle yenilendi.
 - Aktif sekmenin ikonu gold dolgu ve hafif parlama ile vurgulanır.
+
+## V6.2
+- Ayarlar ekranındaki ikonlar büyütüldü ve premium gold çerçeveli hale getirildi.
+- Veri Dışa Aktar yanında Veri Geri Yükle eklendi.
+- Dışa aktarılan JSON dosyası yeniden içe aktarılabilir.
+- HANE benzeri dosyadan geri yükleme akışı eklendi.
+- Hızlı İşlemler'deki Gelir Ekle ve Harcama ikonları diğer hızlı işlem ikonlarıyla aynı büyük premium ölçüye getirildi.
