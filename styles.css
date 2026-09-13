@@ -718,3 +718,210 @@ button.active i,
   background:var(--gold)!important;
   color:#050403!important;
 }
+
+
+/* V6.3 — Harcama ekranı + çok renkli takvim + geçmiş ay düzenleme */
+
+/* Harcama ekle ikonları belirgin büyüt */
+.categoryIcons{
+  gap:5px!important;
+}
+.catChip{
+  min-height:58px!important;
+  padding:5px 3px!important;
+  border-radius:10px!important;
+}
+.catChip i{
+  font-size:22px!important;
+  margin-bottom:2px!important;
+}
+.catChip span{
+  font-size:8.2px!important;
+  font-weight:900!important;
+}
+.payIcons{
+  gap:5px!important;
+}
+.payIcons label{
+  min-height:56px!important;
+  padding:5px 3px!important;
+}
+.payIcons i{
+  font-size:22px!important;
+}
+.payIcons span{
+  font-size:8px!important;
+  font-weight:900!important;
+}
+
+/* Harcama form yazıları biraz büyüsün */
+.field label{
+  font-size:8.5px!important;
+  font-weight:800!important;
+}
+.field input,.field select,.field textarea{
+  font-size:13px!important;
+}
+
+/* Butonlar biraz daha küçük ama ikon + yazı korunur */
+.primary,.secondary{
+  min-height:30px!important;
+  padding:6px 8px!important;
+  font-size:9px!important;
+}
+.quick button{
+  min-height:42px!important;
+  padding:3px 2px!important;
+}
+
+/* Takvim sayılarını büyüt */
+.day{
+  font-size:10px!important;
+  font-weight:900!important;
+  position:relative;
+  overflow:hidden;
+}
+
+/* Aynı gün 1 çalışma türü */
+.day.combo1.daily{
+  background:#16a34a!important;
+  color:#fff!important;
+}
+.day.combo1.hourly{
+  background:#2563eb!important;
+  color:#fff!important;
+}
+.day.combo1.overtime{
+  background:var(--gold)!important;
+  color:#000!important;
+}
+
+/* Aynı gün 2 çalışma türü: daire ikiye bölünür */
+.day.combo2.daily.hourly{
+  background:linear-gradient(90deg,#16a34a 0 50%,#2563eb 50% 100%)!important;
+  color:#fff!important;
+}
+.day.combo2.daily.overtime{
+  background:linear-gradient(90deg,#16a34a 0 50%,var(--gold) 50% 100%)!important;
+  color:#fff!important;
+}
+.day.combo2.hourly.overtime{
+  background:linear-gradient(90deg,#2563eb 0 50%,var(--gold) 50% 100%)!important;
+  color:#fff!important;
+}
+
+/* Aynı gün 3 çalışma türü: daire üç parçaya bölünür */
+.day.combo3.daily.hourly.overtime{
+  background:conic-gradient(
+    #16a34a 0deg 120deg,
+    #2563eb 120deg 240deg,
+    var(--gold) 240deg 360deg
+  )!important;
+  color:#fff!important;
+}
+.day.combo3.daily.hourly.overtime:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.18);
+  pointer-events:none;
+}
+
+/* Takvimde bugünün çerçevesi renkleri bozmadan görünür */
+.day.today{
+  outline:2px solid #fff!important;
+  outline-offset:2px!important;
+}
+
+/* Gün detayında düzenle/sil aksiyonları */
+.dayItemActions{
+  display:flex;
+  gap:4px;
+  align-items:center;
+}
+.miniEdit,.miniDelete{
+  min-height:24px!important;
+  padding:4px 6px!important;
+  border-radius:7px!important;
+  font-size:6.8px!important;
+}
+.miniEdit{
+  border:1px solid var(--gold)!important;
+  background:#000!important;
+  color:var(--gold)!important;
+}
+.miniEdit:active,.miniEdit:hover{
+  background:var(--gold)!important;
+  color:#000!important;
+}
+
+
+/* V6.4 — Dinamik selamlama + açık/karanlık mod */
+.appearanceSwitch{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:10px 0}
+.appearanceSwitch button{min-height:32px!important;border:1px solid #333!important;border-radius:9px!important;background:#000!important;color:#fff!important;font-size:8px!important;font-weight:900!important}
+.appearanceSwitch button.active{background:var(--gold)!important;color:#050403!important;border-color:var(--gold)!important}
+
+/* Açık mod */
+html[data-appearance="light"]{
+  --bg:#f4f1e8!important;
+  --panel:#ffffff!important;
+  --panel2:#f8f5ed!important;
+  --txt:#111111!important;
+  --muted:#111111!important;
+  --line:#d9d2c3!important;
+}
+html[data-appearance="light"],
+html[data-appearance="light"] body,
+html[data-appearance="light"] #app,
+html[data-appearance="light"] .phone{background:#f4f1e8!important;color:#111!important}
+html[data-appearance="light"] .topbar,
+html[data-appearance="light"] .nav,
+html[data-appearance="light"] .sheet,
+html[data-appearance="light"] .card,
+html[data-appearance="light"] .summaryBox,
+html[data-appearance="light"] .stat,
+html[data-appearance="light"] .account,
+html[data-appearance="light"] .reportBox,
+html[data-appearance="light"] .note,
+html[data-appearance="light"] .recordHero,
+html[data-appearance="light"] .themePreview,
+html[data-appearance="light"] .themePreviewCard,
+html[data-appearance="light"] .moreGrid button,
+html[data-appearance="light"] .field input,
+html[data-appearance="light"] .field select,
+html[data-appearance="light"] .field textarea,
+html[data-appearance="light"] .setting,
+html[data-appearance="light"] .item,
+html[data-appearance="light"] .donutCard{
+  background:#fff!important;color:#111!important;border-color:#d9d2c3!important
+}
+html[data-appearance="light"] small,
+html[data-appearance="light"] .muted,
+html[data-appearance="light"] .dateLine,
+html[data-appearance="light"] .heroMsg,
+html[data-appearance="light"] .summaryRow b,
+html[data-appearance="light"] .summaryRow strong,
+html[data-appearance="light"] .summaryRow small,
+html[data-appearance="light"] .field label,
+html[data-appearance="light"] .notice,
+html[data-appearance="light"] .item b,
+html[data-appearance="light"] .item small,
+html[data-appearance="light"] .account small,
+html[data-appearance="light"] .calendarHead,
+html[data-appearance="light"] .legend,
+html[data-appearance="light"] .moreGrid b,
+html[data-appearance="light"] .moreGrid span,
+html[data-appearance="light"] .setting span,
+html[data-appearance="light"] .donutCenter small,
+html[data-appearance="light"] .donutLegend{color:#111!important;opacity:1!important}
+html[data-appearance="light"] button{background:#fff!important;color:#111!important;border-color:#d9d2c3!important}
+html[data-appearance="light"] button.active,
+html[data-appearance="light"] button:active,
+html[data-appearance="light"] .nav button.active,
+html[data-appearance="light"] .tabs button.active,
+html[data-appearance="light"] .workChoice button.active{background:var(--gold)!important;color:#050403!important;border-color:var(--gold)!important}
+html[data-appearance="light"] .day.off{background:#fff!important;color:#111!important;border-color:#c8c0af!important}
+html[data-appearance="light"] .calendarTitleRow b,
+html[data-appearance="light"] .calendarTitleRow small{color:#111!important}
+html[data-appearance="light"] .day.today{outline-color:#111!important}

@@ -81,3 +81,23 @@ Bu V2 tasarım ve işlev omurgasıdır. Kullanıcı geri bildirimine göre sonra
 - Dışa aktarılan JSON dosyası yeniden içe aktarılabilir.
 - HANE benzeri dosyadan geri yükleme akışı eklendi.
 - Hızlı İşlemler'deki Gelir Ekle ve Harcama ikonları diğer hızlı işlem ikonlarıyla aynı büyük premium ölçüye getirildi.
+
+## V6.3
+- Harcama Ekle ekranındaki kategori ve ödeme ikonları büyütüldü.
+- Harcama formundaki yazılar biraz büyütüldü; butonlar biraz küçültüldü.
+- Takvim gün sayıları büyütüldü.
+- Aynı gün Günlük + Saatlik + Mesai varsa takvim dairesi 3 renge bölünür.
+- İki çalışma türü varsa daire iki renge bölünür.
+- Takvimde önceki/sonraki aylara geçilebilir.
+- Geçmiş aylardaki çalışma kayıtları açılıp düzenlenebilir ve silinebilir.
+
+## V6.4
+- Selamlama saate göre otomatik değişir:
+  - Sabah: GÜNAYDIN
+  - Öğle: TÜNAYDIN
+  - Akşam: İYİ AKŞAMLAR
+  - Gece: İYİ GECELER
+- Günün sözü her gün otomatik değişir.
+- Ayarlarda KARANLIK MOD / AÇIK MOD aktif hale getirildi.
+- Tema Stüdyosu içinde de görünüm modu seçilebilir.
+- Açık mod gerçek açık renk temaya, karanlık mod tam siyah temaya geçer.
