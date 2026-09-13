@@ -133,3 +133,11 @@ Bu V2 tasarım ve işlev omurgasıdır. Kullanıcı geri bildirimine göre sonra
 - Eksik olan `pinKey()` rakam tuşu doğrulama fonksiyonu eklendi.
 - V6.11'e ilk geçişte kilit bir kez zorunlu açılır; PIN varsa ister, yoksa oluşturma ekranı gelir.
 - Kullanıcı Ayarlar'dan daha sonra kilidi kapatırsa bu tercih kalıcıdır.
+
+## V6.12
+- Profil sayfasındaki profil fotoğrafına dokununca Profil Düzenle açılır.
+- Ana sayfadaki profil fotoğrafına dokununca Profil sayfası açılır.
+- Profil Düzenle ekranına Fotoğraf Seç eklendi.
+- Fotoğraf telefondan/dosyadan seçilebilir ve kaydedilir.
+- Seçilen fotoğraf profil ekranında ve premium kilit ekranında kullanılır.
+- Fotoğraf kaldırma seçeneği eklendi.
