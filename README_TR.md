@@ -30,3 +30,20 @@ Bu sürüm, kullanıcı tarafından seçilen referans tasarıma göre sıfırdan
 
 ## Not
 Bu V2 tasarım ve işlev omurgasıdır. Kullanıcı geri bildirimine göre sonraki sürümlerde birebir ince ayar yapılacaktır.
+
+
+## V3
+- DAHA FAZLA ekranındaki tüm seçenekler tıklanabilir.
+- Profil ekranı referans RUTİN görseline daha yakın premium yapıda yenilendi.
+- Kayıt Ekle ekranı ikonlu kategori ve ödeme yöntemi kartlarıyla premium hale getirildi.
+- Raporlarda Günlük / Haftalık / Aylık / Yıllık gerçekten çalışır.
+- Rapor grafiğine dokununca Detaylı Rapor açılır.
+- Detaylı raporda çalışma özeti, finansal özet, grafik ve hareket listesi vardır.
+- Alt menü: Ana Sayfa / İş / Takvim / Raporlar / Daha Fazla.
+- Ana sayfa hızlı işlemlerinde Saatlik ve Mesai kaldırıldı; Notlar ve Yatırım eklendi.
+- Birden fazla kredi kartı eklenebilir/düzenlenebilir/silinebilir.
+- Birden fazla esnek hesap eklenebilir/düzenlenebilir/silinebilir.
+- PIN uygulama kilidi eklendi.
+- Ödeme tarihi yaklaşan kart/esnek hesaplar için uygulama içi hatırlatma eklendi.
+- RUTİN yedek dosyası oluşturma ve geri yükleme eklendi.
+- Veri dışa aktarma eklendi.

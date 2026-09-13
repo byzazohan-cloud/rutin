@@ -105,3 +105,53 @@ button{cursor:pointer}
 .sheet{width:min(430px,100%);max-height:90dvh;overflow:auto;background:#0a0c0e;border:1px solid #2b2e31;border-bottom:0;border-radius:20px 20px 0 0;padding:15px 14px calc(18px + env(safe-area-inset-bottom))}
 .sheetHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.sheetHead b{color:var(--gold2);font-size:11px}.close{border:0;background:none;color:#aaa;font-size:20px}
 .notice{font-size:8px;color:#9a9da1;line-height:1.45;padding:9px;border:1px solid #26292c;border-radius:10px;background:#0d0f11;margin-bottom:9px}
+
+
+/* V3 — REFERANS TASARIM + PREMIUM ETKİLEŞİM */
+.clickable{cursor:pointer}
+.quickPremium button{position:relative;overflow:hidden}
+.quickPremium button:after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(240,207,122,.08),transparent 55%);pointer-events:none}
+.quickPremium i{font-size:18px}
+.quickPremium span{display:block;font-size:7px}
+
+.recordHero{display:flex;gap:10px;align-items:center;padding:11px;margin:5px 0 12px;border:1px solid #4c3d1f;border-radius:14px;background:linear-gradient(145deg,#0b0b0b,#131007)}
+.recordHero .recordIcon{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;color:var(--gold2);font-size:20px;background:#151109;border:1px solid #5a4824}
+.recordHero b{font-size:11px}.recordHero small{display:block;color:#85898e;font-size:7px;margin-top:3px}
+
+.categoryIcons{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.catChip{border:1px solid #292d30;background:#0d0f11;border-radius:11px;min-height:62px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:#a4a7aa}
+.catChip input{display:none}.catChip i{font-style:normal;font-size:18px;color:var(--gold2)}.catChip span{font-size:7px;font-weight:800}
+.catChip:has(input:checked){border-color:#846b34;background:linear-gradient(145deg,#171308,#0f0f0d);box-shadow:inset 0 0 0 1px rgba(215,180,92,.12)}
+
+.payIcons{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.payIcons label{border:1px solid #292d30;background:#0d0f11;border-radius:11px;min-height:60px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}
+.payIcons input{display:none}.payIcons i{font-style:normal;font-size:18px;color:var(--gold2)}.payIcons span{font-size:7px;color:#aaa;font-weight:800}
+.payIcons label:has(input:checked){border-color:#846b34;background:#171308}
+
+.clickableChart{cursor:pointer;transition:transform .12s ease}.clickableChart:active{transform:scale(.985)}
+.chartTap{text-align:center;color:var(--gold2);font-size:8px;font-weight:800;margin-top:10px}
+.detailHero{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+.detailHero>div{border:1px solid #34312a;background:linear-gradient(145deg,#0c0d0e,#151108);border-radius:13px;padding:12px}
+.detailHero small{font-size:7px;color:#8e9297}.detailHero strong{display:block;font-size:14px;margin-top:5px}
+
+.profileShowcase{text-align:center;padding:16px 8px 13px}
+.profileRing{width:108px;height:108px;border-radius:50%;margin:0 auto 11px;padding:4px;background:conic-gradient(var(--gold2),#52401d,var(--gold2))}
+.profileRing .avatar{width:100%;height:100%;border:4px solid #070707;font-size:30px}
+.profileShowcase h2{margin:0;color:#fff;font-size:19px}.profileShowcase p{margin:5px auto 8px;max-width:290px;color:var(--gold2);font-size:8px}
+.profileBadge{display:inline-block;border:1px solid #41371f;border-radius:999px;padding:6px 10px;color:#aaa;font-size:7px}
+.profileInfoRow{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid #1d2023}
+.profileInfoRow:last-child{border:0}.profileInfoRow span{font-size:8px;color:#90949a}.profileInfoRow b{font-size:9px}
+
+.moreGrid{display:grid;gap:8px}
+.moreGrid button{display:grid;grid-template-columns:40px 1fr 1fr;align-items:center;text-align:left;border:1px solid #282c2f;background:linear-gradient(145deg,#0a0c0e,#101214);border-radius:13px;padding:11px;color:#eee}
+.moreGrid i{font-style:normal;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;color:var(--gold2);background:#16140e;font-size:16px}
+.moreGrid b{font-size:9px}.moreGrid span{font-size:7px;color:#777;text-align:right}
+
+.reminderBanner{border:1px solid #705923;background:linear-gradient(145deg,#161205,#0c0c0b);border-radius:12px;padding:9px 10px;margin-bottom:8px}
+.reminderBanner b{display:block;color:var(--gold2);font-size:8px;margin-bottom:4px}.reminderBanner span{display:block;font-size:7px;color:#b8b8b8;margin-top:2px}
+
+.dangerBtn{color:#ff7272!important;border-color:#4b2424!important;margin-top:7px}
+.lockPage{display:flex;align-items:center;justify-content:center;flex-direction:column}
+.lockLogo{font-size:24px;letter-spacing:5px;color:var(--gold2);font-weight:900;margin-bottom:20px}
+.lockCard{width:100%;max-width:330px;text-align:center;border:1px solid #3a3324;background:#0b0c0d;border-radius:18px;padding:20px}
+.lockIcon{font-size:34px;color:var(--gold2)}.lockCard h2{font-size:15px}.lockCard p{color:#888;font-size:8px}.lockCard input{width:100%;margin:8px 0 10px;background:#111315;border:1px solid #303338;color:#fff;border-radius:11px;padding:13px;text-align:center;font-size:20px;letter-spacing:8px}
