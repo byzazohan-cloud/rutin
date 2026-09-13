@@ -1235,3 +1235,24 @@ input,textarea,select,label{
   user-select:text;
 }
 textarea{resize:vertical}
+
+
+/* V6.16 — Mobil klavye kilit çakışması + tek RUTİN logo */
+.lockBrand .rutinLogo{
+  margin:0 auto 4px!important;
+}
+.lockBrand .lockLogo{
+  display:none!important;
+}
+
+/* Form yazarken sheet sabit kalır, klavye açıldığında içerik scroll edilebilir */
+.sheet{
+  overscroll-behavior:contain;
+  -webkit-overflow-scrolling:touch;
+}
+.sheet input:focus,
+.sheet textarea:focus,
+.sheet select:focus{
+  position:relative;
+  z-index:2;
+}

@@ -148,3 +148,11 @@ Bu V2 tasarım ve işlev omurgasıdır. Kullanıcı geri bildirimine göre sonra
 - Fotoğraf parmak veya mouse ile sağa-sola / yukarı-aşağı taşınabilir.
 - Yuvarlak profil alanının içine istenen bölüm ortalanabilir.
 - KADRAJI KULLAN seçildiğinde seçilen bölüm 512x512 profil fotoğrafı olarak kaydedilir.
+
+## V6.16
+- Mobil klavye açılırken çalışan yanlış visibility kilidi kaldırıldı.
+- Yazı/tutar/not/PIN alanına dokununca form artık kapanmaz veya kilit ekranına atmaz.
+- Uygulama yalnız 15 saniye veya daha uzun gerçek arka plan süresinden sonra tekrar kilitlenir.
+- Sayfa yenileme / uygulama yeniden açma zaten PIN ister.
+- Parola ekranı ve ilk PIN oluşturma ekranı artık ana uygulamadaki aynı R✓ RUTİN logosunu kullanır.
+- Modal dışına dokunma davranışı input odaklıyken güvenli hale getirildi.
