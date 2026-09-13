@@ -141,3 +141,10 @@ Bu V2 tasarım ve işlev omurgasıdır. Kullanıcı geri bildirimine göre sonra
 - Fotoğraf telefondan/dosyadan seçilebilir ve kaydedilir.
 - Seçilen fotoğraf profil ekranında ve premium kilit ekranında kullanılır.
 - Fotoğraf kaldırma seçeneği eklendi.
+
+## V6.14
+- Profil fotoğrafı seçildikten sonra kadraj editörü açılır.
+- Fotoğraf yakınlaştırılıp / uzaklaştırılabilir.
+- Fotoğraf parmak veya mouse ile sağa-sola / yukarı-aşağı taşınabilir.
+- Yuvarlak profil alanının içine istenen bölüm ortalanabilir.
+- KADRAJI KULLAN seçildiğinde seçilen bölüm 512x512 profil fotoğrafı olarak kaydedilir.
