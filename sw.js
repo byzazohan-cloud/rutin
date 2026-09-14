@@ -1,11 +1,11 @@
-const CACHE='rutin-clean-v2-v14';
+const CACHE='rutin-clean-v2-v15';
 const FILES=[
   './',
   './index.html',
-  './styles.css?v=clean2-v14',
-  './app.js?v=clean2-v14',
-  './clean_v2_upgrade.js?v=full12-v14',
-  './clean_v2_v13.js?v=v14',
+  './styles.css?v=clean2-v15',
+  './app.js?v=clean2-v15',
+  './clean_v2_upgrade.js?v=full12-v15',
+  './clean_v2_v13.js?v=v15',
   './manifest.json',
   './icon.svg',
   './icon-180.png',
@@ -18,13 +18,18 @@ self.addEventListener('install',event=>{
 });
 
 self.addEventListener('activate',event=>{
-  event.waitUntil(
-    caches.keys()
-      .then(keys=>Promise.all(
-        keys.filter(k=>k.startsWith('rutin-') && k!==CACHE).map(k=>caches.delete(k))
-      ))
-      .then(()=>self.clients.claim())
-  );
+  event.waitUntil((async()=>{
+    const keys=await caches.keys();
+    await Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)));
+    await self.clients.claim();
+  })());
+});
+
+self.addEventListener('message',event=>{
+  if(event.data&&event.data.type==='SKIP_WAITING') self.skipWaiting();
+  if(event.data&&event.data.type==='CLEAR_OLD_CACHES'){
+    event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))));
+  }
 });
 
 self.addEventListener('fetch',event=>{
@@ -32,25 +37,26 @@ self.addEventListener('fetch',event=>{
   const url=new URL(event.request.url);
   if(url.origin!==self.location.origin) return;
 
-  const freshFirst =
-    event.request.mode==='navigate' ||
-    url.pathname.endsWith('.js') ||
-    url.pathname.endsWith('.css');
-
+  const freshFirst = event.request.mode==='navigate' || /\.(?:js|css|html)$/.test(url.pathname);
   if(freshFirst){
-    event.respondWith(
-      fetch(event.request,{cache:'no-store'})
-        .then(res=>{
-          if(res && res.ok){
-            const copy=res.clone();
-            caches.open(CACHE).then(cache=>cache.put(event.request,copy)).catch(()=>{});
-          }
-          return res;
-        })
-        .catch(()=>caches.match(event.request).then(hit=>hit||caches.match('./index.html')))
-    );
+    event.respondWith((async()=>{
+      try{
+        const res=await fetch(event.request,{cache:'no-store'});
+        if(res&&res.ok){
+          const cache=await caches.open(CACHE);
+          cache.put(event.request,res.clone()).catch(()=>{});
+        }
+        return res;
+      }catch(e){
+        return (await caches.match(event.request)) || (await caches.match('./index.html'));
+      }
+    })());
     return;
   }
 
-  event.respondWith(caches.match(event.request).then(hit=>hit||fetch(event.request)));
+  event.respondWith((async()=>{
+    const hit=await caches.match(event.request);
+    if(hit) return hit;
+    try{return await fetch(event.request,{cache:'no-store'});}catch(e){return hit;}
+  })());
 });

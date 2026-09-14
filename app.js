@@ -1141,4 +1141,29 @@ window.addEventListener('pagehide',()=>{
 applyTheme();
 applyAppearance();
 render();
-if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js',{updateViaCache:'none'}).catch(()=>{});
+if('serviceWorker' in navigator){
+  let swRefreshing=false;
+  navigator.serviceWorker.addEventListener('controllerchange',()=>{
+    if(swRefreshing) return;
+    swRefreshing=true;
+    location.reload();
+  });
+  window.addEventListener('load',()=>{
+    navigator.serviceWorker.register('./sw.js?v=15',{updateViaCache:'none'}).then(reg=>{
+      const activateWaiting=()=>{
+        if(reg.waiting) reg.waiting.postMessage({type:'SKIP_WAITING'});
+      };
+      activateWaiting();
+      reg.addEventListener('updatefound',()=>{
+        const worker=reg.installing;
+        if(!worker) return;
+        worker.addEventListener('statechange',()=>{
+          if(worker.state==='installed' && navigator.serviceWorker.controller){
+            worker.postMessage({type:'SKIP_WAITING'});
+          }
+        });
+      });
+      reg.update().catch(()=>{});
+    }).catch(()=>{});
+  });
+}
