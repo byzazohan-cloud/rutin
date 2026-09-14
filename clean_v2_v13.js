@@ -1,6 +1,5 @@
 /* RUTIN CLEAN V2 - V13 focused corrections: lock lifecycle, investments, cards/flex */
 (()=>{
-'use strict';
 
 // --- Lock lifecycle -------------------------------------------------------
 // FULL12 locked as soon as the page became hidden. That makes app switching,
