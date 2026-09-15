@@ -108,6 +108,25 @@ window.deleteCardV39=function(id){
  if(typeof deleteCard==='function')deleteCard(id);else{state.cards=(state.cards||[]).filter(x=>x.id!==id);save();render();}
 };
 
+
+/* V41 FLEX ACCOUNT TOP DRAWER */
+window.openFlexMenuV41=function(id){
+ const arr=(state.flexAccounts||state.flex||[]);
+ const a=arr.find(x=>x&&x.id===id);if(!a)return;
+ document.querySelectorAll('.flexTopDrawerV41').forEach(x=>x.remove());
+ const debt=Number(a.balance||a.debt)||0, limit=Number(a.limit)||0;
+ const el=document.createElement('div');el.className='flexTopDrawerV41';
+ el.innerHTML=`<div class="v41DrawerGrip"></div><div class="v41DrawerHead"><div><small>ESNEK HESAP</small><b>${window.esc(a.name||'ESNEK HESAP')}</b></div><button onclick="closeFlexMenuV41()">×</button></div><div class="v41DrawerStats"><span><small>BORÇ</small><strong>${money(debt)}</strong></span><span><small>KULLANILABİLİR</small><strong>${money(Math.max(0,limit-debt))}</strong></span></div><div class="v41DrawerActions"><button onclick="closeFlexMenuV41();openModal('editFlex:${a.id}')"><i>✎</i>DÜZENLE</button><button class="danger" onclick="deleteFlexV41('${a.id}')"><i>×</i>SİL</button></div>`;
+ document.body.appendChild(el);requestAnimationFrame(()=>el.classList.add('show')); if(window.syncNavV40)syncNavV40();
+};
+window.closeFlexMenuV41=function(){document.querySelectorAll('.flexTopDrawerV41').forEach(x=>{x.classList.remove('show');setTimeout(()=>{x.remove();if(window.syncNavV40)syncNavV40()},220)})};
+window.deleteFlexV41=function(id){
+ const arr=(state.flexAccounts||state.flex||[]),a=arr.find(x=>x&&x.id===id);if(!a)return;
+ if(!confirm((a.name||'ESNEK HESAP')+' SİLİNSİN Mİ?'))return;
+ if(state.flexAccounts)state.flexAccounts=state.flexAccounts.filter(x=>x.id!==id);else state.flex=(state.flex||[]).filter(x=>x.id!==id);
+ save();closeFlexMenuV41();render();
+};
+
 /* V25 PREMIUM FINANCE */
 (function(){
  const arr=v=>Array.isArray(v)?v:[];
