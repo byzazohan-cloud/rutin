@@ -261,7 +261,7 @@ function finance(){
  <div class="account"><div class="accountHead"><b>NAKİT</b><span>›</span></div><strong>${money(state.accounts.cash.balance)}</strong></div>
  <div class="account"><div class="accountHead"><b>YATIRIMLAR</b><span onclick="go('investments')">›</span></div><strong class="green">${money(state.investments.reduce((a,x)=>a+x.amount,0))}</strong><small>TOPLAM DEĞER</small></div>
  <div class="section"><b>HIZLI İŞLEMLER</b></div><div class="quick" style="grid-template-columns:repeat(4,1fr)">
- <button onclick="openModal('expense')"><i class="luxGlyph">▤</i>HARCAMA</button><button onclick="openModal('income')"><i class="luxGlyph">＋</i>GELİR</button><button onclick="openModal('cash')"><i>₺</i>NAKİT</button><button onclick="go('investments')"><i>◆</i>YATIRIM</button>
+ <button onclick="openModal('expense')"><i class="luxGlyph">▤</i>HARCAMA</button><button onclick="openModal('income')"><i class="luxGlyph">＋</i>GELİR</button><button onclick="openModal('cash')"><i>₺</i>NAKİT</button><button onclick="go('investments')"><i>◈</i>YATIRIM</button>
  </div>`;
 }
 function calendarScreen(){
@@ -470,7 +470,7 @@ function expenseForm(){return `<form onsubmit="submitExpense(event)">
  <div class="field"><label>HESAPTAN</label>
   <div class="payIcons">
     <label><input type="radio" name="method" value="NAKİT" checked><i>₺</i><span>NAKİT</span></label>
-    <label><input type="radio" name="method" value="KREDİ KARTI"><i>▣</i><span>KREDİ KARTI</span></label>
+    <label><input type="radio" name="method" value="KREDİ KARTI"><i>▦</i><span>KREDİ KARTI</span></label>
     <label><input type="radio" name="method" value="ESNEK HESAP"><i class="luxGlyph">▥</i><span>ESNEK HESAP</span></label>
   </div>
  </div>
@@ -710,8 +710,8 @@ function render(){
  else if(screen==='expense')content=expenseScreen();
  else if(screen==='more')content=`${header('DAHA FAZLA',true)}
  <div class="moreGrid">
-   <button onclick="go('finance')"><i>▣</i><b>FİNANS / HESAPLAR</b><span>KARTLAR VE ESNEK HESAPLAR</span></button>
-   <button onclick="go('investments')"><i>◆</i><b>YATIRIMLAR</b><span>KÜÇÜK YATIRIMLARINI TAKİP ET</span></button>
+   <button onclick="go('finance')"><i>▦</i><b>FİNANS / HESAPLAR</b><span>KARTLAR VE ESNEK HESAPLAR</span></button>
+   <button onclick="go('investments')"><i>◈</i><b>YATIRIMLAR</b><span>KÜÇÜK YATIRIMLARINI TAKİP ET</span></button>
    <button onclick="go('notes')"><i>✎</i><b>NOTLAR</b><span>KİŞİSEL VE İŞ NOTLARI</span></button>
    <button onclick="go('profile')"><i>●</i><b>PROFİL</b><span>ÜCRET VE KİŞİSEL AYARLAR</span></button>
    <button onclick="go('settings')"><i>⚙</i><b>AYARLAR</b><span>PIN, YEDEKLEME, HATIRLATMA</span></button><button onclick="openModal('theme')"><i>✧</i><b>TEMA STÜDYOSU</b><span>RENKLERİ KENDİN AYARLA</span></button>
