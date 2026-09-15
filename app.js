@@ -520,7 +520,7 @@ function cleanPinScreen(){
 
     <div class="lockTop">
       <div class="lockSideQuote">DİSİPLİN<br>BUGÜNÜ<br>YARINA TAŞIR</div>
-      <div class="lockBrand"><img class="lockLogoV31" src="icon-180.png?v=v37" alt="RUTİN"><strong>RUTİN</strong><small>DAHA İYİ BİR SEN</small></div>
+      <div class="lockBrand"><img class="lockLogoV31" src="icon-180.png?v=v38" alt="RUTİN"><strong>RUTİN</strong><small>DAHA İYİ BİR SEN</small></div>
       <div class="lockSideQuote right">PLANLA<br>ÇALIŞ<br>BAŞAR</div>
     </div>
 
