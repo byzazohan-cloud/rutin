@@ -127,23 +127,78 @@ window.deleteFlexV41=function(id){
  save();closeFlexMenuV41();render();
 };
 
-/* V25 PREMIUM FINANCE */
+/* V42 FINANCE — REAL TWO TAB FINAL OVERRIDE */
 (function(){
  const arr=v=>Array.isArray(v)?v:[];
  const sm=v=>money(Number(v)||0);
+ window.financeTabV42=window.financeTabV42||'cards';
+
  finance=function(){
-  state.cards=arr(state.cards).filter(x=>x&&typeof x==='object');
-  state.flexAccounts=arr(state.flexAccounts).filter(x=>x&&typeof x==='object');
-  state.investments=arr(state.investments).filter(x=>x&&typeof x==='object');
-  state.accounts=state.accounts&&typeof state.accounts==='object'?state.accounts:{};
-  state.accounts.cash=state.accounts.cash&&typeof state.accounts.cash==='object'?state.accounts.cash:{name:'NAKİT',balance:0};
-  const cards=state.cards.map(c=>`<div class="verticalLuxCardV39" onclick="openCardMenuV39('${c.id}')"><div class="v39CardTop"><span class="v39BrandMark">R</span><span class="v39Contactless">)))</span></div><div class="v39Chip"></div><div class="v39CardName">${window.esc(c.name||'KREDİ KARTI')}</div><div class="v39CardDebt"><small>GÜNCEL BORÇ</small><strong>${sm(c.balance)}</strong></div><div class="v39CardBottom"><span><small>LİMİT</small><b>${sm(c.limit)}</b></span><span><small>KESİM</small><b>${window.esc(c.statementDate||'—')}</b></span><span><small>SON ÖDEME</small><b>${window.esc(c.dueDate||'—')}</b></span></div><div class="v39TapHint">KARTA DOKUN · İŞLEMLER</div></div>`).join('');
-  const flex=state.flexAccounts.map(c=>`<div class="luxFlexCard"><div class="luxFlexIcon">◇</div><div class="luxFlexHead"><small>ESNEK HESAP</small><b>${window.esc(c.name||'ESNEK HESAP')}</b></div><strong>${sm(c.balance)}</strong><div class="luxFlexLine"><span>LİMİT ${sm(c.limit)}</span><span>KULLANILABİLİR ${sm(Math.max(0,(Number(c.limit)||0)-(Number(c.balance)||0)))}</span></div><button class="luxEditBtn" onclick="openModal('editFlex:${c.id}')">✎ HESABI DÜZENLE</button></div>`).join('');
-  const inv=state.investments.reduce((a,x)=>a+(Number(x.currentValue)||Number(x.amount)||0),0);
-  return `${header('FİNANS',true)}<div class="section"><b>KREDİ KARTLARIM</b><button type="button" class="miniLuxBtnV33" onclick="openModal('addCard')">＋ KART EKLE <b>›</b></button></div>${cards||'<div class="notice">HENÜZ KREDİ KARTI EKLENMEDİ.</div>'}<div class="section"><b>ESNEK HESAPLARIM</b><button type="button" class="miniLuxBtnV33" onclick="openModal('addFlex')">＋ HESAP EKLE <b>›</b></button></div>${flex||'<div class="notice">HENÜZ ESNEK HESAP EKLENMEDİ.</div>'}<div class="luxFinanceMini" onclick="openModal('cash')"><i>₺</i><div><small>NAKİT</small><b>${sm(state.accounts.cash.balance)}</b></div><span>›</span></div><div class="luxFinanceMini" onclick="go('investments')"><i>◆</i><div><small>YATIRIMLAR</small><b class="green">${sm(inv)}</b></div><span>›</span></div>`;
+   state.cards=arr(state.cards).filter(x=>x&&typeof x==='object');
+   state.flexAccounts=arr(state.flexAccounts).filter(x=>x&&typeof x==='object');
+
+   const cards=state.cards.map(c=>`
+     <div class="creditCardV42" onclick="openCardMenuV39('${c.id}')">
+       <div class="card42Top"><span class="card42Logo">R</span><span class="card42Type">KREDİ KARTI</span></div>
+       <div class="card42Chip"></div>
+       <div class="card42Name">${window.esc(c.name||'KREDİ KARTI')}</div>
+       <div class="card42Debt"><small>GÜNCEL BORÇ</small><strong>${sm(c.balance)}</strong></div>
+       <div class="card42Meta">
+         <span><small>LİMİT</small><b>${sm(c.limit)}</b></span>
+         <span><small>KESİM</small><b>${window.esc(c.statementDate||'—')}</b></span>
+         <span><small>SON ÖDEME</small><b>${window.esc(c.dueDate||'—')}</b></span>
+       </div>
+     </div>`).join('');
+
+   const flex=state.flexAccounts.map(a=>{
+     const debt=Number(a.balance||a.debt)||0, limit=Number(a.limit)||0;
+     return `<div class="flexCardV42" onclick="openFlexMenuV42('${a.id}')">
+       <div class="flex42Top"><span class="flex42Logo">R</span><span class="flex42Type">ESNEK HESAP</span></div>
+       <div class="flex42Mark">◇</div>
+       <div class="flex42Name">${window.esc(a.name||'ESNEK HESAP')}</div>
+       <div class="flex42Debt"><small>KULLANILAN TUTAR</small><strong>${sm(debt)}</strong></div>
+       <div class="flex42Meta">
+         <span><small>LİMİT</small><b>${sm(limit)}</b></span>
+         <span><small>KULLANILABİLİR</small><b>${sm(Math.max(0,limit-debt))}</b></span>
+       </div>
+     </div>`;
+   }).join('');
+
+   const tab=window.financeTabV42;
+   return `${header('FİNANS',true)}
+     <div class="financeV42">
+       <div class="financeTabs42">
+         <button class="${tab==='cards'?'active':''}" onclick="window.financeTabV42='cards';render()"><i>▰</i><span>KARTLAR</span></button>
+         <button class="${tab==='accounts'?'active':''}" onclick="window.financeTabV42='accounts';render()"><i>◇</i><span>HESAPLAR</span></button>
+       </div>
+       ${tab==='cards'
+         ? `<div class="finance42Head"><div><small>FİNANS</small><b>KREDİ KARTLARIM</b></div><button onclick="openModal('addCard')">＋ KART EKLE</button></div>
+            <div class="financeCards42">${cards||'<div class="notice">HENÜZ KREDİ KARTI EKLENMEDİ.</div>'}</div>`
+         : `<div class="finance42Head"><div><small>FİNANS</small><b>ESNEK HESAPLARIM</b></div><button onclick="openModal('addFlex')">＋ HESAP EKLE</button></div>
+            <div class="financeCards42">${flex||'<div class="notice">HENÜZ ESNEK HESAP EKLENMEDİ.</div>'}</div>`
+       }
+     </div>`;
+ };
+
+ window.openFlexMenuV42=function(id){
+   const a=(state.flexAccounts||[]).find(x=>x&&x.id===id); if(!a)return;
+   document.querySelectorAll('.flexDrawerV42').forEach(x=>x.remove());
+   const debt=Number(a.balance||a.debt)||0,limit=Number(a.limit)||0;
+   const el=document.createElement('div'); el.className='flexDrawerV42';
+   el.innerHTML=`<div class="drawer42Grip"></div>
+     <div class="drawer42Head"><div><small>ESNEK HESAP</small><b>${window.esc(a.name||'ESNEK HESAP')}</b></div><button onclick="closeFlexMenuV42()">×</button></div>
+     <div class="drawer42Stats"><span><small>BORÇ</small><strong>${sm(debt)}</strong></span><span><small>KULLANILABİLİR</small><strong>${sm(Math.max(0,limit-debt))}</strong></span></div>
+     <div class="drawer42Actions"><button onclick="closeFlexMenuV42();openModal('editFlex:${a.id}')">✎ DÜZENLE</button><button class="danger" onclick="deleteFlexV42('${a.id}')">× SİL</button></div>`;
+   document.body.appendChild(el); requestAnimationFrame(()=>el.classList.add('show'));
+   if(window.syncNavV40)syncNavV40();
+ };
+ window.closeFlexMenuV42=function(){document.querySelectorAll('.flexDrawerV42').forEach(x=>{x.classList.remove('show');setTimeout(()=>{x.remove();if(window.syncNavV40)syncNavV40()},180)})};
+ window.deleteFlexV42=function(id){
+   const a=(state.flexAccounts||[]).find(x=>x&&x.id===id);if(!a)return;
+   if(!confirm((a.name||'ESNEK HESAP')+' SİLİNSİN Mİ?'))return;
+   state.flexAccounts=(state.flexAccounts||[]).filter(x=>x.id!==id);save();closeFlexMenuV42();render();
  };
 })();
-
 /* V23 MODAL CLOSE HARD FIX */
 window.closeModal=function(){
  modal=null;
