@@ -1472,69 +1472,10 @@ img,svg,canvas{max-width:100%}
 button[aria-label="AYARLAR"],button[title="AYARLAR"]{font-size:0!important}
 button[aria-label="AYARLAR"] .settingsGearV27,button[title="AYARLAR"] .settingsGearV27{font-size:24px!important}
 
-/* V28 BRAND EVERYWHERE + MULTICOLOR ULTRA LUXURY ICONS */
-:root{
- --emerald:#35d08a;--sapphire:#4aa8ff;--ruby:#ff627e;--amethyst:#a77cff;
- --cyan:#4bd7e8;--amber:#f0bf55;--rose:#f178b6;--silver:#d8e0e8
-}
-/* Selected RUTIN logo on password screen */
-.pinScreen:before,.cleanPin:before,.pinWrap:before,.lockScreen:before{
- content:"";display:block;width:92px;height:92px;margin:0 auto 13px;border-radius:24px;
- background:url("icon-180.png") center/cover no-repeat;
- border:1px solid #8c6b2c;box-shadow:0 12px 30px rgba(0,0,0,.45),0 0 22px rgba(225,181,76,.16)
-}
-/* Selected RUTIN logo on home */
-.home:before,.homeScreen:before,.homeHero:before{
- content:"";display:block;width:64px;height:64px;margin:2px auto 10px;border-radius:18px;
- background:url("icon-180.png") center/cover no-repeat;
- border:1px solid #735922;box-shadow:0 9px 22px rgba(0,0,0,.34),0 0 15px rgba(225,181,76,.12)
-}
-/* Generic luxury icon base */
-.v28LuxIcon,.quickAction i,.quickActions i,.homeQuick i,.actionGrid i,.shortcut i,.homeMenu i,.fullMenuList i,.expenseIconV24{
- position:relative;overflow:hidden;border-width:1px!important;border-style:solid!important;
- box-shadow:inset 0 1px rgba(255,255,255,.20),inset 0 -8px 16px rgba(0,0,0,.20),0 8px 18px rgba(0,0,0,.32)!important
-}
-.v28LuxIcon:after,.quickAction i:after,.quickActions i:after,.homeQuick i:after,.actionGrid i:after,.shortcut i:after,.homeMenu i:after,.fullMenuList i:after{
- content:"";position:absolute;left:7px;right:7px;top:5px;height:1px;background:rgba(255,255,255,.30);border-radius:50%
-}
-/* Different premium colors by position */
-.quickAction:nth-child(8n+1) i,.quickActions button:nth-child(8n+1) i,.homeQuick button:nth-child(8n+1) i,.actionGrid button:nth-child(8n+1) i,.fullMenuList button:nth-child(8n+1) i{color:#a6f4cf!important;border-color:#277b58!important;background:linear-gradient(145deg,#153c2c,#07140f)!important}
-.quickAction:nth-child(8n+2) i,.quickActions button:nth-child(8n+2) i,.homeQuick button:nth-child(8n+2) i,.actionGrid button:nth-child(8n+2) i,.fullMenuList button:nth-child(8n+2) i{color:#a8d4ff!important;border-color:#316b9d!important;background:linear-gradient(145deg,#16334c,#07121d)!important}
-.quickAction:nth-child(8n+3) i,.quickActions button:nth-child(8n+3) i,.homeQuick button:nth-child(8n+3) i,.actionGrid button:nth-child(8n+3) i,.fullMenuList button:nth-child(8n+3) i{color:#ffb3c0!important;border-color:#9d3b50!important;background:linear-gradient(145deg,#4a1d28,#18080c)!important}
-.quickAction:nth-child(8n+4) i,.quickActions button:nth-child(8n+4) i,.homeQuick button:nth-child(8n+4) i,.actionGrid button:nth-child(8n+4) i,.fullMenuList button:nth-child(8n+4) i{color:#d2bdff!important;border-color:#694ba6!important;background:linear-gradient(145deg,#30204f,#10091c)!important}
-.quickAction:nth-child(8n+5) i,.quickActions button:nth-child(8n+5) i,.homeQuick button:nth-child(8n+5) i,.actionGrid button:nth-child(8n+5) i,.fullMenuList button:nth-child(8n+5) i{color:#aef5fb!important;border-color:#2c8791!important;background:linear-gradient(145deg,#164047,#071619)!important}
-.quickAction:nth-child(8n+6) i,.quickActions button:nth-child(8n+6) i,.homeQuick button:nth-child(8n+6) i,.actionGrid button:nth-child(8n+6) i,.fullMenuList button:nth-child(8n+6) i{color:#ffe09a!important;border-color:#9a7127!important;background:linear-gradient(145deg,#493719,#160f05)!important}
-.quickAction:nth-child(8n+7) i,.quickActions button:nth-child(8n+7) i,.homeQuick button:nth-child(8n+7) i,.actionGrid button:nth-child(8n+7) i,.fullMenuList button:nth-child(8n+7) i{color:#ffc0e1!important;border-color:#98517a!important;background:linear-gradient(145deg,#45213a,#160a12)!important}
-.quickAction:nth-child(8n) i,.quickActions button:nth-child(8n) i,.homeQuick button:nth-child(8n) i,.actionGrid button:nth-child(8n) i,.fullMenuList button:nth-child(8n) i{color:#edf3f8!important;border-color:#697782!important;background:linear-gradient(145deg,#30383e,#101316)!important}
-/* Settings remains unmistakable gear */
-.settingsGearV27{color:#f3d47d!important;background:linear-gradient(145deg,#493719,#100c05)!important}
-/* Reminder distinct ruby bell */
-.bellBtn,.reminderBtn{color:#ff9cad!important;border-color:#8e3548!important;background:linear-gradient(145deg,#461923,#13070a)!important}
-/* Bottom nav: distinct jewel colors */
-.nav button:nth-child(1) i{color:#9ee8c5!important;border-color:#2d7555!important;background:#0d2a1e!important}
-.nav button:nth-child(2) i{color:#9fceff!important;border-color:#326c9f!important;background:#102a40!important}
-.nav button:nth-child(3) i{color:#ff9eb0!important;border-color:#96384c!important;background:#35131b!important}
-.nav button:nth-child(4) i{color:#d1b7ff!important;border-color:#694da1!important;background:#26183d!important}
-.nav button:nth-child(5) i{color:#8cebf4!important;border-color:#337d85!important;background:#103238!important}
-.nav button:nth-child(6) i{color:#ffda84!important;border-color:#8e6926!important;background:#33260e!important}
-.nav button:nth-child(7) i{color:#f2c0df!important;border-color:#8d4d73!important;background:#351a2c!important}
-.nav button.active i{filter:brightness(1.18);box-shadow:0 0 16px currentColor,inset 0 1px rgba(255,255,255,.18)!important}
-
-/* V29 EXACT DOM BRAND + JEWEL ICONS */
-.cleanPinScreen:before,.home:before,.homeScreen:before,.homeHero:before{content:none!important;display:none!important}
-.rutinBrandLogoV29{object-fit:cover;display:block}
-.lockBrandLogoV29{position:relative;z-index:3;width:96px;height:96px;margin:4px auto 12px;border-radius:25px;border:1px solid #b58a36;box-shadow:0 14px 34px rgba(0,0,0,.48),0 0 24px rgba(226,180,70,.20)}
-.homeBrandV29{display:flex;align-items:center;gap:11px;margin:4px 0 12px;padding:9px 11px;border:1px solid #4b3b20;border-radius:16px;background:linear-gradient(145deg,#121416,#08090a);box-shadow:0 10px 22px rgba(0,0,0,.24)}
-.homeBrandV29 img{width:58px;height:58px;border-radius:16px;border:1px solid #99752c;box-shadow:0 0 17px rgba(226,180,70,.15)}
-.homeBrandV29 b{display:block;color:#f1ce73;font-size:16px;letter-spacing:2px}.homeBrandV29 small{display:block;color:#8d8d8d;font-size:6px;letter-spacing:.7px;margin-top:4px}
-.quick.quickPremium.quickSix button{min-height:94px!important;padding:10px 5px!important}
-.quick.quickPremium.quickSix button i.luxGlyph{display:grid!important;place-items:center!important;width:58px!important;height:58px!important;margin:0 auto 7px!important;border-radius:18px!important;font-size:25px!important;font-weight:950!important;border:1px solid!important;box-shadow:inset 0 1px rgba(255,255,255,.22),0 9px 20px rgba(0,0,0,.38)!important}
-.quickIncome{color:#a9f1cd!important;border-color:#2f8b62!important;background:linear-gradient(145deg,#1c513a,#071711)!important}
-.quickExpense{color:#ffb1bf!important;border-color:#a13d52!important;background:linear-gradient(145deg,#541e2b,#19080d)!important}
-.quickWork{color:#a8d5ff!important;border-color:#3677ad!important;background:linear-gradient(145deg,#194367,#071725)!important}
-.quickNotes{color:#e0c5ff!important;border-color:#7652ad!important;background:linear-gradient(145deg,#38245a,#11091d)!important}
-.quickInvest{color:#ffe09a!important;border-color:#a37a2d!important;background:linear-gradient(145deg,#513b18,#180f04)!important}
-.quickFinance{color:#a8f1f6!important;border-color:#358891!important;background:linear-gradient(145deg,#18464c,#071719)!important}
-.topRightStack .settingsOnly,.topRightInline button[aria-label="AYARLAR"]{border-color:#a67d2b!important;background:linear-gradient(145deg,#3c2d10,#0c0903)!important}
-.settingsGearV27{font-size:25px!important;color:#ffe18d!important}
-.bellGlyph{font-size:20px!important}
+/* V31 CLEAN VISUAL OVERRIDES — final active DOM only */
+.lockLogoV31{display:block;width:76px;height:76px;object-fit:cover;margin:0 auto 6px;border-radius:21px;border:1px solid #8f6d2a;box-shadow:0 9px 22px rgba(0,0,0,.38)}
+.brandStripV31{display:flex;align-items:center;gap:10px;margin:7px 0 12px;padding:9px 10px;border-radius:15px;border:1px solid #403721;background:#0c0e0f;box-shadow:0 7px 18px rgba(0,0,0,.22)}
+.brandStripV31 img{width:50px;height:50px;border-radius:14px;border:1px solid #826326}.brandStripV31 b{display:block;color:#e7c76f;font-size:14px;letter-spacing:1.7px}.brandStripV31 small{display:block;color:#85898d;font-size:6px;margin-top:3px;letter-spacing:.6px}
+.settingsGearV31{display:block;font-size:24px!important;line-height:1;color:#f0cf77}.bellGlyphV31{display:block;font-size:19px!important;line-height:1}
+.quick.quickPremium.quickSix .qv31{display:grid!important;place-items:center!important;width:54px!important;height:54px!important;margin:0 auto 7px!important;border-radius:16px!important;font-style:normal!important;font-size:23px!important;font-weight:900!important;border:1px solid!important;box-shadow:inset 0 1px rgba(255,255,255,.16),0 7px 16px rgba(0,0,0,.30)!important}
+.qIncome{color:#a8eccb!important;border-color:#347a5b!important;background:#102b20!important}.qExpense{color:#ffacbb!important;border-color:#914052!important;background:#35151e!important}.qWork{color:#a6d2ff!important;border-color:#376e9e!important;background:#122c43!important}.qNotes{color:#d9c0ff!important;border-color:#70529c!important;background:#291c3d!important}.qInvest{color:#f6d887!important;border-color:#92702d!important;background:#33270f!important}.qFinance{color:#9de7ed!important;border-color:#36777d!important;background:#123035!important}
