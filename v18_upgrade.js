@@ -26,10 +26,22 @@ window.toggleV18ExpenseFields=function(f){const c=f.querySelector('[name=categor
 window.submitExpenseV18=function(e){e.preventDefault();const d=Object.fromEntries(new FormData(e.currentTarget).entries()),c=d.category||'DİĞER',title=c==='DİĞER'?upper(d.customTitle||'DİĞER'):c;state.expenses.push({id:uid(),date:d.date,title,customTitle:d.customTitle||'',recipient:c==='HARÇLIK'?upper(d.recipient||''):'',amount:+d.amount||0,category:c,method:d.method||'NAKİT',note:d.note||''});save();modal=null;screen='expenses';render()}
 window.submitEditExpenseV18=function(e,id){e.preventDefault();const d=Object.fromEntries(new FormData(e.currentTarget).entries()),x=state.expenses.find(z=>z.id===id);if(!x)return;const c=d.category||'DİĞER';Object.assign(x,{date:d.date,title:c==='DİĞER'?upper(d.customTitle||'DİĞER'):c,customTitle:d.customTitle||'',recipient:c==='HARÇLIK'?upper(d.recipient||''):'',amount:+d.amount||0,category:c,method:d.method||'NAKİT',note:d.note||''});save();closeModal();render()}
 expenseForm=function(){return expenseFormV18()}
+
+function expenseRowV24(x){
+ const title=window.esc(x&&x.title||x&&x.category||'HARCAMA'),cat=window.esc(x&&x.category||'DİĞER'),method=window.esc(x&&x.method||x&&x.paymentMethod||'NAKİT'),date=window.esc(x&&x.date||'');
+ return `<div class="expenseRowV24"><i class="expenseIconV24">${ci(x&&x.category||'DİĞER')}</i><div class="expenseTextV24"><b>${title}</b><small>${cat} · ${method} · ${date}</small></div><strong>${money(Number(x&&x.amount)||0)}</strong><button type="button" onclick="openModal('editRecord:expense:${x.id}:${x.date||''}')">✎</button></div>`;
+}
+expenseAnalytics=function(){
+ const all=Array.isArray(state.expenses)?state.expenses:[],p=monthPrefix(),mm=all.filter(x=>String(x&&x.date||'').startsWith(p)),totals={};
+ mm.forEach(x=>{const c=upper(x&&x.category||'DİĞER');totals[c]=(totals[c]||0)+(Number(x&&x.amount)||0)});
+ const rows=Object.entries(totals).sort((a,b)=>b[1]-a[1]);
+ const total=rows.reduce((n,x)=>n+x[1],0);
+ return `${header('HARCAMA ANALİZİ',true)}<div class="analysisHero"><small>BU AY TOPLAM HARCAMA</small><strong class="red">${money(total)}</strong></div><div class="section"><b>KATEGORİ TOPLAMLARI</b><span>${rows.length} KATEGORİ</span></div><div class="card list expenseAnalyticsList">${rows.length?rows.map(([c,n])=>`<button class="categoryAnalysisRow" onclick="openModal('categoryDetail:${encodeURIComponent(c)}')"><i>${ci(c)}</i><div><b>${window.esc(c)}</b><small>AYRINTIYI GÖR</small></div><strong>${money(n)}</strong><span>›</span></button>`).join(''):'<div class="notice">BU AY HARCAMA KAYDI YOK.</div>'}</div>`;
+};
 expensesScreen=function(){
  const all=Array.isArray(state.expenses)?state.expenses:[],a=all.slice().sort((x,y)=>(y.date||'').localeCompare(x.date||'')),now=new Date(),prefix=`${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}`,mm=all.filter(x=>(x.date||'').startsWith(prefix));
  const total=mm.reduce((n,x)=>n+(+x.amount||0),0),cardMethods=['KREDİ KARTI','KART','CREDIT CARD'],isCard=x=>cardMethods.includes(String(x.method||x.paymentMethod||'').toUpperCase()),cash=mm.filter(x=>!isCard(x)).reduce((n,x)=>n+(+x.amount||0),0),card=mm.filter(isCard).reduce((n,x)=>n+(+x.amount||0),0);
- return `${header('HARCAMALAR',true)}<div class="expenseHero"><div><small>BU AY HARCAMA</small><strong class="red">${money(total)}</strong></div><button class="premiumAddBtn" onclick="openModal('expense')"><i>＋</i><span>HARCAMA EKLE</span></button></div><div class="paymentSplit"><button><b>💵 ${money(cash)}</b><small>NAKİT</small></button><button><b>💳 ${money(card)}</b><small>KREDİ KARTI</small></button></div><div class="section"><b>HARCAMA DETAYLARI</b><span>${a.length} KAYIT</span></div><div class="card list expenseList">${a.length?a.map(x=>expenseRow(x)).join(''):'<div class="empty">HARCAMA KAYDI YOK</div>'}</div>`};
+ return `${header('HARCAMALAR',true)}<div class="expenseHero"><div><small>BU AY HARCAMA</small><strong class="red">${money(total)}</strong></div><button class="premiumAddBtn" onclick="openModal('expense')"><i>＋</i><span>HARCAMA EKLE</span></button></div><div class="paymentSplit"><button><b>💵 ${money(cash)}</b><small>NAKİT</small></button><button><b>💳 ${money(card)}</b><small>KREDİ KARTI</small></button></div><div class="section"><b>HARCAMA DETAYLARI</b><span>${a.length} KAYIT</span></div><div class="card list expenseList">${a.length?a.map(x=>expenseRowV24(x)).join(''):'<div class="empty">HARCAMA KAYDI YOK</div>'}</div>`};
 
 function dateAdd(ds,n){const d=new Date(ds+'T12:00:00');d.setDate(d.getDate()+n);return iso(d)}
 window.shiftDay=function(ds,n){modal='day:'+dateAdd(ds,n);render()}
