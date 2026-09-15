@@ -795,7 +795,7 @@ ${field('overtimeRate','MESAİ SAATLİK ÜCRET',state.settings.overtimeRate,'num
 <button class="primary">KAYDET</button></form>`}
  if(k==='range'){title='TARİH ARALIĞI';body=`${field('start','BAŞLANGIÇ',iso(new Date(new Date().getFullYear(),new Date().getMonth(),1)),'date')}${field('end','BİTİŞ',iso(),'date')}<button class="primary" onclick="closeModal()">UYGULA</button>`}
  if(k==='menu'){title='MENÜ';body=`<div class="quick" style="grid-template-columns:repeat(2,1fr)"><button onclick="go('calendar')"><i>▦</i>TAKVİM</button><button onclick="go('investments')"><i>↗</i>YATIRIM</button><button onclick="go('notes')"><i>✎</i>NOTLAR</button><button onclick="go('settings')"><i>⚙</i>AYARLAR</button></div>`}
- return `<div class="modal" onclick="safeBackdropClose(event)"><div class="sheet" onclick="event.stopPropagation()"><div class="sheetHead"><b>${title}</b><button class="close" onclick="closeModal()">×</button></div>${body}</div></div>`;
+ return `<div class="modal" onclick="safeBackdropClose(event)"><div class="sheet" onclick="event.stopPropagation()"><div class="sheetHead"><b>${title}</b><button class="close" onclick="modal=null;document.getElementById('modal')?.remove();render()">×</button></div>${body}</div></div>`;
 }
 
 function submitDaily(e){

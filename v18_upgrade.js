@@ -46,8 +46,38 @@ const oldRender=render;
 render=function(){if(state.settings.lock&&!unlocked){$('#app').innerHTML=cleanPinScreen();requestAnimationFrame(()=>bindCleanPinControls());return;}let content='';if(screen==='expenseAnalytics')content=expenseAnalytics();else if(screen==='expenses')content=expensesScreen();else if(screen==='home')content=home();else if(screen==='daily')content=workScreen('daily');else if(screen==='hourly')content=workScreen('hourly');else if(screen==='overtime')content=workScreen('overtime');else if(screen==='work')content=workScreen('daily');else if(screen==='finance')content=finance();else if(screen==='calendar')content=calendarScreen();else if(screen==='reports')content=reports();else if(screen==='detail')content=detailReport();else if(screen==='investments')content=investments();else if(screen==='notes')content=notes();else if(screen==='profile')content=profile();else if(screen==='settings')content=settings();else if(screen==='more')content=`${header('DAHA FAZLA',true)}<div class="fullMenuList"><button onclick="go('finance')"><i>💳</i><b>FİNANS / KARTLAR</b><span>›</span></button><button onclick="go('expenseAnalytics')"><i>📊</i><b>HARCAMA ANALİZİ</b><span>›</span></button><button onclick="go('settings')"><i>⚙️</i><b>AYARLAR</b><span>›</span></button></div>`;$('#app').innerHTML=`<main class="phone v18Phone">${content}${nav()}</main>${modal?modalHtml(modal):''}`;bindDaySwipe()}
 function bindDaySwipe(){const s=document.querySelector('.v18Sheet[data-day]:not([data-bound])');if(!s)return;s.dataset.bound='1';let x=0;s.addEventListener('touchstart',e=>x=e.touches[0].clientX,{passive:true});s.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-x;if(Math.abs(dx)>55)shiftDay(s.dataset.day,dx<0?1:-1)},{passive:true})}
 // Kart kayıtlarını güvenli tut: bozuk/eksik veri finans ekranını çökertmesin.
-submitCard=function(e,editId=''){e.preventDefault();try{const d=Object.fromEntries(new FormData(e.currentTarget).entries()),prev=state.cards.find(z=>z.id===editId),x={id:editId||uid(),name:upper(d.name||'KREDİ KARTI'),balance:Number(d.balance)||0,limit:Number(d.limit)||0,statementDate:d.statementDate||'',dueDate:d.dueDate||'',transactions:Array.isArray(prev?.transactions)?prev.transactions:[]};if(editId){const i=state.cards.findIndex(z=>z.id===editId);if(i>=0)state.cards[i]=x;else state.cards.push(x)}else state.cards.push(x);save();modal=null;screen='finance';render()}catch(err){alert('KART KAYDI TAMAMLANAMADI. VERİLERİ KONTROL ET.')}}
+submitCard=function(e,editId=''){
+ e.preventDefault();
+ try{
+  if(!Array.isArray(state.cards))state.cards=[];
+  const form=e.currentTarget,d=Object.fromEntries(new FormData(form).entries());
+  const prev=state.cards.find(z=>z&&z.id===editId);
+  const x={id:editId||uid(),name:upper(d.name||'KREDİ KARTI'),balance:Number(d.balance)||0,limit:Number(d.limit)||0,statementDate:d.statementDate||'',dueDate:d.dueDate||'',transactions:(prev&&Array.isArray(prev.transactions))?prev.transactions:[]};
+  if(editId){const i=state.cards.findIndex(z=>z&&z.id===editId);if(i>=0)state.cards[i]=x;else state.cards.push(x)}else state.cards.push(x);
+  save();
+  modal=null;
+  const ov=document.getElementById('modal');if(ov)ov.remove();
+  screen='finance';render();
+ }catch(err){console.error('CARD SAVE',err);alert('KART KAYDI TAMAMLANAMADI: '+(err&&err.message?err.message:'BİLİNMEYEN HATA'))}
+};
 // Form girişlerinde Türkçe büyük harf görünümü; sayı/tarih alanlarına dokunma.
 document.addEventListener('input',e=>{if((e.target.matches('input[type=text], textarea'))&&!e.target.closest('.cropOverlay'))e.target.style.textTransform='uppercase'},{passive:true});
 render();
+})();
+
+/* V21 FINANCE RECOVERY */
+(function(){
+ const arr=v=>Array.isArray(v)?v:[];
+ const safeMoney=v=>money(Number(v)||0);
+ finance=function(){
+  state.cards=arr(state.cards).filter(x=>x&&typeof x==='object');
+  state.flexAccounts=arr(state.flexAccounts).filter(x=>x&&typeof x==='object');
+  state.investments=arr(state.investments).filter(x=>x&&typeof x==='object');
+  state.accounts=state.accounts&&typeof state.accounts==='object'?state.accounts:{};
+  state.accounts.cash=state.accounts.cash&&typeof state.accounts.cash==='object'?state.accounts.cash:{name:'NAKİT',balance:0};
+  const cards=state.cards.map(c=>`<div class="account premiumAccount goldBorder"><div class="accountHead"><b>${esc(c.name||'KREDİ KARTI')}</b><button class="accountMenu" onclick="openModal('editCard:${c.id}')">⋯</button></div><strong>${safeMoney(c.balance)}</strong><small>LİMİT ${safeMoney(c.limit)}${c.statementDate?` · KESİM ${c.statementDate}`:''}${c.dueDate?` · SON ÖDEME ${c.dueDate}`:''}</small><button class="accountAction" onclick="openModal('cardSpend:${c.id}')">＋ KARTA HARCAMA EKLE</button></div>`).join('');
+  const flex=state.flexAccounts.map(c=>`<div class="account premiumAccount"><div class="accountHead"><b>${esc(c.name||'ESNEK HESAP')}</b><button class="accountMenu" onclick="openModal('editFlex:${c.id}')">⋯</button></div><strong>${safeMoney(c.balance)}</strong><small>LİMİT ${safeMoney(c.limit)} · KULLANILABİLİR ${safeMoney(Math.max(0,(Number(c.limit)||0)-(Number(c.balance)||0)))}</small></div>`).join('');
+  const inv=state.investments.reduce((a,x)=>a+(Number(x.currentValue)||Number(x.amount)||0),0);
+  return `${header('FİNANS',true)}<div class="section"><b>KREDİ KARTLARIM</b><span onclick="openModal('addCard')">＋ KART EKLE</span></div>${cards||'<div class="notice">HENÜZ KREDİ KARTI EKLENMEDİ.</div>'}<div class="section"><b>ESNEK HESAPLARIM</b><span onclick="openModal('addFlex')">＋ HESAP EKLE</span></div>${flex||'<div class="notice">HENÜZ ESNEK HESAP EKLENMEDİ.</div>'}<div class="account premiumAccount"><div class="accountHead"><b>NAKİT</b><span onclick="openModal('cash')">›</span></div><strong>${safeMoney(state.accounts.cash.balance)}</strong></div><div class="account premiumAccount"><div class="accountHead"><b>YATIRIMLAR</b><span onclick="go('investments')">›</span></div><strong class="green">${safeMoney(inv)}</strong></div>`;
+ };
 })();
