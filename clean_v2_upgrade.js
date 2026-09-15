@@ -43,7 +43,7 @@ header=function(title='RUTİN',back=false){
  return `<div class="topbar premiumTopbar">
    <button class="iconBtn luxuryIconBtn" onclick="${back?"go('home')":"openModal('menu')"}">${back?'‹':'☰'}</button>
    <div class="title brandTitle">${title==='RUTİN'?`${rutinLogo(30)}<span>RUTİN</span>`:title}</div>
-   <div class="topRightStack"><button class="iconBtn luxuryIconBtn settingsOnly" onclick="go('settings')" aria-label="Ayarlar"><span class="settingsGearV27">⚙</span></button><button class="iconBtn luxuryIconBtn reminderTopBtn" onclick="openModal('reminderCenter')" aria-label="Hatırlatma">◔</button></div>
+   <div class="topRightStack"><button class="iconBtn luxuryIconBtn settingsOnly" onclick="go('settings')" aria-label="Ayarlar"><span class="settingsGearV27">⚙</span></button><button class="iconBtn luxuryIconBtn reminderTopBtn" onclick="openModal('reminderCenter')" aria-label="Hatırlatma">🔔</button></div>
  </div>`;
 };
 
@@ -71,7 +71,7 @@ home=function(){
  <div class="heroMsg"><b>${greetingByTime()}!</b><br>${dailyQuote()}</div>
  <div class="stats"><div class="stat"><small>BUGÜNKÜ GELİR</small><strong class="green">${money(todayIncome())}</strong></div><div class="stat"><small>BUGÜNKÜ HARCAMA</small><strong class="red">${money(todayExpense())}</strong></div><div class="stat"><small>BU AY GELİR</small><strong class="green">${money(T.income)}</strong></div><div class="stat"><small>BU AY HARCAMA</small><strong class="red">${money(T.expense)}</strong></div></div>
  <div class="section"><b>HIZLI İŞLEMLER</b></div><div class="quick quickPremium quickSix">
- <button onclick="openModal('income')"><i class="luxGlyph">＋</i><span>GELİR EKLE</span></button><button onclick="go('expenses')"><i class="luxGlyph">▤</i><span>HARCAMALAR</span></button><button onclick="openModal('daily')"><i class="luxGlyph">✓</i><span>ÇALIŞTIM</span></button><button onclick="go('notes')"><i class="luxGlyph">✦</i><span>NOTLAR</span></button><button onclick="go('investments')"><i class="luxGlyph">◇</i><span>YATIRIM</span></button><button onclick="go('finance')"><i class="luxGlyph">▣</i><span>FİNANS</span></button></div>
+ <button onclick="openModal('income')"><i class="luxGlyph quickIncome">₺＋</i><span>GELİR EKLE</span></button><button onclick="go('expenses')"><i class="luxGlyph quickExpense">₺</i><span>HARCAMALAR</span></button><button onclick="openModal('daily')"><i class="luxGlyph quickWork">✓</i><span>ÇALIŞTIM</span></button><button onclick="go('notes')"><i class="luxGlyph quickNotes">✎</i><span>NOTLAR</span></button><button onclick="go('investments')"><i class="luxGlyph quickInvest">↗</i><span>YATIRIM</span></button><button onclick="go('finance')"><i class="luxGlyph quickFinance">▰</i><span>FİNANS</span></button></div>
  <div class="section"><b>BUGÜNÜN ÖZETİ</b><span onclick="openModal('day:${iso()}')">AÇ / DÜZENLE ›</span></div>
  <div class="summaryBox clickableSummary" onclick="openModal('day:${iso()}')">
  ${sumRow('ÇALIŞMA',state.work.filter(x=>x.date===iso()&&x.type==='daily').length+' GÜN')}${sumRow('SAATLİK',state.work.filter(x=>x.date===iso()&&x.type==='hourly').reduce((a,x)=>a+(+x.hours||0),0)+' SAAT')}${sumRow('MESAİ',state.work.filter(x=>x.date===iso()&&x.type==='overtime').reduce((a,x)=>a+(+x.hours||0),0)+' SAAT')}${sumRow('TOPLAM KAZANÇ',money(todayIncome()))}${sumRow('TOPLAM HARCAMA',money(todayExpense()))}</div>`;
