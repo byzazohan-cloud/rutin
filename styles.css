@@ -1634,3 +1634,58 @@ button[aria-label="AYARLAR"] .settingsGearV27,button[title="AYARLAR"] .settingsG
 .v39CardName{margin-top:27px;color:#f4dc9c;font-size:13px;font-weight:950;letter-spacing:1.2px}.v39CardDebt{margin-top:13px}.v39CardDebt small,.v39CardBottom small{display:block;color:#8e8e8e;font-size:6px}.v39CardDebt strong{display:block;color:#fff2c4;font-size:20px;margin-top:3px}.v39CardBottom{position:absolute;left:18px;right:18px;bottom:31px;display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:6px}.v39CardBottom b{font-size:7px;color:#e8d9ae}.v39TapHint{position:absolute;bottom:11px;left:18px;color:#8b6d2f;font-size:5.5px;font-weight:900;letter-spacing:.8px}
 .cardTopDrawerV39{position:fixed;z-index:20000;top:0;left:50%;transform:translate(-50%,-110%);width:min(100%,430px);padding:8px 14px 18px;border-radius:0 0 25px 25px;border:1px solid #665024;border-top:0;background:linear-gradient(180deg,#17191b,#090a0b);box-shadow:0 20px 45px #000b;transition:transform .22s ease}.cardTopDrawerV39.show{transform:translate(-50%,0)}
 .v39DrawerGrip{width:42px;height:3px;border-radius:9px;background:#6d5627;margin:2px auto 10px}.v39DrawerHead{display:flex;justify-content:space-between;align-items:center}.v39DrawerHead small{display:block;color:#8d8d8d;font-size:7px}.v39DrawerHead b{color:#f2d078;font-size:14px}.v39DrawerHead>button{width:32px;height:32px;border-radius:11px;border:1px solid #604b22;background:#151109;color:#e9ca72;font-size:18px}.v39DrawerDebt{margin:10px 0}.v39DrawerDebt small{display:block;color:#888;font-size:7px}.v39DrawerDebt strong{font-size:19px;color:#fff1c0}.v39DrawerActions{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}.v39DrawerActions button{min-height:60px;border-radius:15px;border:1px solid;background:#111;color:#ddd;font-size:7px;font-weight:900}.v39DrawerActions i{display:block;font-style:normal;font-size:19px;margin-bottom:5px}.v39DrawerActions .spend{border-color:#3a789a;color:#a8ddff;background:#102635}.v39DrawerActions .pay{border-color:#3c805f;color:#a8e9c9;background:#102a20}.v39DrawerActions .edit{border-color:#8b6c2c;color:#f1d17c;background:#2b210d}.v39DrawerActions .delete{border-color:#8d3c4b;color:#ffabb9;background:#32131a}
+
+/* V40 — BOTTOM NAV MUST NEVER COVER OPEN SHEETS / MODALS */
+
+/* Normal state: keep main navigation fixed at bottom. */
+.navV37{
+ z-index:900!important;
+}
+
+/* All bottom sheets/modals/drawers must render ABOVE the nav. */
+.modal,
+.modalOverlay,
+.sheetOverlay,
+.bottomSheet,
+.sheet,
+.cropOverlay,
+.cardTopDrawerV39{
+ z-index:12000!important;
+}
+
+/* When any standard modal is open, hide the main nav completely.
+   :has is supported by current iOS Safari/Chrome. */
+body:has(.modal) .navV37,
+body:has(.modalOverlay) .navV37,
+body:has(.sheetOverlay) .navV37,
+body:has(.bottomSheet) .navV37,
+body:has(.cropOverlay) .navV37,
+body:has(.cardTopDrawerV39) .navV37{
+ opacity:0!important;
+ visibility:hidden!important;
+ pointer-events:none!important;
+ transform:translate(-50%,18px)!important;
+}
+
+/* Bottom sheets get safe clearance and remain fully scrollable. */
+.modal .sheet,
+.modalOverlay .sheet,
+.sheetOverlay .sheet,
+.bottomSheet{
+ max-height:calc(100dvh - 24px)!important;
+ overflow-y:auto!important;
+ overscroll-behavior:contain!important;
+ padding-bottom:calc(20px + env(safe-area-inset-bottom))!important;
+}
+
+/* Restore nav cleanly after the overlay closes. */
+.navV37{
+ transition:opacity .16s ease,transform .16s ease,visibility .16s ease!important;
+}
+
+.navV37.navHiddenV40{
+ opacity:0!important;
+ visibility:hidden!important;
+ pointer-events:none!important;
+ transform:translate(-50%,18px)!important;
+}

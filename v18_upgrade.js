@@ -137,3 +137,19 @@ document.addEventListener('click',function(e){
  e.preventDefault();e.stopImmediatePropagation();
  window.closeModal();
 },true);
+
+
+/* V40 NAV VISIBILITY FALLBACK */
+(function(){
+ function syncNavV40(){
+   const nav=document.querySelector('.navV37');
+   if(!nav)return;
+   const overlay=document.querySelector('.modal,.modalOverlay,.sheetOverlay,.bottomSheet,.cropOverlay,.cardTopDrawerV39');
+   nav.classList.toggle('navHiddenV40',!!overlay);
+ }
+ const obs=new MutationObserver(syncNavV40);
+ obs.observe(document.documentElement,{childList:true,subtree:true});
+ document.addEventListener('click',()=>requestAnimationFrame(syncNavV40),true);
+ window.syncNavV40=syncNavV40;
+ requestAnimationFrame(syncNavV40);
+})();
