@@ -1554,3 +1554,27 @@ button[aria-label="AYARLAR"] .settingsGearV27,button[title="AYARLAR"] .settingsG
 }
 .nav.navV26 button.active{background:transparent!important;box-shadow:none!important}
 .nav.navV26 button.active em{z-index:3!important}
+
+/* V35 RESTORE BOTTOM NAV ICONS — ONE VISIBLE ICON, NO OVERLAY */
+.nav.navV26 button::before,.nav.navV26 button::after,
+.nav.navV26 button em::before,.nav.navV26 button em::after,
+.nav.navV26 button i::before,.nav.navV26 button i::after{
+ content:none!important;display:none!important
+}
+.nav.navV26 button em,
+.nav.navV26 button i{
+ display:grid!important;place-items:center!important;
+ width:40px!important;height:40px!important;min-width:40px!important;min-height:40px!important;
+ margin:0 auto 3px!important;padding:0!important;border-radius:12px!important;
+ font-style:normal!important;font-size:18px!important;font-weight:950!important;
+ border:1px solid!important;position:relative!important;z-index:2!important;
+ box-shadow:inset 0 1px rgba(255,255,255,.16),0 5px 12px rgba(0,0,0,.35)!important
+}
+.nav.navV26 .navHome em,.nav.navV26 .navHome i{color:#ffe092!important;border-color:#a27a2d!important;background:linear-gradient(145deg,#4c3815,#160f04)!important}
+.nav.navV26 .navWork em,.nav.navV26 .navWork i{color:#a9d6ff!important;border-color:#3977aa!important;background:linear-gradient(145deg,#1b4365,#071522)!important}
+.nav.navV26 .navExpense em,.nav.navV26 .navExpense i{color:#ffacbc!important;border-color:#9b4054!important;background:linear-gradient(145deg,#511d2a,#18080d)!important}
+.nav.navV26 .navCalendar em,.nav.navV26 .navCalendar i{color:#ddc4ff!important;border-color:#7554a5!important;background:linear-gradient(145deg,#372456,#10091b)!important;font-size:12px!important}
+.nav.navV26 .navReport em,.nav.navV26 .navReport i{color:#a5edf2!important;border-color:#378087!important;background:linear-gradient(145deg,#174147,#071619)!important}
+.nav.navV26 .navInvest em,.nav.navV26 .navInvest i{color:#ffe099!important;border-color:#9c742c!important;background:linear-gradient(145deg,#493617,#160f04)!important}
+.nav.navV26 .navMore em,.nav.navV26 .navMore i{color:#f5bfdf!important;border-color:#90506f!important;background:linear-gradient(145deg,#452035,#150912)!important}
+.nav.navV26 button.active em,.nav.navV26 button.active i{transform:translateY(-2px)!important;filter:brightness(1.18)!important}
