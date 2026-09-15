@@ -18,3 +18,6 @@ Bu paket CLEAN V2 tabanı korunarak 12 maddelik geliştirme listesinin tamamın�
 - Yatırımlar: tür, ad, yatırılan tutar, güncel değer, kâr/zarar, tür bazlı portföy grafiği, düzenle/sil.
 - Kartlar: premium kart görünümü, hesap kesim/son ödeme tarihleri, kullanılabilir limit, kart detay ekranı, kart harcaması ekle/düzenle/sil.
 - Esnek hesap: premium görünüm, hesap kesim/son ödeme tarihleri ve kullanılabilir limit.
+
+## V18 PROFESSIONAL UX
+V17 tabanı korunarak büyük harf arayüz, tıklanabilir ana özetler, Harçlık alıcısı, Cafe/Pazar kategorileri, kategori bazlı harcama analizi, nakit/kredi kartı dağılımı, profesyonel büyük ikonlar, güvenli Finans/Kart veri onarımı, takvim gün kaydırma ve hızlı tarih seçimi, detaylı gün özeti, geri geçmişi, kategori/ikon yönetimi, büyük Ayarlar/Hatırlatma ikonları ve tam menü listesi eklendi.

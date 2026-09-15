@@ -73,6 +73,14 @@ function filterByPeriod(a,period=reportPeriod){
  const r=dateRangeForPeriod(period);
  return a.filter(x=>x.date>=r.start&&x.date<=r.end);
 }
+
+function isWorkRoadExpense(x){
+ return !!x && (
+  !!x.workId ||
+  x.sourceType==='workRoad' ||
+  (x.category==='YOL' && (x.title==='YOL' || String(x.note||'').includes('ÇALIŞMA YOL')))
+ );
+}
 function totalsForPeriod(period=reportPeriod){
  const inc=filterByPeriod(state.incomes,period).reduce((a,x)=>a+(+x.amount||0),0);
  let workInc=0;
@@ -80,7 +88,7 @@ function totalsForPeriod(period=reportPeriod){
    workInc+=w.type==='daily'?(+w.amount||state.settings.dailyRate):(+w.hours||0)*(+w.rate||0);
  }
  const exp=filterByPeriod(state.expenses,period).reduce((a,x)=>a+(+x.amount||0),0);
- const road=filterByPeriod(state.expenses,period).filter(x=>x.category==='YOL'||x.category==='ULAŞIM').reduce((a,x)=>a+(+x.amount||0),0);
+ const road=filterByPeriod(state.expenses,period).filter(isWorkRoadExpense).reduce((a,x)=>a+(+x.amount||0),0);
  return{income:inc+workInc,expense:exp,net:inc+workInc-exp,road};
 }
 function workSummaryForPeriod(period=reportPeriod){
@@ -101,7 +109,7 @@ function monthlyTotals(){
    if(w.type==='overtime') income+=(w.hours||0)*(w.rate||state.settings.overtimeRate);
  }
  const expense=monthItems(state.expenses).reduce((a,x)=>a+x.amount,0);
- const road=monthItems(state.expenses).filter(x=>x.category==='YOL'||x.category==='ULAŞIM').reduce((a,x)=>a+x.amount,0);
+ const road=monthItems(state.expenses).filter(isWorkRoadExpense).reduce((a,x)=>a+x.amount,0);
  return{income,expense,net:income-expense,road};
 }
 function workSummary(items=monthItems(state.work)){
