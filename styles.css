@@ -1420,3 +1420,54 @@ img,svg,canvas{max-width:100%}
 .luxFinanceMini{display:grid;grid-template-columns:42px 1fr 20px;gap:9px;align-items:center;padding:12px;margin:8px 0;border:1px solid #38332a;border-radius:14px;background:linear-gradient(145deg,#111416,#090a0b)}.luxFinanceMini i{display:grid;place-items:center;width:38px;height:38px;border-radius:11px;border:1px solid #705820;background:#211b0e;color:#e7c469;font-style:normal;font-size:18px}.luxFinanceMini small,.luxFinanceMini b{display:block}.luxFinanceMini small{font-size:6px;color:#8c8c8c}.luxFinanceMini b{font-size:12px;margin-top:2px}.luxFinanceMini>span{color:#d8b75f;font-size:18px}
 .detailRecord button{min-width:72px!important;white-space:normal!important;line-height:1.15!important}
 \n/* V26 ULTRA LUXURY BRAND + BOTTOM NAV */\n.navV26{background:linear-gradient(180deg,rgba(14,15,16,.98),rgba(4,5,6,.99))!important;border-top:1px solid #715720!important;box-shadow:0 -10px 28px rgba(0,0,0,.48),inset 0 1px rgba(255,220,135,.05)!important;padding-top:7px!important}\n.navV26 button{min-width:0!important;overflow:visible!important}\n.navV26 .navLux{display:grid!important;place-items:center!important;width:34px!important;height:34px!important;margin:0 auto 3px!important;border-radius:11px!important;border:1px solid #57451f!important;background:radial-gradient(circle at 35% 25%,#302716,#0b0d0e 62%)!important;color:#eac66d!important;box-shadow:inset 0 1px rgba(255,255,255,.09),0 5px 10px rgba(0,0,0,.35)!important}\n.navV26 .navLux em{font-style:normal!important;font-size:17px!important;line-height:1!important;text-shadow:0 1px 8px rgba(238,197,98,.28)}\n.navV26 button span{font-size:5.7px!important;letter-spacing:.15px!important;color:#a9a9a9!important}\n.navV26 button.active .navLux{border-color:#f0c65f!important;background:radial-gradient(circle at 35% 25%,#74551d,#241a09 58%,#080909)!important;color:#ffe19a!important;box-shadow:0 0 0 2px rgba(239,193,82,.08),0 0 16px rgba(239,193,82,.25),inset 0 1px rgba(255,255,255,.14)!important}\n.navV26 button.active span{color:#f2d17b!important;font-weight:900!important}\n.navHome em{font-size:20px!important}.navExpense em{font-family:Georgia,serif;font-weight:900}.navInvest em{font-size:18px!important}\n
+/* V27 ULTRA LUXURY HOME + QUICK ACTION ICONS */
+:root{--lux-gold:#e8c56b;--lux-gold2:#8e6926;--lux-black:#08090a}
+
+/* Settings: unmistakable gear */
+.luxSettingsGear,.settingsGearV27{
+ display:grid!important;place-items:center!important;width:44px!important;height:44px!important;
+ border-radius:13px!important;border:1px solid #806323!important;
+ background:radial-gradient(circle at 35% 25%,#3a301a,#151108 48%,#070809 75%)!important;
+ color:#f3d47d!important;font-size:24px!important;font-weight:900!important;
+ box-shadow:inset 0 1px rgba(255,255,255,.16),0 7px 18px rgba(0,0,0,.38),0 0 12px rgba(217,171,67,.12)!important
+}
+
+/* Home menu/action cards: larger luxury icon medallions */
+.home .icon,.homeIcon,.menuBig,.quickIcon,.quickAction i,.quickActions i,
+.homeQuick i,.homeMenu i,.actionGrid i,.shortcut i,.shortcutIcon{
+ width:52px!important;height:52px!important;min-width:52px!important;
+ display:grid!important;place-items:center!important;border-radius:16px!important;
+ font-size:25px!important;line-height:1!important;font-style:normal!important;
+ color:#f6d77f!important;border:1px solid #856726!important;
+ background:radial-gradient(circle at 32% 24%,#44371c 0,#1d170c 38%,#090a0b 72%)!important;
+ box-shadow:inset 0 1px rgba(255,255,255,.18),inset 0 -1px rgba(0,0,0,.6),
+  0 8px 18px rgba(0,0,0,.34),0 0 14px rgba(222,178,73,.10)!important;
+ filter:drop-shadow(0 3px 5px rgba(0,0,0,.45))!important
+}
+.quickAction,.homeQuick button,.quickActions button,.actionGrid button,.shortcut{
+ min-height:78px!important;border-radius:16px!important;
+ border:1px solid #393122!important;
+ background:linear-gradient(145deg,#121416,#090a0b)!important;
+ box-shadow:inset 0 1px rgba(255,255,255,.04),0 8px 18px rgba(0,0,0,.20)!important
+}
+.quickAction:active,.homeQuick button:active,.quickActions button:active,.actionGrid button:active{
+ transform:scale(.98)
+}
+
+/* Bottom nav remains premium, but larger and clearer */
+.nav button i,.bottomNav button i,.v26BottomNav button i{
+ font-size:23px!important;width:39px!important;height:39px!important;min-width:39px!important;
+ display:grid!important;place-items:center!important;border-radius:12px!important;
+ border:1px solid #57451d!important;background:linear-gradient(145deg,#211b0e,#090a0b)!important;
+ color:#eac86d!important;box-shadow:inset 0 1px rgba(255,255,255,.08),0 5px 12px rgba(0,0,0,.28)!important
+}
+.nav button.active i,.bottomNav button.active i,.v26BottomNav button.active i{
+ border-color:#d5a941!important;color:#ffe298!important;
+ box-shadow:0 0 14px rgba(222,177,68,.28),inset 0 1px rgba(255,255,255,.14)!important
+}
+@media(max-width:380px){
+ .home .icon,.homeIcon,.menuBig,.quickIcon,.quickAction i,.quickActions i,.homeQuick i,.homeMenu i,.actionGrid i,.shortcut i,.shortcutIcon{width:48px!important;height:48px!important;min-width:48px!important;font-size:23px!important}
+}
+
+button[aria-label="AYARLAR"],button[title="AYARLAR"]{font-size:0!important}
+button[aria-label="AYARLAR"] .settingsGearV27,button[title="AYARLAR"] .settingsGearV27{font-size:24px!important}

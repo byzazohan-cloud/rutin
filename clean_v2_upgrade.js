@@ -43,7 +43,7 @@ header=function(title='RUTİN',back=false){
  return `<div class="topbar premiumTopbar">
    <button class="iconBtn luxuryIconBtn" onclick="${back?"go('home')":"openModal('menu')"}">${back?'‹':'☰'}</button>
    <div class="title brandTitle">${title==='RUTİN'?`${rutinLogo(30)}<span>RUTİN</span>`:title}</div>
-   <div class="topRightStack"><button class="iconBtn luxuryIconBtn settingsOnly" onclick="go('settings')" aria-label="Ayarlar">⚙</button><button class="iconBtn luxuryIconBtn reminderTopBtn" onclick="openModal('reminderCenter')" aria-label="Hatırlatma">◔</button></div>
+   <div class="topRightStack"><button class="iconBtn luxuryIconBtn settingsOnly" onclick="go('settings')" aria-label="Ayarlar"><span class="settingsGearV27">⚙</span></button><button class="iconBtn luxuryIconBtn reminderTopBtn" onclick="openModal('reminderCenter')" aria-label="Hatırlatma">◔</button></div>
  </div>`;
 };
 
