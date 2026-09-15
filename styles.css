@@ -1538,3 +1538,19 @@ button[aria-label="AYARLAR"] .settingsGearV27,button[title="AYARLAR"] .settingsG
 .topRightStack .settingsOnly,.topRightInline button[aria-label="AYARLAR"]{border-color:#a67d2b!important;background:linear-gradient(145deg,#3c2d10,#0c0903)!important}
 .settingsGearV27{font-size:25px!important;color:#ffe18d!important}
 .bellGlyph{font-size:20px!important}
+
+/* V30 REAL ACTIVE UI */
+.lockBrandLogoV30{display:block;width:100px;height:100px;object-fit:cover;margin:2px auto 12px;border-radius:26px;border:1px solid #c09236;box-shadow:0 15px 34px #0009,0 0 24px #d6a93b33;position:relative;z-index:5}
+.homeBrandV30{display:flex;align-items:center;gap:12px;margin:5px 12px 14px;padding:10px 12px;border-radius:18px;border:1px solid #59451e;background:linear-gradient(135deg,#17191b,#08090a);box-shadow:0 12px 25px #0006}
+.homeBrandV30 img{width:64px;height:64px;border-radius:18px;border:1px solid #b28732;box-shadow:0 0 18px #d9ac4030}
+.homeBrandV30 b{display:block;font-size:17px;letter-spacing:2px;color:#f4d378}.homeBrandV30 small{display:block;margin-top:4px;font-size:6px;letter-spacing:1px;color:#92979b}
+.quick.quickPremium.quickSix button{min-height:102px!important}
+.quick.quickPremium.quickSix .v30Icon{display:grid!important;place-items:center!important;width:60px!important;height:60px!important;margin:0 auto 8px!important;border-radius:19px!important;font-size:26px!important;font-style:normal!important;font-weight:950!important;border:1px solid!important;box-shadow:inset 0 1px #ffffff35,0 10px 22px #0008!important}
+.v30Icon.income{color:#a8f2cd!important;border-color:#318c63!important;background:linear-gradient(145deg,#205b41,#071710)!important}
+.v30Icon.expense{color:#ffb0c0!important;border-color:#a33e55!important;background:linear-gradient(145deg,#5a2030,#19080e)!important}
+.v30Icon.work{color:#a8d7ff!important;border-color:#397cb4!important;background:linear-gradient(145deg,#1c486d,#071725)!important}
+.v30Icon.notes{color:#dfc3ff!important;border-color:#7956ae!important;background:linear-gradient(145deg,#3b265e,#11091d)!important}
+.v30Icon.invest{color:#ffe19b!important;border-color:#a47a2e!important;background:linear-gradient(145deg,#523c18,#180f04)!important}
+.v30Icon.finance{color:#aaf4f7!important;border-color:#378c94!important;background:linear-gradient(145deg,#194a50,#071719)!important}
+.settingsGearV30{font-size:25px!important;color:#ffe08a!important;line-height:1!important}.bellGlyphV30{font-size:20px!important;line-height:1!important}
+.navV26 .navHome em{color:#9ee8c5!important}.navV26 .navWork em{color:#9fceff!important}.navV26 .navExpense em{color:#ff9fb1!important}.navV26 .navCalendar em{color:#d4baff!important;font-size:11px!important;font-weight:950}.navV26 .navReport em{color:#8debf3!important}.navV26 .navInvest em{color:#ffdc88!important}.navV26 .navMore em{color:#efc1df!important}

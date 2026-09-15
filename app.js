@@ -516,7 +516,7 @@ function cleanPinScreen(){
   const photo = state.profile?.photo || '';
 
   return `<div class="premiumLock cleanPinScreen">
-    <div class="lockAura"></div>
+    <div class="lockAura"></div><img class="lockBrandLogoV30" src="icon-180.png?v=30" alt="RUTİN">
 
     <div class="lockTop">
       <div class="lockSideQuote">DİSİPLİN<br>BUGÜNÜ<br>YARINA TAŞIR</div>
@@ -1165,7 +1165,7 @@ if('serviceWorker' in navigator){
     location.reload();
   });
   window.addEventListener('load',()=>{
-    navigator.serviceWorker.register('./sw.js?v=15',{updateViaCache:'none'}).then(reg=>{
+    navigator.serviceWorker.register('./sw.js?v=30',{updateViaCache:'none'}).then(reg=>{
       const activateWaiting=()=>{
         if(reg.waiting) reg.waiting.postMessage({type:'SKIP_WAITING'});
       };
