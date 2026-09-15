@@ -1534,3 +1534,23 @@ button[aria-label="AYARLAR"] .settingsGearV27,button[title="AYARLAR"] .settingsG
  .nav.navV26 button em{width:36px!important;height:36px!important;font-size:16px!important}
  .nav.navV26 button span{font-size:5.2px!important}
 }
+
+/* V34 BOTTOM NAV — SINGLE ICON LAYER ONLY */
+.nav.navV26 button::before,.nav.navV26 button::after,
+.nav.navV26 button em::before,.nav.navV26 button em::after,
+.nav.navV26 button i,.nav.navV26 button svg{
+ content:none!important;display:none!important;background:none!important;box-shadow:none!important
+}
+.nav.navV26 button{
+ background:transparent!important;border:0!important;box-shadow:none!important;
+ display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;
+ position:relative!important;overflow:visible!important
+}
+.nav.navV26 button em{
+ position:relative!important;z-index:2!important;display:grid!important;place-items:center!important;
+ width:40px!important;height:40px!important;min-width:40px!important;min-height:40px!important;
+ padding:0!important;margin:0 auto 3px!important;overflow:hidden!important;
+ background-image:none!important;text-shadow:none!important
+}
+.nav.navV26 button.active{background:transparent!important;box-shadow:none!important}
+.nav.navV26 button.active em{z-index:3!important}
