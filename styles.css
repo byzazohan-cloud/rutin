@@ -1578,3 +1578,19 @@ button[aria-label="AYARLAR"] .settingsGearV27,button[title="AYARLAR"] .settingsG
 .nav.navV26 .navInvest em,.nav.navV26 .navInvest i{color:#ffe099!important;border-color:#9c742c!important;background:linear-gradient(145deg,#493617,#160f04)!important}
 .nav.navV26 .navMore em,.nav.navV26 .navMore i{color:#f5bfdf!important;border-color:#90506f!important;background:linear-gradient(145deg,#452035,#150912)!important}
 .nav.navV26 button.active em,.nav.navV26 button.active i{transform:translateY(-2px)!important;filter:brightness(1.18)!important}
+
+/* V36 ISOLATED NAV — NO LEGACY I/EM ICON LAYERS */
+.navV36{position:sticky;bottom:0;z-index:40;display:grid;grid-template-columns:repeat(7,1fr);gap:3px;width:100%;padding:6px 5px 5px;border-top:1px solid #5b461d;background:linear-gradient(180deg,#101112,#050607);box-shadow:0 -8px 22px rgba(0,0,0,.48)}
+.navV36 button{appearance:none;border:0!important;background:transparent!important;box-shadow:none!important;padding:2px 0!important;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px}
+.navV36 button::before,.navV36 button::after,.navIconV36::before,.navIconV36::after{content:none!important;display:none!important}
+.navIconV36{display:grid!important;place-items:center!important;width:39px!important;height:39px!important;min-width:39px!important;min-height:39px!important;border-radius:12px!important;border:1px solid!important;font-size:18px!important;font-weight:950!important;line-height:1!important;overflow:hidden!important;position:relative!important}
+.navLabelV36{display:block!important;font-size:5.5px!important;font-weight:900!important;line-height:1!important;white-space:nowrap!important;color:#ddd!important}
+.navV36 .navHome .navIconV36{color:#ffe092;border-color:#a27a2d;background:linear-gradient(145deg,#4c3815,#160f04)}
+.navV36 .navWork .navIconV36{color:#a9d6ff;border-color:#3977aa;background:linear-gradient(145deg,#1b4365,#071522)}
+.navV36 .navExpense .navIconV36{color:#ffacbc;border-color:#9b4054;background:linear-gradient(145deg,#511d2a,#18080d)}
+.navV36 .navCalendar .navIconV36{color:#ddc4ff;border-color:#7554a5;background:linear-gradient(145deg,#372456,#10091b);font-size:12px!important}
+.navV36 .navReport .navIconV36{color:#a5edf2;border-color:#378087;background:linear-gradient(145deg,#174147,#071619)}
+.navV36 .navInvest .navIconV36{color:#ffe099;border-color:#9c742c;background:linear-gradient(145deg,#493617,#160f04)}
+.navV36 .navMore .navIconV36{color:#f5bfdf;border-color:#90506f;background:linear-gradient(145deg,#452035,#150912)}
+.navV36 button.active .navIconV36{transform:translateY(-2px);filter:brightness(1.18);box-shadow:0 0 13px currentColor,inset 0 1px rgba(255,255,255,.2)}
+@media(max-width:390px){.navIconV36{width:36px!important;height:36px!important;min-width:36px!important;min-height:36px!important;font-size:16px!important}.navLabelV36{font-size:5px!important}}
