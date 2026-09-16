@@ -1,12 +1,12 @@
-const CACHE='rutin-clean-v2-v42';
+const CACHE='rutin-clean-v2-v43.1';
 const FILES=[
   './',
   './index.html',
-  './styles.css?v=v42',
-  './app.js?v=v42',
-  './clean_v2_upgrade.js?v=v42',
-  './clean_v2_v13.js?v=v42',
-  './v18_upgrade.js?v=v42',
+  './styles.css?v=v43.1',
+  './app.js?v=v43.1',
+  './clean_v2_upgrade.js?v=v43.1',
+  './clean_v2_v13.js?v=v43.1',
+  './v18_upgrade.js?v=v43.1',
   './manifest.json',
   './icon.svg',
   './icon-180.png',
