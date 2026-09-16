@@ -1,4 +1,4 @@
-const CACHE='rutin-clean-v2-v43.3.3';
+const CACHE='rutin-clean-v2-v43.4';
 const FILES=[
   './',
   './index.html',
