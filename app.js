@@ -269,52 +269,36 @@ function calendarScreen(){
  let cells='';for(let i=0;i<offset;i++)cells+='<div class="daySpacer"></div>';
  for(let n=1;n<=days;n++){
   const ds=`${y}-${String(m+1).padStart(2,'0')}-${String(n).padStart(2,'0')}`;
-  const w=state.work.filter(x=>x.date===ds);
-  const hasDaily=w.some(x=>x.type==='daily'),hasHourly=w.some(x=>x.type==='hourly'),hasOvertime=w.some(x=>x.type==='overtime');
-  const kinds=[hasDaily?'daily':'',hasHourly?'hourly':'',hasOvertime?'overtime':''].filter(Boolean);
-  const combo=kinds.length?` combo${kinds.length} ${kinds.join(' ')}`:' off';
+  const w=state.work.filter(x=>x.date===ds), ex=state.expenses.filter(x=>x.date===ds);
+  const types=[]; if(w.some(x=>x.type==='daily'))types.push('daily'); if(w.some(x=>x.type==='hourly'))types.push('hourly'); if(w.some(x=>x.type==='overtime'))types.push('overtime'); if(ex.length)types.push('expense');
   const isToday=ds===iso()?' today':'';
-  cells+=`<button class="day${combo}${isToday}" data-types="${kinds.join(',')}" onclick="openModal('day:${ds}')">${n}</button>`;
+  const dots=types.map(t=>`<i class="dayDot ${t}"></i>`).join('');
+  cells+=`<button class="day multiDay${types.length?' hasRecords':' off'}${isToday}" onclick="openModal('day:${ds}')"><span>${n}</span><em>${dots}</em></button>`;
  }
- const monthPrefix=`${y}-${String(m+1).padStart(2,'0')}`;
- const monthWork=state.work.filter(x=>x.date?.startsWith(monthPrefix));
- const W={
-   daily:new Set(monthWork.filter(x=>x.type==='daily').map(x=>x.date)).size,
-   hourlyDays:new Set(monthWork.filter(x=>x.type==='hourly').map(x=>x.date)).size,
-   hourlyHours:monthWork.filter(x=>x.type==='hourly').reduce((a,x)=>a+(+x.hours||0),0),
-   overtimeDays:new Set(monthWork.filter(x=>x.type==='overtime').map(x=>x.date)).size,
-   overtimeHours:monthWork.filter(x=>x.type==='overtime').reduce((a,x)=>a+(+x.hours||0),0)
- };
- const dailyIncome=monthWork.filter(x=>x.type==='daily').reduce((a,x)=>a+(+x.amount||state.settings.dailyRate),0);
- const hourlyIncome=monthWork.filter(x=>x.type==='hourly').reduce((a,x)=>a+((+x.hours||0)*(+x.rate||0)),0);
- const overtimeIncome=monthWork.filter(x=>x.type==='overtime').reduce((a,x)=>a+((+x.hours||0)*(+x.rate||0)),0);
- const workedDates=new Set(monthWork.map(x=>x.date)).size;
+ const prefix=`${y}-${String(m+1).padStart(2,'0')}`, mw=state.work.filter(x=>x.date?.startsWith(prefix)), me=state.expenses.filter(x=>x.date?.startsWith(prefix)), mi=state.incomes.filter(x=>x.date?.startsWith(prefix));
+ const workedDays=new Set(mw.map(x=>x.date)).size, hourly=mw.filter(x=>x.type==='hourly').reduce((a,x)=>a+(+x.hours||0),0), overtime=mw.filter(x=>x.type==='overtime').reduce((a,x)=>a+(+x.hours||0),0);
+ const workIncome=mw.reduce((a,x)=>a+(x.type==='daily'?(+x.amount||state.settings.dailyRate):(+x.hours||0)*(+x.rate||0)),0), otherIncome=mi.reduce((a,x)=>a+(+x.amount||0),0), expense=me.reduce((a,x)=>a+(+x.amount||0),0), income=workIncome+otherIncome;
+ const years=[];for(let yy=y-10;yy<=y+5;yy++)years.push(`<option value="${yy}" ${yy===y?'selected':''}>${yy}</option>`);
+ const months=Array.from({length:12},(_,i)=>`<option value="${i}" ${i===m?'selected':''}>${new Date(2020,i,1).toLocaleDateString('tr-TR',{month:'long'}).toUpperCase()}</option>`).join('');
  return `${header('TAKVİM',true)}
- <div class="calendarTitleRow">
-   <button class="calendarArrow" onclick="moveCalendar(-1)" aria-label="Önceki ay">‹</button>
-   <div><b>${d.toLocaleDateString('tr-TR',{month:'long',year:'numeric'}).toUpperCase()}</b><small>GEÇMİŞ AYLARI AÇIP DÜZENLEYEBİLİRSİN</small></div>
-   <button class="calendarArrow" onclick="moveCalendar(1)" aria-label="Sonraki ay">›</button>
- </div>
- <div class="card compactCalendar referenceCalendar">
-   <div class="calendarHead">${['PZT','SAL','ÇAR','PER','CUM','CMT','PAZ'].map(x=>`<div>${x}</div>`).join('')}</div>
-   <div class="calendar">${cells}</div>
-   <div class="calendarLegend">
-     <span><i class="legendDaily"></i>GÜNLÜK</span>
-     <span><i class="legendHourly"></i>SAATLİK</span>
-     <span><i class="legendOvertime"></i>MESAİ</span>
-     <span><i class="legendOff"></i>ÇALIŞMADIM</span>
-   </div>
- </div>
- <div class="section"><b>DETAYLI ÇALIŞMA RAPORU</b></div>
- <div class="summaryBox workReportSummary">
- ${sumRow('TOPLAM ÇALIŞILAN GÜN',workedDates+' GÜN')}
- ${sumRow('GÜNLÜK ÇALIŞMA',W.daily+' GÜN')}
- ${sumRow('SAATLİK ÇALIŞMA',W.hourlyDays+' GÜN / '+W.hourlyHours+' SAAT')}
- ${sumRow('MESAİ',W.overtimeDays+' GÜN / '+W.overtimeHours+' SAAT')}
- ${sumRow('GÜNLÜK KAZANÇ',money(dailyIncome))}
- ${sumRow('SAATLİK KAZANÇ',money(hourlyIncome))}
- ${sumRow('MESAİ KAZANCI',money(overtimeIncome))}
- </div>`;
+ <div class="calendarTitleRow"><button class="calendarArrow" onclick="moveCalendar(-1)">‹</button><div><b>${d.toLocaleDateString('tr-TR',{month:'long',year:'numeric'}).toUpperCase()}</b><small>AYI KAYDIR · GÜNE DOKUN</small></div><button class="calendarArrow" onclick="moveCalendar(1)">›</button></div>
+ <div class="calendarQuickPick"><select onchange="jumpCalendar(this.value,null)">${months}</select><select onchange="jumpCalendar(null,this.value)">${years.join('')}</select></div>
+ <div class="card compactCalendar referenceCalendar" ontouchstart="calendarTouchStart(event)" ontouchend="calendarTouchEnd(event)"><div class="calendarHead">${['PZT','SAL','ÇAR','PER','CUM','CMT','PAZ'].map(x=>`<div>${x}</div>`).join('')}</div><div class="calendar">${cells}</div>
+ <div class="calendarLegend"><span><i class="legendDaily"></i>GÜNLÜK</span><span><i class="legendHourly"></i>SAATLİK</span><span><i class="legendOvertime"></i>MESAİ</span><span><i class="legendExpense"></i>HARCAMA / YOL</span></div></div>
+ <div class="section"><b>ALTIN AY ÖZETİ</b></div><div class="goldMonthSummary">
+ ${sumRow('TOPLAM ÇALIŞILAN GÜN',workedDays+' GÜN')}${sumRow('TOPLAM SAATLİK ÇALIŞMA SAATİ',hourly+' SAAT')}${sumRow('TOPLAM MESAİ SAATİ',overtime+' SAAT')}${sumRow('TOPLAM GELİR',money(income))}${sumRow('TOPLAM HARCAMA',money(expense))}${sumRow('KALAN',money(income-expense))}</div>`;
+}
+let calendarTouchX=0,dayTouchX=0;
+function calendarTouchStart(e){calendarTouchX=e.changedTouches?.[0]?.clientX||0}
+function calendarTouchEnd(e){const x=e.changedTouches?.[0]?.clientX||0,d=x-calendarTouchX;if(Math.abs(d)>55)moveCalendar(d<0?1:-1)}
+function jumpCalendar(month,year){calendarCursor=new Date(year===null?calendarCursor.getFullYear():+year,month===null?calendarCursor.getMonth():+month,1);render()}
+function dayTouchStart(e){dayTouchX=e.changedTouches?.[0]?.clientX||0}
+function dayTouchEnd(e,ds){const x=e.changedTouches?.[0]?.clientX||0,d=x-dayTouchX;if(Math.abs(d)<55)return;const n=new Date(ds+'T12:00:00');n.setDate(n.getDate()+(d<0?1:-1));openModal('day:'+iso(n))}
+function dayDetailHtml(ds){
+ const works=state.work.filter(x=>x.date===ds), expenses=state.expenses.filter(x=>x.date===ds);
+ const workHtml=works.map(x=>`<div class="dayDetailRow"><i class="detailType ${x.type}">${x.type==='daily'?'✓':x.type==='hourly'?'◷':'✦'}</i><div><b>${esc(x.title||'ÇALIŞMA')}</b><small>${x.type==='daily'?'GÜNLÜK ÇALIŞMA':x.type==='hourly'?'SAATLİK · '+(+x.hours||0)+' SAAT':'MESAİ · '+(+x.hours||0)+' SAAT'}</small></div><strong>${money(x.amount||((+x.hours||0)*(+x.rate||0)))}</strong><div class="dayItemActions"><button class="miniEdit" onclick="openModal('editWork:${x.id}:${ds}')">DÜZENLE</button><button class="miniDelete" onclick="deleteWork('${x.id}','${ds}')">SİL</button></div></div>`).join('');
+ const expHtml=expenses.map(x=>`<div class="dayDetailRow"><i class="detailType expense">₺</i><div><b>${esc(x.category||x.title||'HARCAMA')}</b><small>${esc(x.method||'')} ${x.person?` · ${esc(x.person)}`:''}${isWorkRoadExpense(x)?' · YOL GİDERİ':''}</small></div><strong class="red">${money(x.amount)}</strong><div class="dayItemActions"><button class="miniEdit" onclick="openModal('editExpense:${x.id}:${ds}')">DÜZENLE</button><button class="miniDelete" onclick="deleteExpense('${x.id}','${ds}')">SİL</button></div></div>`).join('');
+ return `<div class="daySwipeHint">‹ ÖNCEKİ GÜN &nbsp; · &nbsp; SONRAKİ GÜN ›</div><div class="quick dayAddQuick"><button onclick="openModal('dailyDate:${ds}')">✓ GÜNLÜK</button><button onclick="openModal('hourlyDate:${ds}')">◷ SAATLİK</button><button onclick="openModal('overtimeDate:${ds}')">✦ MESAİ</button><button onclick="openModal('expenseDate:${ds}')">₺ HARCAMA</button></div><div class="dayDetailList">${workHtml}${expHtml||''}${!works.length&&!expenses.length?'<div class="notice">BU GÜNDE KAYIT YOK.</div>':''}</div>`;
 }
 function moveCalendar(delta){
  calendarCursor=new Date(calendarCursor.getFullYear(),calendarCursor.getMonth()+delta,1);
@@ -474,6 +458,7 @@ function expenseForm(){return `<form onsubmit="submitExpense(event)">
     <label><input type="radio" name="method" value="ESNEK HESAP"><i class="luxGlyph">▥</i><span>ESNEK HESAP</span></label>
   </div>
  </div>
+ ${field('person','KİŞİ ADI (GEREKİYORSA)','')}
  ${field('date','TARİH',iso(),'date')}
  ${textarea('note','NOT (İSTEĞE BAĞLI)')}
  <button class="primary">KAYDET</button></form>`}
@@ -739,10 +724,12 @@ function modalHtml(k){
  if(k==='note'){title='NOT EKLE';body=`<form onsubmit="submitNote(event)">${field('title','BAŞLIK','NOT')}${textarea('text','NOT') }<button class="primary">KAYDET</button></form>`}
  if(k==='investment'){title='YATIRIM EKLE';body=`<form onsubmit="submitInvestment(event)">${field('title','YATIRIM ADI','YATIRIM')}${field('amount','TUTAR',0,'number')}${field('date','TARİH',iso(),'date')}<button class="primary">KAYDET</button></form>`}
  if(k==='accounts'){title='HESAPLAR';body=`<form onsubmit="submitAccounts(event)">${field('cardBalance','KREDİ KARTI BORCU',state.accounts.card.balance,'number')}${field('cardLimit','KREDİ KARTI LİMİTİ',state.accounts.card.limit,'number')}${field('flexBalance','ESNEK HESAP BORCU',state.accounts.flex.balance,'number')}${field('flexLimit','ESNEK HESAP LİMİTİ',state.accounts.flex.limit,'number')}${field('cash','NAKİT',state.accounts.cash.balance,'number')}<button class="primary">KAYDET</button></form>`}
- if(k.startsWith('day:')){const ds=k.split(':')[1],items=state.work.filter(x=>x.date===ds);title=`${ds} · GÜN KAYDI`;body=`<div class="notice">BU GÜNE YENİ KAYIT EKLEYEBİLİR, MEVCUT KAYDI DÜZENLEYEBİLİR VEYA SİLEBİLİRSİN.</div><div class="quick" style="grid-template-columns:repeat(3,1fr)"><button onclick="closeModal();setTimeout(()=>openModal('dailyDate:${ds}'),0)"><i class="luxGlyph">✓</i>GÜNLÜK</button><button onclick="closeModal();setTimeout(()=>openModal('hourlyDate:${ds}'),0)"><i>◷</i>SAATLİK</button><button onclick="closeModal();setTimeout(()=>openModal('overtimeDate:${ds}'),0)"><i class="luxGlyph">✦</i>MESAİ</button></div><div class="card list" style="margin-top:10px">${items.length?items.map(x=>`<div class="item"><div class="ico">${x.type==='daily'?'✓':x.type==='hourly'?'◷':'✦'}</div><div><b>${x.title}</b><small>${x.hours?x.hours+' SAAT':''}</small></div><div class="dayItemActions"><button type="button" class="miniEdit" onclick="openModal('editWork:${x.id}:${ds}')">DÜZENLE</button><button type="button" class="miniDelete" onclick="deleteWork('${x.id}','${ds}')">SİL</button></div></div>`).join(''):'<div class="notice">BU GÜNDE KAYIT YOK.</div>'}</div>`}
+ if(k.startsWith('day:')){const ds=k.split(':')[1];title=`${ds} · GÜN DETAYI`;body=`<div class="daySwipeArea" ontouchstart="dayTouchStart(event)" ontouchend="dayTouchEnd(event,'${ds}')">${dayDetailHtml(ds)}</div>`}
  if(k.startsWith('dailyDate:')){const ds=k.split(':')[1];title='GÜNLÜK ÇALIŞMA';body=dailyForm().replace(`value="${iso()}"`,`value="${ds}"`)}
  if(k.startsWith('hourlyDate:')){const ds=k.split(':')[1];title='SAATLİK ÇALIŞMA';body=hourlyForm().replace(`value="${iso()}"`,`value="${ds}"`)}
  if(k.startsWith('overtimeDate:')){const ds=k.split(':')[1];title='MESAİ';body=overtimeForm().replace(`value="${iso()}"`,`value="${ds}"`)}
+ if(k.startsWith('expenseDate:')){const ds=k.split(':')[1];title='HARCAMA EKLE';body=expenseForm().replace(`value="${iso()}"`,`value="${ds}"`)}
+ if(k.startsWith('editExpense:')){const parts=k.split(':'),id=parts[1],ds=parts[2],x=state.expenses.find(z=>z.id===id);if(x){title='HARCAMAYI DÜZENLE';body=`<form onsubmit="submitEditExpense(event,'${x.id}','${ds}')">${field('amount','TUTAR',x.amount,'number')}${field('category','KATEGORİ',x.category||x.title||'DİĞER')}${field('method','ÖDEME YÖNTEMİ',x.method||'NAKİT')}${field('person','KİŞİ ADI (GEREKİYORSA)',x.person||'')}${field('date','TARİH',x.date,'date')}<div class="field"><label>NOT</label><textarea name="note">${esc(x.note||'')}</textarea></div><button class="primary">DEĞİŞİKLİĞİ KAYDET</button></form>`}}
  if(k.startsWith('editWork:')){
    const parts=k.split(':'),id=parts[1],ds=parts[2],x=state.work.find(z=>z.id===id);
    if(x){
@@ -823,7 +810,7 @@ function submitOvertime(e){
  state.work.push({id:uid(),type:'overtime',date:d.date,title:upper(d.title||'MESAİ'),hours:+d.hours||0,rate:+d.rate||0,amount:(+d.hours||0)*(+d.rate||0),note:d.note||''});
  save();closeModal();render()
 }
-function submitExpense(e){e.preventDefault();const d=Object.fromEntries(new FormData(e.currentTarget).entries());state.expenses.push({id:uid(),date:d.date,title:upper(d.category),amount:+d.amount||0,category:d.category,method:d.method,note:d.note||''});save();modal=null;screen='finance';render()}
+function submitExpense(e){e.preventDefault();const d=Object.fromEntries(new FormData(e.currentTarget).entries());state.expenses.push({id:uid(),date:d.date,title:upper(d.category),amount:+d.amount||0,category:d.category,method:d.method,person:d.person||'',note:d.note||''});save();modal=null;screen='finance';render()}
 function submitIncome(e){e.preventDefault();const d=Object.fromEntries(new FormData(e.currentTarget).entries());state.incomes.push({id:uid(),date:d.date,title:upper(d.title||'GELİR'),amount:+d.amount||0});save();closeModal();render()}
 function submitNote(e){e.preventDefault();const d=Object.fromEntries(new FormData(e.currentTarget).entries());state.notes.push({id:uid(),date:iso(),title:upper(d.title||'NOT'),text:d.text||''});save();closeModal();render()}
 function submitInvestment(e){e.preventDefault();const d=Object.fromEntries(new FormData(e.currentTarget).entries());state.investments.push({id:uid(),date:d.date,title:upper(d.title||'YATIRIM'),amount:+d.amount||0});save();closeModal();render()}
@@ -1002,6 +989,8 @@ function submitProfile(e){
  render();
 }
 function deleteWork(id,ds){state.work=state.work.filter(x=>x.id!==id);save();modal=`day:${ds}`;render()}
+function deleteExpense(id,ds){state.expenses=state.expenses.filter(x=>x.id!==id);save();modal=`day:${ds}`;render()}
+function submitEditExpense(e,id,ds){e.preventDefault();const d=Object.fromEntries(new FormData(e.currentTarget).entries()),i=state.expenses.findIndex(x=>x.id===id);if(i<0)return;state.expenses[i]={...state.expenses[i],date:d.date,amount:+d.amount||0,category:upper(d.category||'DİĞER'),title:upper(d.category||'DİĞER'),method:upper(d.method||'NAKİT'),person:upper(d.person||''),note:d.note||''};save();modal=`day:${d.date||ds}`;render()}
 function previewTheme(e){const f=e.currentTarget.form;if(!f)return;const d=Object.fromEntries(new FormData(f).entries()),r=document.documentElement.style;for(const k of ['bg','panel','gold','green','red','blue'])if(d[k])r.setProperty(`--${k}`,d[k]);r.setProperty('--gold2',d.gold||state.settings.theme.gold)}
 function setAppearance(mode){
  state.settings.appearance=mode==='light'?'light':'dark';
