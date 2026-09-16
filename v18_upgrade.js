@@ -3,6 +3,8 @@
 const E=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 const ICONS=['🛒','☕','🥖','₺','🍽️','▤','⌂','❤️','🚕','🎉','⛽','👕','🚗','🎁','📚','🔧','💊','📱','💡','💧','🌐','✂️','🐾','🚌','✈️','🧹','🧺','🎯','▣','✦'];
 state.categoryMeta=state.categoryMeta&&typeof state.categoryMeta==='object'?state.categoryMeta:{};
+/* V43.3.1 recovery: failed V43.3 may have stored category objects. Restore the original V18 string + categoryMeta model safely. */
+if(Array.isArray(state.categories)){state.categories=state.categories.map(c=>{if(c&&typeof c==='object'){const n=String(c.name||'').trim().toUpperCase();if(n&&c.icon)state.categoryMeta[n]={icon:c.icon};return n}return String(c||'').trim().toUpperCase()}).filter(Boolean)}
 const base={PAZAR:'🥬',YOL:'🚗',YEMEK:'🍽️',MARKET:'🛒',FATURA:'▤',KİRA:'⌂',SAĞLIK:'❤️',ULAŞIM:'🚕',EĞLENCE:'🎉',YAKIT:'⛽',GİYİM:'👕',HARÇLIK:'₺',FIRIN:'🥖',CAFE:'☕',DİĞER:'✦'};
 state.categories=Array.from(new Set([...(state.categories||[]),'HARÇLIK','FIRIN','CAFE','PAZAR','DİĞER']));
 state.categories.forEach((c,i)=>{if(!state.categoryMeta[c])state.categoryMeta[c]={icon:base[c]||ICONS[i%ICONS.length]};});
@@ -29,7 +31,7 @@ expenseForm=function(){return expenseFormV18()}
 
 function expenseRowV24(x){
  const title=window.esc(x&&x.title||x&&x.category||'HARCAMA'),cat=window.esc(x&&x.category||'DİĞER'),method=window.esc(x&&x.method||x&&x.paymentMethod||'NAKİT'),date=window.esc(x&&x.date||'');
- return `<div class="expenseRowV24"><i class="expenseIconV24">${ci(x&&x.category||'DİĞER')}</i><div class="expenseTextV24"><b>${title}</b><small>${cat} · ${method} · ${date}</small></div><strong>${money(Number(x&&x.amount)||0)}</strong><button type="button" onclick="openModal('editRecord:expense:${x.id}:${x.date||''}')">✎</button></div>`;
+ return `<div class="expenseRowV24"><i class="expenseIconV24">${ci(x&&x.category||'DİĞER')}</i><div class="expenseTextV24"><b>${title}${x&&x.recipient?' · '+window.esc(x.recipient):''}</b><small>${cat} · ${method} · ${date}${x&&x.note?' · '+window.esc(x.note):''}</small></div><strong>${money(Number(x&&x.amount)||0)}</strong><button type="button" onclick="openModal('editRecord:expense:${x.id}:${x.date||''}')">✎</button><button type="button" class="expenseDeleteV4331" onclick="deleteExpense('${x.id}','${x.date||''}')">×</button></div>`;
 }
 expenseAnalytics=function(){
  const all=Array.isArray(state.expenses)?state.expenses:[],p=monthPrefix(),mm=all.filter(x=>String(x&&x.date||'').startsWith(p)),totals={};
@@ -41,7 +43,8 @@ expenseAnalytics=function(){
 expensesScreen=function(){
  const all=Array.isArray(state.expenses)?state.expenses:[],a=all.slice().sort((x,y)=>(y.date||'').localeCompare(x.date||'')),now=new Date(),prefix=`${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}`,mm=all.filter(x=>(x.date||'').startsWith(prefix));
  const total=mm.reduce((n,x)=>n+(+x.amount||0),0),cardMethods=['KREDİ KARTI','KART','CREDIT CARD'],isCard=x=>cardMethods.includes(String(x.method||x.paymentMethod||'').toUpperCase()),cash=mm.filter(x=>!isCard(x)).reduce((n,x)=>n+(+x.amount||0),0),card=mm.filter(isCard).reduce((n,x)=>n+(+x.amount||0),0);
- return `${header('HARCAMALAR',true)}<div class="expenseHero"><div><small>BU AY HARCAMA</small><strong class="red">${money(total)}</strong></div><button class="premiumAddBtn" onclick="openModal('expense')"><i>＋</i><span>HARCAMA EKLE</span></button></div><div class="paymentSplit"><button><b>₺ ${money(cash)}</b><small>NAKİT</small></button><button><b>▰ ${money(card)}</b><small>KREDİ KARTI</small></button></div><div class="section"><b>HARCAMA DETAYLARI</b><span>${a.length} KAYIT</span></div><div class="card list expenseList">${a.length?a.map(x=>expenseRowV24(x)).join(''):'<div class="empty">HARCAMA KAYDI YOK</div>'}</div>`};
+ const catTotals={};mm.forEach(x=>{const c=upper(x.category||'DİĞER');catTotals[c]=(catTotals[c]||0)+(+x.amount||0)});const catRows=Object.entries(catTotals).sort((a,b)=>b[1]-a[1]);
+ return `${header('HARCAMALAR',true)}<div class="expenseHero"><div><small>BU AY HARCAMA</small><strong class="red">${money(total)}</strong></div><button class="premiumAddBtn" onclick="openModal('expense')"><i>＋</i><span>HARCAMA EKLE</span></button></div><div class="paymentSplit"><button><b>₺ ${money(cash)}</b><small>NAKİT</small></button><button><b>▰ ${money(card)}</b><small>KREDİ KARTI</small></button></div><div class="section"><b>KATEGORİ TOPLAMLARI</b><span>${catRows.length} KATEGORİ</span></div><div class="v4331CatTotals">${catRows.map(([c,n])=>`<button onclick="openModal('categoryDetail:${encodeURIComponent(c)}')"><i>${ci(c)}</i><span><b>${window.esc(c)}</b><small>BU AY</small></span><strong>${money(n)}</strong></button>`).join('')||'<div class="notice">BU AY HARCAMA YOK.</div>'}</div><div class="section"><b>HARCAMA DÖKÜMÜ</b><span>${a.length} KAYIT</span></div><div class="card list expenseList">${a.length?a.map(x=>expenseRowV24(x)).join(''):'<div class="empty">HARCAMA KAYDI YOK</div>'}</div>`};
 
 function dateAdd(ds,n){const d=new Date(ds+'T12:00:00');d.setDate(d.getDate()+n);return iso(d)}
 window.shiftDay=function(ds,n){modal='day:'+dateAdd(ds,n);render()}
