@@ -1185,7 +1185,7 @@ if('serviceWorker' in navigator){
     location.reload();
   });
   window.addEventListener('load',()=>{
-    navigator.serviceWorker.register('./sw.js?v=15',{updateViaCache:'none'}).then(reg=>{
+    navigator.serviceWorker.register('./sw.js?v=43.10',{updateViaCache:'none'}).then(reg=>{
       const activateWaiting=()=>{
         if(reg.waiting) reg.waiting.postMessage({type:'SKIP_WAITING'});
       };
