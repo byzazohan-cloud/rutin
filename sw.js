@@ -1,24 +1,26 @@
-const CACHE='rutin-clean-v2-v42';
+const CACHE='rutin-clean-v2-v44-1';
 const FILES=[
   './',
   './index.html',
-  './styles.css?v=v42',
-  './app.js?v=v42',
-  './clean_v2_upgrade.js?v=v42',
-  './clean_v2_v13.js?v=v42',
-  './v18_upgrade.js?v=v42',
+  './styles.css?v=v44.1',
+  './app.js?v=v44.1',
+  './clean_v2_upgrade.js?v=v44.1',
+  './clean_v2_v13.js?v=v44.1',
+  './v18_upgrade.js?v=v44.1',
+  './v43_update.js?v=v44.1',
+  './v44_icons.js?v=v44.1',
   './manifest.json',
   './icon.svg',
   './icon-180.png',
   './icon-512.png'
 ];
 
-self.addEventListener('install',event=>{
+self.addEventListener('install', event => {
   self.skipWaiting();
-  event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(FILES)).catch(()=>{}));
+  event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(FILES)));
 });
 
-self.addEventListener('activate',event=>{
+self.addEventListener('activate', event => {
   event.waitUntil((async()=>{
     const keys=await caches.keys();
     await Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)));
@@ -26,14 +28,14 @@ self.addEventListener('activate',event=>{
   })());
 });
 
-self.addEventListener('message',event=>{
-  if(event.data&&event.data.type==='SKIP_WAITING') self.skipWaiting();
-  if(event.data&&event.data.type==='CLEAR_OLD_CACHES'){
+self.addEventListener('message', event => {
+  if(event.data && event.data.type==='SKIP_WAITING') self.skipWaiting();
+  if(event.data && event.data.type==='CLEAR_OLD_CACHES'){
     event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))));
   }
 });
 
-self.addEventListener('fetch',event=>{
+self.addEventListener('fetch', event => {
   if(event.request.method!=='GET') return;
   const url=new URL(event.request.url);
   if(url.origin!==self.location.origin) return;
@@ -43,7 +45,7 @@ self.addEventListener('fetch',event=>{
     event.respondWith((async()=>{
       try{
         const res=await fetch(event.request,{cache:'no-store'});
-        if(res&&res.ok){
+        if(res && res.ok){
           const cache=await caches.open(CACHE);
           cache.put(event.request,res.clone()).catch(()=>{});
         }
@@ -58,6 +60,15 @@ self.addEventListener('fetch',event=>{
   event.respondWith((async()=>{
     const hit=await caches.match(event.request);
     if(hit) return hit;
-    try{return await fetch(event.request,{cache:'no-store'});}catch(e){return hit;}
+    try{
+      const res=await fetch(event.request,{cache:'no-store'});
+      if(res && res.ok){
+        const cache=await caches.open(CACHE);
+        cache.put(event.request,res.clone()).catch(()=>{});
+      }
+      return res;
+    }catch(e){
+      return hit;
+    }
   })());
 });
