@@ -1852,3 +1852,47 @@ body{overflow-x:hidden!important}.app,.screen,#app{max-width:100vw!important;ove
  .topbar43112{grid-template-columns:48px minmax(0,1fr) 104px!important}
  .topbar43112>button:first-child{width:48px!important;height:48px!important;min-width:48px!important;min-height:48px!important;border-radius:15px!important;font-size:25px!important}
 }
+
+/* ===== V43.12.2 TEST — IPHONE FIRST RESPONSIVE LAYOUT ===== */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;background:#000}
+body{width:100%;min-width:0;margin:0;overflow-x:hidden!important}
+#app{width:100%;min-width:0;overflow-x:hidden!important}
+.phone,.v18Phone{width:100%!important;max-width:430px!important;margin:0 auto!important;min-width:0!important;padding-left:max(12px,env(safe-area-inset-left))!important;padding-right:max(12px,env(safe-area-inset-right))!important;padding-bottom:calc(96px + env(safe-area-inset-bottom))!important;overflow-x:hidden!important}
+.phone *,.v18Phone *{min-width:0}
+img,svg,canvas{max-width:100%;height:auto}
+.stats,.row2,.choiceRow,.incomeSourceGrid,.expenseCatDetailGrid{min-width:0}
+.quick.quickPremium.quickSix{width:100%!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:6px!important}
+.quick.quickPremium.quickSix button{width:100%!important;min-width:0!important;padding-left:2px!important;padding-right:2px!important;overflow:hidden!important}
+.quick.quickPremium.quickSix button span{max-width:100%!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+.nav4311Fixed{left:50%!important;right:auto!important;transform:translateX(-50%)!important;width:100%!important;max-width:430px!important;grid-template-columns:repeat(7,minmax(0,1fr))!important;padding-left:max(4px,env(safe-area-inset-left))!important;padding-right:max(4px,env(safe-area-inset-right))!important;padding-bottom:calc(7px + env(safe-area-inset-bottom))!important}
+.nav4311Fixed button{min-width:0!important;overflow:visible!important}
+.nav4311Fixed .navLabelV37{font-size:5.2px!important;white-space:nowrap!important}
+.modal4312,.modal,.drawer4310{width:100%!important;max-width:100vw!important}
+.sheet4312,.sheet{max-width:430px!important;margin-left:auto!important;margin-right:auto!important}
+.finance4311{width:100%!important;max-width:100%!important;padding-left:0!important;padding-right:0!important;overflow-x:hidden!important}
+.verticalFinanceDeck{grid-template-columns:repeat(2,minmax(0,1fr))!important;width:100%!important}
+.titaniumVerticalCard{width:100%!important;min-width:0!important}
+.v437RoadRow{max-width:100%!important}
+@media(max-width:390px){
+ .phone,.v18Phone{padding-left:max(10px,env(safe-area-inset-left))!important;padding-right:max(10px,env(safe-area-inset-right))!important}
+ .stats{gap:6px!important}.stat{padding:9px!important}
+ .quick.quickPremium.quickSix{gap:4px!important}
+ .quick.quickPremium.quickSix .qv31,.quick.quickPremium.quickSix .qv32{width:44px!important;height:44px!important;min-width:44px!important;min-height:44px!important;margin-bottom:5px!important}
+ .quick.quickPremium.quickSix button span{font-size:6px!important;letter-spacing:0!important}
+ .nav4311Fixed .navIconV37{width:34px!important;height:34px!important;min-width:34px!important;min-height:34px!important}
+ .nav4311Fixed .navLabelV37{font-size:4.8px!important}
+ .verticalFinanceDeck{gap:7px!important}
+ .titaniumVerticalCard{padding:11px 9px!important;border-radius:19px!important}
+ .v437RoadRow{grid-template-columns:30px minmax(58px,.7fr) minmax(100px,1.3fr) 28px!important;gap:5px!important}
+}
+@media(max-width:350px){
+ .phone,.v18Phone{padding-left:max(8px,env(safe-area-inset-left))!important;padding-right:max(8px,env(safe-area-inset-right))!important}
+ .topbar43112{grid-template-columns:44px minmax(0,1fr) 94px!important;column-gap:4px!important}
+ .topbar43112>button:first-child,.headerBigAction{width:44px!important;height:44px!important;min-width:44px!important;min-height:44px!important}
+ .topActions43112{grid-template-columns:44px 44px!important;gap:4px!important;width:92px!important;min-width:92px!important}
+ .quick.quickPremium.quickSix .qv31,.quick.quickPremium.quickSix .qv32{width:40px!important;height:40px!important;min-width:40px!important;min-height:40px!important}
+ .nav4311Fixed .navIconV37{width:30px!important;height:30px!important;min-width:30px!important;min-height:30px!important}
+ .nav4311Fixed .navLabelV37{font-size:4.3px!important}
+ .verticalFinanceDeck{grid-template-columns:1fr!important}
+ .titaniumVerticalCard{aspect-ratio:auto!important;min-height:360px!important}
+}
