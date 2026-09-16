@@ -1,5 +1,4 @@
-const CACHE='rutin-clean-v2-v43.10-pwa-fix';
-const FILES=['./','./index.html','./styles.css?v=v43.10','./app.js?v=v43','./clean_v2_upgrade.js?v=v43.3.1.2','./clean_v2_v13.js?v=v43.3.1.2','./v18_upgrade.js?v=v43.3.1.2','./v43_calendar_final.js?v=v43.1','./v43_calendar_v432.js?v=v43.3.3','./v434_home_details.js?v=v43.4','./v4341_actions_fix.js?v=v43.4.1','./v435_global_record_actions.js?v=v43.5','./v436_work_premium.js?v=v43.6','./v437_work_roads.js?v=v43.7','./v438_road_grouping.js?v=438','./v439_reports_complete.js?v=v43.9','./v4310_finance_investments.js?v=v43.10','./manifest.json','./icon.svg','./icon-180.png','./icon-512.png'];
-self.addEventListener('install',e=>{self.skipWaiting();e.waitUntil(caches.open(CACHE).then(c=>c.addAll(FILES)).catch(()=>{}))});
-self.addEventListener('activate',e=>e.waitUntil((async()=>{for(const k of await caches.keys())if(k!==CACHE)await caches.delete(k);await self.clients.claim()})()));
-self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;const u=new URL(e.request.url);if(u.origin!==location.origin)return;e.respondWith((async()=>{try{const r=await fetch(e.request,{cache:'no-store'});if(r&&r.ok)(await caches.open(CACHE)).put(e.request,r.clone()).catch(()=>{});return r}catch(_){return (await caches.match(e.request))||(e.request.mode==='navigate'?caches.match('./index.html'):Response.error())}})())});
+const CACHE='rutin-clean-v2-v43.10.1-reports-fix';
+self.addEventListener('install',e=>{self.skipWaiting()});
+self.addEventListener('activate',e=>e.waitUntil((async()=>{for(const k of await caches.keys())await caches.delete(k);await self.clients.claim()})()));
+self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;const u=new URL(e.request.url);if(u.origin!==location.origin)return;e.respondWith(fetch(e.request,{cache:'no-store'}).catch(()=>caches.match(e.request))) });
