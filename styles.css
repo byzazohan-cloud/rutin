@@ -1808,3 +1808,14 @@ html,body{max-width:100%;overflow-x:hidden!important}body{overscroll-behavior-x:
  .topActions43111 .iconBtn{width:34px!important;height:34px!important}
  .nav4311Fixed{padding-left:max(6px,env(safe-area-inset-left))!important;padding-right:max(6px,env(safe-area-inset-right))!important}
 }
+
+/* ===== V43.11.2 HEADER ICON FIX ===== */
+.topbar43112{grid-template-columns:44px minmax(0,1fr) 116px!important;column-gap:8px!important;overflow:visible!important;align-items:center!important}
+.topbar43112 .title{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topActions43112{display:grid!important;grid-template-columns:52px 52px!important;gap:8px!important;align-items:center!important;justify-content:end!important;width:112px!important;min-width:112px!important;position:static!important;transform:none!important}
+.headerBigAction{position:static!important;display:grid!important;place-items:center!important;width:52px!important;height:52px!important;min-width:52px!important;min-height:52px!important;margin:0!important;padding:0!important;border-radius:17px!important;border:1px solid #765d25!important;background:linear-gradient(145deg,#171713,#070808)!important;color:#e4bc58!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.10),0 7px 18px rgba(0,0,0,.34)!important;transform:none!important;overflow:hidden!important}
+.headerBigAction span{display:block!important;font-size:27px!important;line-height:1!important;width:auto!important;height:auto!important;position:static!important;transform:none!important;margin:0!important;filter:saturate(.82)}
+.reminderBig43112 span{font-size:25px!important}.settingsBig43112 span{font-size:29px!important}
+/* Hide any legacy header action accidentally injected by older upgrade layers. */
+.topbar43112>.settingsOnly,.topbar43112>.reminderTopBtn,.topbar43112>.topActions43111{display:none!important}
+@media(max-width:390px){.topbar43112{grid-template-columns:40px minmax(0,1fr) 104px!important;column-gap:6px!important}.topActions43112{grid-template-columns:48px 48px!important;gap:6px!important;width:102px!important;min-width:102px!important}.headerBigAction{width:48px!important;height:48px!important;min-width:48px!important;min-height:48px!important;border-radius:15px!important}.headerBigAction span{font-size:25px!important}.reminderBig43112 span{font-size:23px!important}.settingsBig43112 span{font-size:27px!important}}
