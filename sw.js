@@ -1,8 +1,8 @@
-const CACHE='rutin-clean-v2-v43.7';
+const CACHE='rutin-clean-v2-v43.8';
 const FILES=[
   './',
   './index.html',
-  './styles.css?v=v43.7',
+  './styles.css?v=v43.8',
   './app.js?v=v43',
   './clean_v2_upgrade.js?v=v43.3.1.2',
   './clean_v2_v13.js?v=v43.3.1.2',
@@ -10,8 +10,8 @@ const FILES=[
   './v43_calendar_final.js?v=v43.1',
   './v43_calendar_v432.js?v=v43.3.3',
   './v434_home_details.js?v=v43.4',
-  './v4341_actions_fix.js?v=v43.7',
-  './v435_global_record_actions.js?v=v43.7',
+  './v4341_actions_fix.js?v=v43.8',
+  './v435_global_record_actions.js?v=v43.8',
   './manifest.json',
   './icon.svg',
   './icon-180.png',
