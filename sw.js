@@ -1,4 +1,4 @@
-const CACHE='rutin-clean-v2-v43.13.2-data-delete';
+const CACHE='rutin-clean-v2-v43.13.3-calendar-summary';
 const CORE=['./','./index.html','./styles.css','./app.js','./v4313_search_full_edit.js','./v43132_data_delete.js','./manifest.json','./icon.svg','./icon-180.png','./icon-512.png'];
 self.addEventListener('install',event=>{
   event.waitUntil((async()=>{
