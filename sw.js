@@ -1,5 +1,5 @@
-const CACHE='rutin-clean-v2-v43.14-design-v2';
-const CORE=['./','./index.html','./styles.css','./app.js','./v4313_search_full_edit.js','./v43132_data_delete.js','./manifest.json','./icon.svg','./icon-180.png','./icon-512.png'];
+const CACHE='rutin-clean-v2-v43.15-design-v3';
+const CORE=['./','./index.html','./styles.css','./app.js','./v4313_search_full_edit.js','./v43132_data_delete.js','./v4315_design_v3_icons.js','./manifest.json','./icon.svg','./icon-180.png','./icon-512.png'];
 self.addEventListener('install',event=>{
   event.waitUntil((async()=>{
     const cache=await caches.open(CACHE);
