@@ -1896,3 +1896,9 @@ img,svg,canvas{max-width:100%;height:auto}
  .verticalFinanceDeck{grid-template-columns:1fr!important}
  .titaniumVerticalCard{aspect-ratio:auto!important;min-height:360px!important}
 }
+/* V43.13 search + full edit */
+.v4313SearchCard{margin:14px 14px 18px;padding:12px;border:1px solid rgba(215,180,92,.32);border-radius:18px;background:var(--panel,#0b0b0b)}
+.v4313SearchInput{display:flex;align-items:center;gap:8px;border:1px solid rgba(215,180,92,.45);border-radius:14px;padding:0 12px;margin-bottom:10px}
+.v4313SearchInput input{flex:1;min-width:0;background:transparent;border:0;outline:0;padding:14px 4px;color:inherit;font-size:16px}
+.v4313SearchInput button{border:0;background:transparent;color:inherit;font-size:22px;padding:8px}
+.v4313SearchRow{width:100%}

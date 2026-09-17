@@ -1,0 +1,32 @@
+/* RUTIN V43.13 — instant search + full expense editing (same ID) */
+(function(){
+'use strict';
+const E=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+const norm=s=>String(s??'').toLocaleUpperCase('tr-TR').normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+window.rutinSearchQuery=window.rutinSearchQuery||'';
+function WA(x){return Number(x.amount)||((Number(x.hours)||0)*(Number(x.rate)||0))||0}
+function searchRows(q){
+ const n=norm(q).trim(); if(!n)return [];
+ const rows=[...(state.expenses||[]).map(x=>['expense',x]),...(state.incomes||[]).map(x=>['income',x]),...(state.work||[]).map(x=>['work',x])];
+ return rows.filter(([k,x])=>norm([k,x.title,x.category,x.note,x.person,x.recipient,x.method,x.cardName,x.date,x.amount,x.hours].join(' ')).includes(n)).sort((a,b)=>String(b[1].date||'').localeCompare(String(a[1].date||'')));
+}
+function srow(kind,x){const amount=kind==='work'?WA(x):Number(x.amount)||0,label=kind==='work'?(x.title||'ÇALIŞMA'):(x.category||x.title||(kind==='income'?'GELİR':'HARCAMA'));return `<button class="globalRecordRowV435 v4313SearchRow" onclick="openRecordV435('${kind}','${E(x.id)}')"><i>${kind==='expense'?'−':kind==='income'?'₺':'▣'}</i><div><b>${E(label)}</b><small>${E(x.date||'')} · ${kind==='expense'?E(x.method||'NAKİT')+' · ':''}DÜZENLE / SİL</small></div><strong class="${kind==='expense'?'red':kind==='income'?'green':'gold'}">${kind==='expense'?'-':'+'}${money(amount)}</strong><span>›</span></button>`}
+window.v4313Search=function(v){window.rutinSearchQuery=v||'';const box=document.getElementById('v4313SearchResults');if(!box)return;const a=searchRows(v);box.innerHTML=!String(v||'').trim()?'<div class="notice">ARAMAK İÇİN YAZMAYA BAŞLA.</div>':(a.map(z=>srow(z[0],z[1])).join('')||'<div class="notice">EŞLEŞEN HAREKET BULUNAMADI.</div>')};
+const oldReports=window.reports;
+window.reports=function(){let h=oldReports();const q=window.rutinSearchQuery||'';const block=`<div class="v4313SearchCard"><div class="section"><b>HAREKET ARA</b><span>ANLIK ARAMA</span></div><div class="v4313SearchInput"><span>⌕</span><input type="search" value="${E(q)}" placeholder="Market, yol, tarih, not..." oninput="v4313Search(this.value)"><button type="button" onclick="this.previousElementSibling.value='';v4313Search('')">×</button></div><div id="v4313SearchResults">${q?(searchRows(q).map(z=>srow(z[0],z[1])).join('')||'<div class="notice">EŞLEŞEN HAREKET BULUNAMADI.</div>'):'<div class="notice">ARAMAK İÇİN YAZMAYA BAŞLA.</div>'}</div></div>`;const marker='<div class="section"><b>GELİR / GİDER</b>';const at=h.indexOf(marker);return at>=0?h.slice(0,at)+block+h.slice(at):h+block};
+function catOptions(x){const a=Array.from(new Set([...(state.categories||[]),x.category||'DİĞER','DİĞER']));return a.map(c=>`<option value="${E(c)}" ${c===(x.category||'DİĞER')?'selected':''}>${E(c)}</option>`).join('')}
+function cardOptions(id){return (state.cards||[]).map(c=>`<option value="${E(c.id)}" ${String(c.id)===String(id)?'selected':''}>${E(c.name||'KREDİ KARTI')}</option>`).join('')}
+window.v4313PayToggle=function(sel){const row=sel.closest('form')?.querySelector('.v4313CardPick');if(row)row.style.display=sel.value==='KREDİ KARTI'?'block':'none'};
+const oldModal=window.modalHtml;
+window.modalHtml=function(k){
+ if(k.startsWith('editRecord:expense:')){const p=k.split(':'),id=p[2],x=(state.expenses||[]).find(z=>String(z.id)===String(id));if(x){const isCard=x.method==='KREDİ KARTI'||x.sourceType==='card'||!!x.cardId;return `<div class="modal v18Modal" onclick="safeBackdropClose(event)"><div class="sheet v18Sheet" onclick="event.stopPropagation()"><div class="sheetHead"><b>HARCAMAYI DÜZENLE</b><button class="close" onclick="closeModal()">×</button></div><form onsubmit="v4313SaveExpense(event,'${E(x.id)}')"><div class="field"><label>KATEGORİ</label><select name="category">${catOptions(x)}</select></div><div class="field"><label>TUTAR</label><input name="amount" type="number" inputmode="decimal" step="0.01" value="${E(x.amount||0)}"></div><div class="field"><label>TARİH</label><input name="date" type="date" value="${E(x.date||iso())}"></div><div class="field"><label>ÖDEME ŞEKLİ</label><select name="method" onchange="v4313PayToggle(this)"><option value="NAKİT" ${!isCard?'selected':''}>NAKİT</option><option value="KREDİ KARTI" ${isCard?'selected':''}>KART</option></select></div><div class="field v4313CardPick" style="display:${isCard?'block':'none'}"><label>KULLANILAN KART</label><select name="cardId"><option value="">KART SEÇ</option>${cardOptions(x.cardId)}</select></div><div class="field"><label>AÇIKLAMA / NOT</label><textarea name="note">${E(x.note||'')}</textarea></div><button class="primary">DEĞİŞİKLİĞİ KAYDET</button><button type="button" class="secondary dangerBtn" onclick="deleteRecord('expense','${E(x.id)}','${E(x.date||'')}')">KAYDI SİL</button></form></div></div>`}}
+ return oldModal(k);
+};
+window.v4313SaveExpense=function(e,id){e.preventDefault();const x=(state.expenses||[]).find(z=>String(z.id)===String(id));if(!x)return;const d=Object.fromEntries(new FormData(e.currentTarget).entries()),oldAmount=Number(x.amount)||0,oldCardId=x.cardId||'',oldSourceId=x.sourceId||'',wasCard=x.sourceType==='card'&&oldCardId&&oldSourceId;
+ // Detach the previous linked card transaction first; the expense ID itself is never changed.
+ if(wasCard){const c=(state.cards||[]).find(z=>String(z.id)===String(oldCardId)),t=c?.transactions?.find(z=>String(z.id)===String(oldSourceId));if(c&&t){c.balance=Math.max(0,(Number(c.balance)||0)-(Number(t.amount)||oldAmount));c.transactions=c.transactions.filter(z=>String(z.id)!==String(oldSourceId));}}
+ const category=d.category||'DİĞER',amount=Number(d.amount)||0;Object.assign(x,{category,title:category,amount,date:d.date||x.date,method:d.method==='KREDİ KARTI'?'KREDİ KARTI':'NAKİT',note:d.note||'',sourceType:'',sourceId:'',cardId:'',cardName:''});
+ if(d.method==='KREDİ KARTI'){const c=(state.cards||[]).find(z=>String(z.id)===String(d.cardId));if(!c){alert('LÜTFEN KULLANILAN KARTI SEÇ.');return}c.transactions=Array.isArray(c.transactions)?c.transactions:[];const t={id:uid(),title:x.title||x.category||'HARCAMA',amount,date:x.date};c.transactions.push(t);c.balance=(Number(c.balance)||0)+amount;Object.assign(x,{sourceType:'card',sourceId:t.id,cardId:c.id,cardName:c.name||'KREDİ KARTI'});}
+ save();modal=null;render();
+};
+})();
