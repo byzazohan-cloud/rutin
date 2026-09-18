@@ -1,0 +1,9 @@
+RUTIN V43.17.5
+- Kredi kartlarına doğrudan Düzenle butonu eklendi.
+- Esnek hesaplara doğrudan Düzenle butonu eklendi.
+- Düzenlenebilir güvenli alanlar: ad, limit, hesap kesim günü, son ödeme günü.
+- Borç/kullanılan tutar elle düzenlenmez; hareketlerden korunur.
+- Eski statementDate/dueDate verileri yeni gün alanlarına uyarlanır.
+- Kart ve esnek hesap kartlarında kesim/son ödeme bilgileri gösterilir.
+- Sıradaki adım: hesap kesim ve son ödeme günleri mevcut Hatırlatma Merkezi ile entegre edildi.
+- Mevcut bakiye, işlemler, Takvim ve rapor yapısı korunur.
