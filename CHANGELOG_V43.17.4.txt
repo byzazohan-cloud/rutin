@@ -1,0 +1,14 @@
+RUTİN V43.17.4 — RAPOR + HARÇLIK + KART/ESNEK HESAP BÜTÜNLÜK PAKETİ
+
+- Takvim görünümü ve V43.17.3 Takvim detay yapısı değiştirilmedi.
+- Raporlar: Hak Edilen / Alınan / Alacak ayrımı gerçek tahsilat tarihleriyle standardize edildi.
+- Raporlar: Çalışma/Hakediş ayrı tıklanabilir bölüm; günlük, saatlik ve mesai kayıtları ayrı görünür.
+- Raporlar: Gerçek gelir hareketlerinde peşin ödemeler çalışma gününde, sonradan tahsilatlar tahsilat gününde görünür.
+- Raporlar: Yol giderleri tarih bazında tek kart; detaydan tek tek düzenle/sil.
+- Harçlık: BUGÜN filtresi, dönem bazlı Nakit/Kart/Esnek Hesap toplamları, kişi detayında aynı filtreler.
+- Kart: Önceki ekstre dönemleri arasında gezinme eklendi; 29/30/31 gün desteği korunuyor.
+- Eski telefon verileri: eski kart/Esnek Hesap hareketleri mevcut bakiyeler değiştirilmeden harcama kayıtlarına bağlanır.
+- Kart/Esnek Hesap ekranından yeni doğrudan harcamalar artık Harcamalar/Raporlar sistemine tek bağlı kayıt olarak eklenir.
+- Bağlı harcaması bulunan kart/Esnek Hesap yanlışlıkla silinemez.
+- PWA cache V43.17.4; V43.17.3 Takvim restore dosyası da offline cache listesine eklendi.
+- Veri bütünlüğü denetimi eklendi; bakiyeleri otomatik yeniden hesaplamaz.
