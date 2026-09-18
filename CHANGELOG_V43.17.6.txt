@@ -1,0 +1,8 @@
+RUTIN V43.17.6
+- Kart/Esnek Hesap detay ve hareket/ödeme geçmişi
+- Limit kullanım oranı ve kullanılabilir limit
+- Yaklaşan hesap kesim/son ödeme görsel uyarıları
+- Hatırlatma merkezinden ilgili finans detayına geçiş
+- Raporlarda kart/Esnek Hesap dönem harcama, ödeme ve güncel borç
+- Ana sayfada toplam kart borcu, Esnek Hesap borcu, yaklaşan ödeme özeti
+- V43.17.5 düzenleme ve eski veri uyumu korunur

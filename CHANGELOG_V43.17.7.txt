@@ -1,0 +1,9 @@
+RUTİN V43.17.7
+- Finans > Kartlar mevcut sekme/düzen yapısı korunarak kart görselleri yenilendi.
+- Kredi kartına dokununca doğrudan KART EKSTRESİ açılır.
+- Ekstre ekranına KARTI DÜZENLE eklendi.
+- Kart adı, limit, hesap kesim günü ve son ödeme günü Ekstre üzerinden değiştirilebilir.
+- Düzenleme sonrası aynı kartın Ekstre ekranına geri dönülür.
+- Önceki/sonraki ekstre dönemi, ekstre hareketleri, ödemeler ve Ne Kadar Ödedim işlevleri korunur.
+- Esnek Hesap kartı mevcut hesap detayına açılır; düzenleme hesap detayından erişilebilir.
+- Takvim, rapor, harçlık ve veri migration sistemlerine dokunulmadı.
