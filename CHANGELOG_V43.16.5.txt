@@ -1,0 +1,13 @@
+RUTİN V43.16.5
+- Kredi kartı harcamalarında merkezi senkronizasyon eklendi.
+- Kartlı harcama düzenleme/silmede kart borcu ve kart hareketi birlikte güncellenir.
+- Yol gideri karttan ödendiyse silmede kart borcu da düzeltilir.
+- Kart ekstresine hesap kesim gününe göre son kapanan dönem görünümü eklendi.
+- Harçlık için ayrı ekran eklendi.
+- Harçlık kişi bazında toplam, işlem sayısı ve kişi detay hareketleri eklendi.
+- Harçlık filtreleri: Bu Ay, Son 3 Ay, Son 1 Yıl, Tümü, Özel Tarih.
+- Harçlık hareketleri mevcut global Düzenle/Sil ekranına bağlıdır.
+- Harçlık ödemesi Nakit veya Kredi Kartı olabilir; kart seçilirse karta otomatik işlenir.
+- Uygulama menüsüne HARÇLIK eklendi.
+- Ayarlar'daki ayrı Veri Geri Yükle satırı kaldırıldı; Yedekleme tek ana giriş olarak bırakıldı.
+- Mevcut Hak Edilen / Alınan / Alacak çalışma sistemi korunmuştur.

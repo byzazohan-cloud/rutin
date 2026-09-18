@@ -1,5 +1,5 @@
-const CACHE='rutin-clean-v2-v43.16.4.5-global-safearea';
-const CORE=['./','./index.html','./styles.css','./app.js','./legacy.js','./calendar.js','./records.js','./work.js','./finance.js','./ui.js','./accounting.js','./manifest.json','./icon-180.png','./icon-512.png'];
+const CACHE='rutin-clean-v2-v43.16.5-global-safearea';
+const CORE=['./','./index.html','./styles.css','./app.js','./legacy.js','./calendar.js','./records.js','./work.js','./finance.js','./ui.js','./accounting.js','./v43165_cards_allowance.js','./manifest.json','./icon-180.png','./icon-512.png'];
 self.addEventListener('install',event=>{
   event.waitUntil((async()=>{
     const cache=await caches.open(CACHE);
