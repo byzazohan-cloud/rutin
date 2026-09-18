@@ -284,7 +284,7 @@ function canonicalize(root=document){
   const t=(el.innerText||'').replace(/\s+/g,' ').trim().toLocaleUpperCase('tr-TR');
   let icon=null, cls='';
   const rules=[
-   [/GELİR EKLE|GELİR$/,FN.income,'v3-income'],[/HARCAMA/,FN.expenses,'v3-expense'],[/SAATLİK/,FN.hourly,'v3-hourly'],[/MESAİ/,FN.overtime,'v3-overtime'],[/ÇALIŞTIM|GÜNLÜK ÇALIŞMA|ÇALIŞMA$/,FN.work,'v3-work'],[/TAKVİM/,FN.calendar,'v3-calendar'],[/RAPOR/,FN.reports,'v3-reports'],[/YATIRIM/,FN.investments,'v3-invest'],[/FİNANS|HESAPLAR/,FN.finance,'v3-finance'],[/NOTLAR?/,FN.notes,'v3-notes'],[/PROFİL/,FN.profile,'v3-profile'],[/AYARLAR/,FN.settings,'v3-settings'],[/YEDEK|GERİ YÜKLE/,FN.backup,'v3-backup'],[/TEMA/,FN.theme,'v3-theme'],[/KATEGORİLER/,FN.categories,'v3-categories']
+   [/GELİR EKLE|GELİR$/,FN.income,'v3-income'],[/HARCAMA/,FN.expenses,'v3-expense'],[/SAATLİK/,FN.hourly,'v3-hourly'],[/MESAİ/,FN.overtime,'v3-overtime'],[/ÇALIŞTIM|GÜNLÜK ÇALIŞMA|ÇALIŞMA$/,FN.work,'v3-work'],[/TAKVİM/,FN.calendar,'v3-calendar'],[/RAPOR/,FN.reports,'v3-reports'],[/YATIRIM/,FN.investments,'v3-invest'],[/FİNANS|HESAPLAR/,FN.finance,'v3-finance'],[/NOTLAR?/,FN.notes,'v3-notes'],[/PROFİL/,FN.profile,'v3-profile'],[/AYARLAR/,FN.settings,'v3-settings'],[/YEDEK/,FN.backup,'v3-backup'],[/TEMA/,FN.theme,'v3-theme'],[/KATEGORİLER/,FN.categories,'v3-categories']
   ];
   for(const r of rules){if(r[0].test(t)){icon=r[1];cls=r[2];break}}
   if(icon){const i=el.querySelector('i,.settingIcon,.qv32,.navIconV37');if(i && !i.classList.contains('expenseIconV24')){i.textContent=icon;i.classList.add('v3CanonicalIcon');el.classList.add(cls)}}

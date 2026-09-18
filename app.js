@@ -424,7 +424,7 @@ function profile(){
    <div class="setting clickable" onclick="openModal('profile')"><div>●</div><b>PROFİLİ DÜZENLE</b><span>›</span></div>
    <div class="setting clickable" onclick="openModal('security')"><div>⌾</div><b>UYGULAMA KİLİDİ / PIN</b><span>${state.settings.lock?'AÇIK':'KAPALI'} ›</span></div>
    <div class="setting clickable" onclick="openModal('reminders')"><div>◔</div><b>HATIRLATICILAR</b><span>${state.settings.reminders?'AÇIK':'KAPALI'} ›</span></div>
-   <div class="setting clickable" onclick="openModal('backup')"><div>⇩</div><b>YEDEKLEME / GERİ YÜKLE</b><span>›</span></div>
+   <div class="setting clickable" onclick="openModal('backup')"><div>⇩</div><b>YEDEKLEME</b><span>›</span></div>
    <div class="setting clickable" onclick="go('settings')"><div>⚙</div><b>AYARLAR</b><span>›</span></div>
  </div>`;
 }
@@ -433,14 +433,12 @@ function settings(){
  <div class="setting clickable premiumSetting" onclick="go('profile')"><div class="settingIcon">●</div><b>PROFİL</b><span>›</span></div>
  <div class="setting clickable premiumSetting" onclick="openModal('categories')"><div class="settingIcon">▦</div><b>KATEGORİLER</b><span>›</span></div>
  <div class="setting clickable premiumSetting" onclick="go('finance')"><div class="settingIcon">▣</div><b>HESAPLAR</b><span>›</span></div>
- <div class="setting clickable premiumSetting" onclick="openModal('backup')"><div class="settingIcon">⇩</div><b>YEDEKLEME / GERİ YÜKLE</b><span>›</span></div>
+ <div class="setting clickable premiumSetting" onclick="openModal('backup')"><div class="settingIcon">⇩</div><b>YEDEKLEME</b><span>›</span></div>
  <div class="setting clickable premiumSetting" onclick="openModal('theme')"><div class="settingIcon">✧</div><b>TEMA STÜDYOSU</b><span>›</span></div>
  <div class="setting clickable premiumSetting" onclick="toggleAppearance()"><div class="settingIcon">◐</div><b>GÖRÜNÜM</b><span>${(state.settings.appearance||'dark')==='dark'?'KARANLIK MOD':'AÇIK MOD'} ›</span></div>
  <div class="setting clickable premiumSetting" onclick="openModal('reminders')"><div class="settingIcon">◔</div><b>HATIRLATICILAR</b><span>›</span></div>
  <div class="setting clickable premiumSetting" onclick="openModal('security')"><div class="settingIcon">⌾</div><b>UYGULAMA KİLİDİ</b><span>${state.settings.lock?'AÇIK':'KAPALI'} ›</span></div>
- <div class="setting clickable premiumSetting" onclick="document.getElementById('dataImportFile').click()"><div class="settingIcon">⇩</div><b>VERİ GERİ YÜKLE</b><span>›</span></div>
- <input id="dataImportFile" type="file" hidden onchange="importData(event)">
- <div class="setting premiumSetting"><div class="settingIcon">i</div><b>HAKKINDA</b><span>RUTİN V6.2</span></div>
+ <div class="setting premiumSetting"><div class="settingIcon">i</div><b>HAKKINDA</b><span>RUTİN V43.18.0</span></div>
  </div>`;
 }
 function setting(a,b){return `<div class="setting"><div>•</div><b>${a}</b><span>${b}</span></div>`}
@@ -792,7 +790,7 @@ function modalHtml(k){
       ${field('nightReminderTime','GECE SAATİ',state.settings.nightReminderTime||'22:00','time')}
       <div class="notice">VARSAYILAN: SABAH 07:00 · GECE 22:00. UYGULAMA AÇILDIĞINDA GÜNLÜK KAYITLARINI HATIRLATIR.</div>
       <button class="primary">KAYDET</button></form>`}
- if(k==='backup'){title='YEDEKLEME';body=`<button class="primary" onclick="downloadBackup()">YEDEK DOSYASI OLUŞTUR</button><button class="secondary" onclick="document.getElementById('restoreFile').click()">YEDEĞİ GERİ YÜKLE</button><input id="restoreFile" type="file" hidden onchange="restoreBackup(event)"><div class="notice">RUTİN VERİLERİNİ CİHAZIN DIŞINA YEDEKLEMEN ÖNERİLİR.</div>`}
+ if(k==='backup'){title='YEDEKLEME';body=`<button class="primary" onclick="downloadBackup()">YEDEK DOSYASI OLUŞTUR</button><div class="notice">RUTİN VERİLERİNİ CİHAZIN DIŞINA YEDEKLEMEN ÖNERİLİR. YEDEK DOSYASI TÜM MEVCUT VERİLERİ VE AYARLARI İÇERİR.</div>`}
  if(k==='categories'){title='KATEGORİLER';body=`<div class="card list">${state.categories.map(c=>`<div class="item"><div class="ico">•</div><div><b>${c}</b></div></div>`).join('')}</div>`}
  if(k==='theme'){const t=state.settings.theme||defaults.settings.theme;title='TEMA STÜDYOSU';body=`<form onsubmit="submitTheme(event)"><div class="themePreview"><div class="themePreviewTop">RUTİN</div><div class="themePreviewCard"><b>ÖNİZLEME</b><span>RENKLERİ KAYDETMEDEN DEĞİŞTİR</span></div></div><div class="themeGrid">${colorField('bg','ARKA PLAN',t.bg)}${colorField('panel','KART / PANEL',t.panel)}${colorField('gold','VURGU / GOLD',t.gold)}${colorField('green','GELİR',t.green)}${colorField('red','HARCAMA',t.red)}${colorField('blue','SAATLİK',t.blue)}</div><div class="appearanceSwitch">
      <button type="button" class="${(state.settings.appearance||'dark')==='dark'?'active':''}" onclick="setAppearance('dark')">KARANLIK MOD</button>
@@ -1091,30 +1089,6 @@ function downloadBackup(){
  const blob=new Blob([JSON.stringify({format:'RUTIN-BACKUP-V3',created:new Date().toISOString(),state},null,2)],{type:'application/json'});
  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`RUTIN-YEDEK-${iso()}.rutin`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)
 }
-function restoreBackup(e){
- const f=e.target.files?.[0];if(!f)return;
- const r=new FileReader();r.onload=()=>{try{const p=JSON.parse(r.result);if(p.format!=='RUTIN-BACKUP-V3'||!p.state)throw new Error('GEÇERSİZ YEDEK');state=p.state;save();location.reload()}catch(err){alert('YEDEK AÇILAMADI: '+err.message)}};r.readAsText(f)
-}
-function importData(e){
- const f=e.target.files?.[0];if(!f)return;
- const r=new FileReader();
- r.onload=()=>{
-  try{
-   const p=JSON.parse(r.result);
-   const incoming=p?.state||p;
-   if(!incoming || typeof incoming!=='object')throw new Error('GEÇERSİZ VERİ DOSYASI');
-   state=incoming;
-   save();
-   e.target.value='';
-   alert('VERİLER GERİ YÜKLENDİ. RUTİN YENİDEN AÇILIYOR.');
-   location.reload();
-  }catch(err){
-   e.target.value='';
-   alert('VERİ GERİ YÜKLENEMEDİ: '+(err?.message||err));
-  }
- };
- r.readAsText(f);
-}
 function exportData(){
  const payload={format:'RUTIN-DATA-V6',created:new Date().toISOString(),state};
  const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
@@ -1185,7 +1159,7 @@ if('serviceWorker' in navigator){
     location.reload();
   });
   window.addEventListener('load',()=>{
-    navigator.serviceWorker.register('./sw.js?v=43.16.9.1-stable',{updateViaCache:'none'}).then(reg=>{
+    navigator.serviceWorker.register('./sw.js?v=43.18.0-clean-stable',{updateViaCache:'none'}).then(reg=>{
       const activateWaiting=()=>{
         if(reg.waiting) reg.waiting.postMessage({type:'SKIP_WAITING'});
       };

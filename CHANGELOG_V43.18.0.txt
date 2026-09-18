@@ -1,0 +1,9 @@
+RUTİN V43.18.0 CLEAN STABLE
+
+- Mevcut Takvim, Kart Ekstresi, Esnek Hesap Dökümü, Harçlık, Raporlar ve finans akışları korunur.
+- Uygulama başlığı, Hakkında bilgisi, script sürüm parametreleri ve service-worker sürümü V43.18.0 olarak eşitlendi.
+- Ayarlar/Profile içindeki çift Geri Yükleme akışları kaldırıldı; tek YEDEKLEME alanı bırakıldı.
+- Riskli otomatik veri eşleştirmesi kaldırıldı. Sistem Bütünlüğü artık tarih+tutar+isim benzerliğine göre kayıt bağlamaz.
+- Bütünlük onarımı yalnız mevcut açık ID bağlantılarının eksik tarafını tamamlar; yeni finans/harcama kaydı tahmin ederek oluşturmaz.
+- Kart/Esnek Hesap bakiyeleri otomatik yeniden hesaplanmaz; mevcut telefon verileri korunur.
+- Eski changelog kalabalığı temizlendi; bu dosya güncel temiz sürüm özetidir.
