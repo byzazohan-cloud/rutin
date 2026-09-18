@@ -1,0 +1,6 @@
+RUTİN V43.16.7
+- Raporlarda yol giderleri artık gerçekten tarih bazında gruplanır; aynı gün farklı iş kayıtlarına bağlı yol ödemeleri tek kartta toplanır.
+- Günlük yol kartına dokununca o tarihteki tüm yol ödemeleri tek tek açılır ve düzenleme/silme yapılabilir.
+- Ana sayfa Hızlı İşlemler bölümünden Finans kaldırıldı.
+- Finans yerine Harçlık eklendi; buton Harçlık Ekle formunu değil doğrudan Harçlık ana sekmesini açar.
+- Alt menüdeki Finans erişimi korunur.
