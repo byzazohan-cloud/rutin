@@ -1,0 +1,11 @@
+RUTİN V43.18.3 — PORTRAIT CARD + DIRECT STATEMENT FIX
+
+- Kredi kartları gerçek portre/dikey kart formuna çevrildi.
+- Esnek Hesap kartları da aynı portre tasarım standardına getirildi.
+- Kart yüzünde kullanıcının girdiği Kart Adı, Limit, Hesap Kesim Günü ve Son Ödeme Günü gösteriliyor.
+- Güncel borç/kullanım ve kalan limit kart yüzünü kalabalıklaştırmamak için kartın altındaki özet panelinde tutuluyor.
+- Kredi kartının tamamına dokunmak doğrudan KART EKSTRESİ ekranını açıyor.
+- Ekstre açılışında dönem ofseti güncel döneme sıfırlanıyor.
+- Harcama Ekle / Kartı Düzenle / Kartı Sil butonları 3 eşit simetrik kolon olarak korunuyor.
+- Esnek Hesap karta dokununca doğrudan Hesap Dökümü açılıyor.
+- Takvim, rapor, harçlık ve mevcut finans hesaplama mantıklarına dokunulmadı.
