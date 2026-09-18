@@ -1,0 +1,10 @@
+RUTİN V43.17
+- Ana sayfa ve Hızlı İşlemler standardize edildi.
+- Menü sadeleştirildi; Harçlık ana bölümü kalıcı erişime alındı.
+- Rapor gider hareketleri standardize edildi; yol giderleri tarih bazında tek kart + detay.
+- Bildirim/toast sistemi tek stile getirildi.
+- Eski telefon verileri için tek seferlik, bakiyeleri bozmayan migration eklendi.
+- Eski kart/esnek hesap/harçlık/yol kayıtlarının yeni bağlantı alanları tamamlanır.
+- Migration öncesi localStorage içinde rutin-pre-v4317-backup güvenlik kopyası oluşturulur.
+- Veri bütünlüğü kontrolü eklendi; bakiye sıfırdan hesaplanmaz.
+- PWA cache v43.17 olarak güncellendi.
