@@ -1,0 +1,12 @@
+RUTIN V43.16.6
+- Ana ekran Hızlı İşlemler'e HARÇLIK eklendi.
+- Takvim gün detayına Günlük / Saatlik / Mesai / Harcama / Harçlık hızlı ekleme eklendi.
+- Takvimden Harçlık eklenirken seçilen gün otomatik tarih olarak aktarılır.
+- Takvim veri bulunan günlerin görünürlüğü güçlendirildi.
+- Harcamalar ekranında tüm kategoriler küçük kartlar halinde gösterilir; kullanılmayanlar 0 TL görünür.
+- Kategori kartları tıklanabilir ve kategori detayına gider.
+- Harcamalar dökümünde iş yol giderleri aynı gün/iş bazında tek grup kartı olarak gösterilir.
+- Gün detayında yol giderleri tek grup kartı olarak gösterilir; tıklanınca alt ödemeler açılır.
+- Raporlardaki mevcut yol gruplaması korunur.
+- Harcama ve çalışma hareketleri detay/düzenleme akışına bağlı kalır.
+- V43.16.5.1 kart/esnek hesap bütünlük düzeltmeleri ve Hak Edilen/Alınan/Alacak sistemi korunmuştur.
