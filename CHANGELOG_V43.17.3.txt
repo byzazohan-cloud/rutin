@@ -1,0 +1,5 @@
+RUTİN V43.17.3
+- Takvim premium V43.2 görünümü geri getirildi.
+- Tam Gün / Saatlik / Mesai / Gelir / Harcama / Kalan kartları yeniden tıklanabilir ve detaylı.
+- Ana iş çalışma gününde gelir sayılmaz; yalnız gerçek tahsilat tarihinde gelir olur.
+- Hızlı takvim kayıt ekleme korunur.

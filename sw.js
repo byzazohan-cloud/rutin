@@ -1,4 +1,4 @@
-const CACHE='rutin-v43.17.2';
+const CACHE='rutin-v43.17.3';
 const CORE=['./','./index.html','./styles.css','./app.js','./legacy.js','./calendar.js','./records.js','./work.js','./finance.js','./ui.js','./accounting.js','./v43165_cards_allowance.js','./v431651_integrity_fix.js','./v43166_calendar_categories.js','./v43167_report_quickfix.js','./v43168_navigation_interaction.js','./v43169_report_road_fix.js','./v431691_stable_fix.js','./v4317_standard_migration.js','./manifest.json','./icon-180.png','./icon-512.png',
   './v43171_quick_calendar_fix.js','./v43172_real_quick_calendar_fix.js'
 ];
