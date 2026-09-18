@@ -2002,3 +2002,63 @@ html,body,#app{width:100%;max-width:100%;min-width:0;overflow-x:hidden!important
 .stableReportSearch431642{width:min(260px,100%)!important;max-width:100%!important;margin-left:0!important;margin-right:0!important}
 .stableDonuts431642{width:100%!important;max-width:100%!important;grid-template-columns:repeat(2,minmax(0,1fr))!important}.stableDonuts431642 .donutCard{width:100%!important;min-width:0!important;overflow:hidden!important}.stableDonuts431642 .donutRing{width:min(118px,31vw)!important;height:min(118px,31vw)!important;min-width:92px!important;min-height:92px!important}.stableDonuts431642 .donutRing:after{width:69%!important;height:69%!important}.stableReportRow431642{width:100%!important;max-width:100%!important;grid-template-columns:32px minmax(0,1fr) auto 12px!important;overflow:hidden!important}.stableReportRow431642>div{overflow:hidden!important}.stableReportRow431642 b,.stableReportRow431642 small{white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}.stableReportRow431642 strong{font-size:9px!important;white-space:nowrap!important}
 @media(max-width:350px){.stableAccountingTop431642 button,.stableMoneySummary431642>div{padding:6px 4px!important;height:50px!important;min-height:50px!important}.stableAccountingTop431642 small,.stableMoneySummary431642 small{font-size:5.9px!important}.stableAccountingTop431642 strong,.stableMoneySummary431642 strong{font-size:9.5px!important}.stableDonuts431642 .donutRing{min-width:82px!important;min-height:82px!important}}
+
+/* ===== V43.16.4.4 — iPhone standalone SAFE-AREA overlap fix =====
+   Root cause: .phone already reserved the top safe area while the sticky header
+   was also offset by env(safe-area-inset-top). On real iPhones this shifted the
+   header down over the first content block (report accounting cards / card hero).
+   Keep the safe area inside the sticky header exactly once. */
+.phone,.v18Phone,.stableCardPhone431642{
+  padding-top:0!important;
+}
+.topbar,.topbar43112{
+  position:sticky!important;
+  top:0!important;
+  padding-top:max(env(safe-area-inset-top),6px)!important;
+  min-height:calc(58px + env(safe-area-inset-top))!important;
+  height:auto!important;
+  box-sizing:border-box!important;
+}
+/* The first content block must stay in normal flow below the full safe-area header. */
+.stableAccountingTop431642,.cardDetailHeroV13{
+  position:relative!important;
+  z-index:0!important;
+}
+
+/* ===== V43.16.4.5 — GLOBAL iPHONE SAFE-AREA NORMALIZATION =====
+   Applies the top-layout fix to EVERY application screen, not only reports/card statement.
+   The screen wrapper never owns the top safe area; the common header owns it exactly once. */
+html,body,#app{
+  margin-top:0!important;
+  padding-top:0!important;
+}
+body{min-height:100dvh!important;}
+.phone,.v18Phone,.stableCardPhone431642{
+  padding-top:0!important;
+  margin-top:0!important;
+}
+.topbar,.premiumTopbar,.topbar43111,.topbar43112{
+  position:sticky!important;
+  top:0!important;
+  margin-top:0!important;
+  padding-top:max(env(safe-area-inset-top),6px)!important;
+  min-height:calc(58px + env(safe-area-inset-top))!important;
+  height:auto!important;
+  width:100%!important;
+  max-width:100%!important;
+  box-sizing:border-box!important;
+  transform:none!important;
+}
+/* Header contents stay inside the safe area and do not push the first card underneath it. */
+.topbar>* ,.premiumTopbar>* ,.topbar43111>* ,.topbar43112>*{align-self:end}
+.topbar .title,.premiumTopbar .title,.topbar43111 .title,.topbar43112 .title{
+  align-self:center!important;
+}
+/* No screen is allowed to add a second top safe-area offset. */
+.finance4310,.finance4311,.v43CalendarWrap,.v4313SearchCard,
+.expenseHero,.analysisHero,.cardDetailHeroV13,
+.stableAccountingTop431642,.stableMoneySummary431642{
+  margin-top:0;
+}
+/* Fixed bottom navigation keeps bottom safe-area only; top safe-area must never leak here. */
+.nav,.nav4311Fixed{padding-top:7px!important;}
