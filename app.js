@@ -131,9 +131,7 @@ function workSummary(items=monthItems(state.work)){
 }
 
 function rutinLogo(size=34){
-  return `<span class="rutinLogo" style="--logoSize:${size}px" aria-label="RUTİN">
-    <span class="rLogoR">R</span><span class="rLogoCheck">✓</span>
-  </span>`;
+  return `<img class="rutinLogoImage" src="rutin-mark.png?v=v43.18.1" style="--logoSize:${size}px" width="${size}" height="${size}" alt="RUTİN">`;
 }
 
 function header(title='RUTİN',back=false){
@@ -499,7 +497,7 @@ function initCleanPinMode(){
 function cleanPinInstruction(){
   if(cleanPin.mode==='create') return 'YENİ 4 HANELİ PINİNİ GİR';
   if(cleanPin.mode==='confirm') return 'PINİ TEKRAR GİR';
-  return '4 HANELİ PINİNİ GİR';
+  return 'ŞİFRENİZİ GİRİN';
 }
 
 function cleanPinScreen(){
@@ -507,42 +505,43 @@ function cleanPinScreen(){
 
   const name = state.profile?.name || 'RUTİN';
   const photo = state.profile?.photo || '';
+  const profileVisual = photo
+    ? `<img src="${photo}" alt="${esc(name)}">`
+    : `<div class="lockAvatarMinimal" aria-hidden="true"><i></i><b></b></div>`;
 
-  return `<div class="premiumLock cleanPinScreen">
-    <div class="lockAura"></div>
+  return `<div class="premiumLock cleanPinScreen lockV43181">
+    <div class="lockV43181Shell">
+      <main class="lockV43181Main">
+        <div class="lockV43181Brand"><img src="rutin-logo.png?v=v43.18.1" alt="RUTİN"></div>
 
-    <div class="lockTop">
-      <div class="lockSideQuote">DİSİPLİN<br>BUGÜNÜ<br>YARINA TAŞIR</div>
-      <div class="lockBrand"><img class="lockLogoV31" src="icon-180.png?v=v42" alt="RUTİN"><strong>RUTİN</strong><small>DAHA İYİ BİR SEN</small></div>
-      <div class="lockSideQuote right">PLANLA<br>ÇALIŞ<br>BAŞAR</div>
+        <div class="lockProfile lockProfile43181">${profileVisual}</div>
+        <div class="lockProfileName43181">${esc(name)}</div>
+        <div class="cleanPinInstruction">${cleanPinInstruction()}</div>
+
+        <div class="pinDots cleanPinDots lockPinDots43181">
+          ${[0,1,2,3].map((_,i)=>`<i class="${cleanPin.buffer.length>i?'filled':''}"></i>`).join('')}
+        </div>
+
+        <div class="pinPad cleanPinPad lockPad43181">
+          ${[1,2,3,4,5,6,7,8,9].map(n=>`<button type="button" class="cleanPinBtn lockKey43181" data-pin="${n}">${n}</button>`).join('')}
+          <button type="button" class="cleanPinBtn lockKey43181 lockKeyUtility43181" data-pin="clear" aria-label="Temizle">×</button>
+          <button type="button" class="cleanPinBtn lockKey43181" data-pin="0">0</button>
+          <button type="button" class="cleanPinBtn lockKey43181 lockKeyUtility43181" data-pin="del" aria-label="Sil">⌫</button>
+        </div>
+
+        ${cleanPin.mode==='login'
+          ? `<button type="button" class="forgotPinBtn cleanForgotBtn lockForgot43181">PAROLAMI UNUTTUM</button>`
+          : `<div class="cleanPinHelp lockHelp43181">${cleanPin.mode==='confirm'?'PINİ TEKRAR GİR':'4 HANELİ PIN OLUŞTUR'}</div>`
+        }
+        <div class="lockV43181Tagline">PLANLA, UYGULA, BAŞAR</div>
+      </main>
+
+      <aside class="lockV43181Quote" aria-label="Motivasyon">
+        <div class="lockQuoteTop43181">HEDEFİNE<br>ODAKLAN</div>
+        <div class="lockMountain43181"></div>
+        <div class="lockQuoteBottom43181">DAHA İYİ<br>BİR SEN<br>MÜMKÜN</div>
+      </aside>
     </div>
-
-    <div class="lockProfile">${photo?`<img src="${photo}" alt="">`:`<div class="lockAvatar">${name.slice(0,1).toUpperCase()}</div>`}</div>
-    <h1>${name}</h1>
-    <div class="lockSub">RUTİN SENİNLE DAHA GÜÇLÜ</div>
-
-    <div class="lockGreeting">${typeof greetingByTime==='function'?greetingByTime():'HOŞ GELDİN'}!</div>
-    <div class="cleanPinInstruction">${cleanPinInstruction()}</div>
-
-    <div class="pinDots cleanPinDots">
-      ${[0,1,2,3].map((_,i)=>`<i class="${cleanPin.buffer.length>i?'filled':''}"></i>`).join('')}
-    </div>
-
-    <div class="pinPad cleanPinPad">
-      ${[1,2,3,4,5,6,7,8,9].map(n=>`<button type="button" class="cleanPinBtn" data-pin="${n}">${n}</button>`).join('')}
-      <button type="button" class="cleanPinBtn pinGhost" data-pin="clear">C</button>
-      <button type="button" class="cleanPinBtn" data-pin="0">0</button>
-      <button type="button" class="cleanPinBtn" data-pin="del">⌫</button>
-    </div>
-
-    <button type="button" class="cleanPinOk">✓ TAMAM</button>
-
-    ${cleanPin.mode==='login'
-      ? `<button type="button" class="forgotPinBtn cleanForgotBtn">PAROLAMI UNUTTUM</button>`
-      : `<div class="cleanPinHelp">4 HANELİ PINİNİ GİRİP TAMAM'A BAS.</div>`
-    }
-
-    <div class="lockVersion">CLEAN V2</div>
   </div>`;
 }
 
@@ -573,6 +572,9 @@ function cleanPinKey(v){
 
   cleanPin.buffer += val;
   updateCleanPinUI();
+  if(cleanPin.buffer.length===4){
+    setTimeout(()=>confirmCleanPin(),90);
+  }
 }
 
 function confirmCleanPin(){

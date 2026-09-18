@@ -1,0 +1,9 @@
+RUTİN V43.18.1 — BRAND + LOCKSCREEN
+
+- Kullanıcının seçtiği RUTİN altın/siyah ana logo resmi resmi uygulama markası yapıldı.
+- PWA / iPhone ana ekran ikonları yeni logo ile değiştirildi.
+- Üst başlık, ana sayfa marka alanı, profil rozeti ve modal başlıklarında aynı marka standardı kullanılıyor.
+- Parola ekranı seçilen tasarıma göre yeniden yapıldı: az gold, siyah zemin, kesik köşeli kare profil alanı, kesik köşeli büyük PIN tuşları ve sağ motivasyon paneli.
+- Profil fotoğrafı varsa kesik köşeli profil panelinde gösteriliyor; yoksa sade RUTİN uyumlu avatar kullanılıyor.
+- PIN 4. rakamdan sonra otomatik doğrulanıyor; mevcut PIN oluşturma / tekrar / giriş akışı korunuyor.
+- Takvim, Ekstre, Finans, Harçlık, Rapor ve veri modellerine dokunulmadı.
