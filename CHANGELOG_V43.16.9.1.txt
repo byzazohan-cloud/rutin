@@ -1,0 +1,8 @@
+RUTİN V43.16.9.1 STABLE
+- Raporlar > Gider Hareketleri: aynı tarihteki tüm çalışma yol giderleri tek kartta gruplanır.
+- Yol kartına dokununca o günün tüm yol ödemeleri ayrı ayrı açılır.
+- Rapor yol detayından silme, kredi kartı / esnek hesap borcunu güvenli biçimde geri düşürür.
+- Takvim gün detayındaki GELİR toplamı sadece gerçekten alınan çalışma ücretlerini + diğer gelirleri sayar; alınmayan hakediş gelir sayılmaz.
+- Harçlık Ekle ekranına Esnek Hesap seçeneği ve hesap seçimi eklendi.
+- PWA/service-worker önbelleği V43.16.9.1'e güncellendi ve V43.16.6-.9.1 dosyaları offline cache listesine eklendi.
+- Uygulama başlığı ve JS cache-busting sürümü V43.16.9.1 olarak güncellendi.
