@@ -1,0 +1,9 @@
+RUTİN V43.18.2 — PLATINUM FINANCE
+
+- Kredi kartları siyah/grafit/platin dikey premium tasarıma geçirildi.
+- Esnek Hesaplar aynı tasarım diline geçirildi.
+- Kart yüzleri sadeleştirildi; dinamik limit/borç bilgileri kartın altındaki bilgi paneline taşındı.
+- Kredi kartına dokunma davranışı değişmedi: doğrudan Ekstre açılır.
+- Esnek Hesaba dokunma davranışı değişmedi: Hesap Dökümü açılır.
+- Ekstre ekranında Harcama Ekle / Kartı Düzenle / Kartı Sil üç eşit ve simetrik buton olarak düzenlendi.
+- Takvim, raporlar, veri modeli ve mevcut kayıtlar değiştirilmedi.
