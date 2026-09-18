@@ -1,0 +1,9 @@
+RUTİN V43.18.4 — CARD INFO DESIGN
+- Kredi kartı ve Esnek Hesap görünümleri, seçilen dikey siyah/grafit/platin tasarıma göre yenilendi.
+- Kart üzerinde yalnızca gerekli bilgiler: RUTİN marka alanı, kart/hesap tipi ve adı, toplam/kredi limiti, kullanılabilir limit, hesap kesim tarihi ve son ödeme tarihi.
+- Kart numarası yalnızca varsa kayıtlı son 4 hane ile maskeli gösterilir; uydurma numara üretilmez.
+- Kart altındaki tekrarlı güncel borç/kalan limit kutusu kaldırıldı; gereksiz tekrar azaltıldı.
+- Kredi kartının tamamına dokunmak doğrudan Kart Ekstresi'ni açar.
+- Esnek Hesabın tamamına dokunmak doğrudan Hesap Dökümü'nü açar.
+- Ekstre ekranındaki Harcama Ekle / Kartı Düzenle / Kartı Sil butonları simetrik 3 sütun olarak korunur.
+- Mevcut veri, Takvim, Rapor, Harçlık ve Ekstre hesaplama sistemleri değiştirilmedi.
