@@ -1,0 +1,4 @@
+RUTIN V43.17.2
+- Hızlı İşlemler: eski 5 sütun !important çakışması kesin olarak ezildi; 6 buton tek satır.
+- Takvim ay özeti: günlük ana iş hakedişi gelir sayılmaz.
+- Ana iş tahsilatı workPayments tarihine; saatlik/mesai peşin ödeme çalışma tarihine, sonradan tahsilat tahsilat tarihine yazılır.
