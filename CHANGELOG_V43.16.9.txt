@@ -1,0 +1,6 @@
+RUTIN V43.16.9
+- Raporlar > Gider Hareketleri yol kayıtları gerçek tarih bazında gruplanır.
+- Aynı tarihte farklı iş kayıtlarına bağlı tüm yol ödemeleri tek YOL GİDERİ kartında toplanır.
+- Yol kartına dokununca o tarihteki tüm yol ödemeleri tek tek açılır; düzenleme/silme erişimi korunur.
+- Rapor grafiğinden açılan Gider Detayı ekranında da aynı gruplama uygulanır.
+- V43.16.8 gezinme/scroll ve önceki tüm kart/Harçlık düzeltmeleri korunur.

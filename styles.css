@@ -2077,3 +2077,10 @@ body{min-height:100dvh!important;}
 .premiumDay.v43166HasData{box-shadow:inset 0 0 0 2px rgba(255,255,255,.22),0 0 0 1px rgba(215,180,92,.2);font-weight:900;transform:scale(.97)}
 .premiumDay.v43166HasData .v432DayNo{font-size:14px;text-shadow:0 1px 2px rgba(0,0,0,.8)}
 @media(max-width:390px){.v43166CategoryGrid{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.v43166CategoryCard{min-height:86px;padding:8px 4px}.v43166DayQuick{gap:4px}.v43166DayQuick button{min-height:58px}.v43166DayQuick span{font-size:7px}}
+/* V43.16.8 interaction layer */
+.statClick43168{appearance:none;-webkit-appearance:none;text-align:inherit;width:100%;font:inherit;color:inherit;cursor:pointer}
+.summaryClick43168{appearance:none;-webkit-appearance:none;width:100%;font:inherit;color:inherit;text-align:left;cursor:pointer}
+.statClick43168:active,.summaryClick43168:active{transform:scale(.985);filter:brightness(1.08)}
+.v436WorkText em.due{color:#ffb35c!important}
+.statClick43168,.summaryClick43168{cursor:pointer;touch-action:manipulation}
+.statClick43168:focus-visible,.summaryClick43168:focus-visible{outline:2px solid currentColor;outline-offset:2px}

@@ -1,0 +1,9 @@
+RUTİN V43.16.8
+- Ana alt menü ekranları arasında sağ/sol swipe eklendi.
+- Ekran bazlı scroll konumu hafızası eklendi.
+- Geri dönüşte önceki ekran + scroll noktası korunur.
+- Doğrudan screen değişimlerinde render katmanı hedef ekranın son konumunu geri yükler.
+- Ana sayfa Bugünkü/Bu Ay özet kartları tıklanabilir hale getirildi.
+- Bugünün Özeti satırları gün detayına bağlandı.
+- Çalışma Son Kayıtlar limiti 8 -> 30 yapıldı; kayıtlar detay/düzenleme akışına bağlıdır.
+- V43.16.7 kart/Harçlık/yol gruplama davranışları korunmuştur.
