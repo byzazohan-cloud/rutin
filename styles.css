@@ -2086,3 +2086,9 @@ body{min-height:100dvh!important;}
 .statClick43168:focus-visible,.summaryClick43168:focus-visible{outline:2px solid currentColor;outline-offset:2px}
 /* RUTIN V43.17 standard UI */
 .rutinToast4317{position:fixed;left:50%;top:max(72px,calc(env(safe-area-inset-top) + 56px));transform:translate(-50%,-14px);z-index:99999;padding:11px 15px;border-radius:14px;background:#141414;border:1px solid rgba(215,180,92,.65);box-shadow:0 14px 34px rgba(0,0,0,.45);font-weight:800;font-size:12px;letter-spacing:.3px;opacity:0;pointer-events:none;transition:.2s;max-width:88vw;text-align:center}.rutinToast4317.show{opacity:1;transform:translate(-50%,0)}.rutinToast4317.ok{color:#d7b45c}.rutinToast4317.error{color:#ff6975}.v4317Quick button{min-height:74px}.v4317ReportRow{width:100%;box-sizing:border-box}.reportCatsV439 button{appearance:none;color:inherit;font:inherit;text-align:left;border:0}.v4317Menu button{min-height:52px}
+
+/* V43.17.1 quick actions: keep all 6 actions on one row */
+.v4317Quick{grid-template-columns:repeat(6,minmax(0,1fr))!important;gap:5px!important}
+.v4317Quick button{min-width:0!important;width:100%!important;padding-left:1px!important;padding-right:1px!important}
+.v4317Quick button span{font-size:6px!important;letter-spacing:0!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+@media(max-width:390px){.v4317Quick{gap:3px!important}.v4317Quick .qv32{width:38px!important;height:38px!important;min-width:38px!important;font-size:17px!important}}

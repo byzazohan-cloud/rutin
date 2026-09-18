@@ -1,0 +1,6 @@
+RUTİN V43.17.1
+- Hızlı İşlemler: 6 buton tek satır; Notlar artık aşağı kaymaz.
+- Takvim gelir hesabı gerçek para tarihine bağlandı.
+- Ana iş çalışma gününde gelir sayılmaz; hakediş/alacak kalır.
+- Ana iş maaş/alacak tahsilatı paranın alındığı tarihte gelir görünür.
+- Saatlik/mesai peşin alındıysa çalışma gününde, sonradan tahsil edildiyse tahsilat gününde gelir görünür.
