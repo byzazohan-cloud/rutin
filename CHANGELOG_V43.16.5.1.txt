@@ -1,0 +1,9 @@
+RUTİN V43.16.5.1
+- Kartlı harcama düzenleme/silme senkronizasyonu atomik hale getirildi.
+- Esnek Hesap seçimi harcama formuna gerçek hesap seçici ile bağlandı; borç ve hareket kaydı otomatik işleniyor.
+- Harcama düzenlemede Nakit/Kredi Kartı/Esnek Hesap geçişleri güvenli hale getirildi.
+- Hesap kesim günleri 29/30/31 gerçek ay sonuna göre destekleniyor.
+- Ekstre sonrası ödeme penceresi hesap kesiminden sonra gösteriliyor.
+- Harçlık kişi detayına Bu Ay / Son 3 Ay / Son 1 Yıl / Tümü / Tarih filtreleri eklendi.
+- Harçlık kişi üst başlığı seçilen dönemi doğru ifade edecek şekilde düzeltildi.
+- Harcama silindiğinde bağlı Esnek Hesap borcu ve hareketi de otomatik geri alınıyor.
