@@ -1,0 +1,7 @@
+RUTIN V43.18.12 — NEUTRAL GLASS FIX
+- Aktif/seçili buton ve sekmelerde sarı/altın dolgu kaldırıldı.
+- Aktif durum artık nötr füme-gri şeffaf cam, ince gri/beyaz kenar ve hafif iç parlama kullanır.
+- Alt menü aktif ikonu sarı yerine gümüş/beyaz cam görünümündedir.
+- Dokunma/hover/focus geri bildirimi sarı değildir.
+- Takvimin beş anlam rengi ve gün içi renk bölmeleri korunur.
+- Veri, kayıt, hesaplama, navigasyon ve özellik mantığı değiştirilmedi.
