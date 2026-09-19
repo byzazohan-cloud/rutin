@@ -1,0 +1,9 @@
+RUTİN V43.18.6 — SALARY COMPACT UI
+- Profilde aylık maaş alanı eklendi.
+- Ana iş günlük ücreti aylık maaş / 30 olarak otomatik hesaplanır.
+- Eski günlük ücret ayarı aylık maaşa güvenli şekilde taşınır.
+- Eski harcama kategorileri kayıtlardan otomatik kategori listesine eklenir; kayıtlar silinmez.
+- Kategori toplamlarında bu ay kullanılmayan kategoriler gizlenir; ilk hareketle otomatik görünür.
+- Finans özetinde Toplam Limit ve Kullanılabilir kutuları kaldırıldı; yalnız toplam kullanım bırakıldı.
+- Finans sekmesinde aktif Kartlar/Hesaplar/Yatırımlar düğmesi şeffaf cam görünümüyle belirginleşir.
+- Mevcut kart/ekstre, esnek hesap, takvim ve yedekleme işlevleri korunur.

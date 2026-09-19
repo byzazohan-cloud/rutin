@@ -436,7 +436,7 @@ function settings(){
  <div class="setting clickable premiumSetting" onclick="toggleAppearance()"><div class="settingIcon">◐</div><b>GÖRÜNÜM</b><span>${(state.settings.appearance||'dark')==='dark'?'KARANLIK MOD':'AÇIK MOD'} ›</span></div>
  <div class="setting clickable premiumSetting" onclick="openModal('reminders')"><div class="settingIcon">◔</div><b>HATIRLATICILAR</b><span>›</span></div>
  <div class="setting clickable premiumSetting" onclick="openModal('security')"><div class="settingIcon">⌾</div><b>UYGULAMA KİLİDİ</b><span>${state.settings.lock?'AÇIK':'KAPALI'} ›</span></div>
- <div class="setting premiumSetting"><div class="settingIcon">i</div><b>HAKKINDA</b><span>RUTİN V43.18.0</span></div>
+ <div class="setting premiumSetting"><div class="settingIcon">i</div><b>HAKKINDA</b><span>RUTİN V43.18.6</span></div>
  </div>`;
 }
 function setting(a,b){return `<div class="setting"><div>•</div><b>${a}</b><span>${b}</span></div>`}
