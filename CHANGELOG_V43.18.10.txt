@@ -1,0 +1,7 @@
+RUTİN V43.18.10 — LOCK BOOT FIX
+
+- İlk açılışta eski parola ekranının kısa süre görünmesi engellendi.
+- Uygulama içeriği, tüm patch dosyaları yüklendikten sonra görünür hale geliyor.
+- Son parola ekranı rendererı ile bir kez yeniden render ediliyor.
+- Takvim, veri yapısı ve diğer özellikler değiştirilmedi.
+- Service worker cache sürümü güncellendi.

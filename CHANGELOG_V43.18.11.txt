@@ -1,0 +1,7 @@
+RUTİN V43.18.11 — GLASS ACTIVE FIX
+
+- Uygulama genelinde aktif/seçili butonlar şeffaf cam görünümüne alındı.
+- Alt menüde aktif bölüm, ikon kutusunda cam efektiyle belirginleştirildi.
+- Sekmeler, seçim butonları, finans/harçlık/görünüm seçimleri aynı cam dilini kullanır.
+- Dokunma/basma anında kısa cam geri bildirim eklendi.
+- Veri, kayıt, hesaplama, navigasyon ve özellik mantığı değiştirilmedi.
