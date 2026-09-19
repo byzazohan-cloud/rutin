@@ -1,0 +1,9 @@
+RUTİN V43.18.9 — HEX CALENDAR FIX
+
+- Takvim veri ve işleyişi değiştirilmedi.
+- Gün kutuları gerçek altıgen forma ve daha büyük görünüme geçirildi.
+- Aynı gün içindeki 2/3/4/5 kayıt rengi mevcut segment mantığıyla altıgenin tamamında büyük bölümler halinde görünür.
+- 7 sütun hizalaması sabitlendi; sağ/sol kayma ve taşma engellendi.
+- Gün numaralarının koyu iç kutusu kaldırıldı; numara renklerin üzerinde ortalandı.
+- Ay özeti aynı 6 aksiyon korunarak 3x2 görsel düzene geçirildi.
+- Başka veri, özellik veya ekran mantığı değiştirilmedi.
