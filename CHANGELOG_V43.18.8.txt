@@ -1,0 +1,8 @@
+RUTİN V43.18.8 — DESIGN ONLY
+
+- V43.18.7 data model and features preserved.
+- Password screen redesigned in black/silver metallic layout.
+- Home standalone top RUTİN brand strip removed; compact Planla · Takip Et · Geliş brand control centered between menu and reminder.
+- Home profile identity enlarged and remains clickable.
+- Active/pressed controls use translucent glass highlight.
+- Calendar behavior and data logic unchanged; only day cells changed to large octagonal/hex-like segmented color tiles.
