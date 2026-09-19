@@ -1,4 +1,4 @@
-const CACHE='rutin-v43.18.6-salary-compact-ui';
+const CACHE='rutin-v43.18.7-premium-cleanup';
 const CORE=['./','./index.html','./styles.css','./app.js','./legacy.js','./calendar.js','./records.js','./work.js','./finance.js','./ui.js','./accounting.js','./v43165_cards_allowance.js','./v431651_integrity_fix.js','./v43166_calendar_categories.js','./v43167_report_quickfix.js','./v43168_navigation_interaction.js','./v43169_report_road_fix.js','./v431691_stable_fix.js','./v4317_standard_migration.js','./v43171_quick_calendar_fix.js','./v43172_real_quick_calendar_fix.js','./v43173_calendar_restore.js','./v43174_integrity_reports.js','./v43175_finance_edit_reminders.js','./v43176_finance_details_reports.js','./manifest.json','./icon-180.png','./icon-512.png','./rutin-logo.png','./rutin-mark.png','./lock-mountain.jpg',
   'v43177_card_statement_design.js',
   "v43178_flex_finance_standard.js",
@@ -7,7 +7,8 @@ const CORE=['./','./index.html','./styles.css','./app.js','./legacy.js','./calen
   "v43183_vertical_card_statement_fix.js",
   "v43184_card_info_design.js",
   "v43185_backup_restore.js",
-  "v43186_salary_compact_ui.js"
+  "v43186_salary_compact_ui.js",
+  "v43187_premium_cleanup.js"
 ];
 self.addEventListener('install',event=>{event.waitUntil((async()=>{const cache=await caches.open(CACHE);await Promise.allSettled(CORE.map(url=>cache.add(url)));await self.skipWaiting();})());});
 self.addEventListener('activate',event=>{event.waitUntil((async()=>{const keys=await caches.keys();await Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)));await self.clients.claim();})());});

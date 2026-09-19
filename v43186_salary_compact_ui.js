@@ -33,14 +33,13 @@ function ensureV43186(){
   state.work.forEach(w=>{
     if(!w.id && typeof uid==='function')w.id=uid();
     if(w.type==='daily'){
-      w.salaryBased=true;
-      if(w.amount===undefined||w.amount===null||w.amount==='') w.amount=N(state.settings.dailyRate);
+      // Preserve legacy daily record amounts exactly as stored; salary automation applies to new entries only.
       if(w.paidAmount===undefined||w.paidAmount===null) w.paidAmount=0;
       if(!w.paymentStatus) w.paymentStatus=N(w.paidAmount)>=N(w.amount)&&N(w.amount)>0?'paid':(N(w.paidAmount)>0?'partial':'unpaid');
     }
   });
   state.meta.v43186LegacyIntegrated=true;
-  state.meta.appDataVersion='43.18.6';
+  state.meta.appDataVersion='43.18.7';
   try{save()}catch(_){ }
 }
 ensureV43186();
@@ -53,7 +52,7 @@ window.profile=function(){
   const monthly=M(state.settings.monthlySalary);
   const daily=M(state.settings.dailyRate);
   h=h.replace(/<div class="profileInfoRow"><span>VARSAYILAN GÜNLÜK ÜCRET<\/span><b>[\s\S]*?<\/b><\/div>/,
-    `<div class="profileInfoRow"><span>AYLIK MAAŞ</span><b>${monthly}</b></div><div class="profileInfoRow"><span>OTOMATİK GÜNLÜK ÜCRET</span><b>${daily}</b><small>MAAŞ ÷ 30</small></div>`);
+    `<div class="profileInfoRow salaryCompact43187"><span>AYLIK MAAŞ<small>GÜNLÜK: ${daily} · MAAŞ ÷ 30</small></span><b>${monthly}</b></div>`);
   return h;
 };
 
@@ -94,13 +93,9 @@ window.finance=function(){
   let h=financeBefore43186();
   const tab=window.financeTabV4310||'cards';
   if(tab==='cards'||tab==='accounts'){
-    const list=tab==='cards'?A(state.cards):A(state.flexAccounts);
-    const used=list.reduce((s,x)=>s+N(x.balance),0);
-    const label=tab==='cards'?'TOPLAM KART KULLANIMI':'TOPLAM HESAP KULLANIMI';
-    const compact=`<div class="finCompactSummary43186"><small>${label}</small><b>${M(used)}</b></div>`;
-    h=h.replace(/<div class="finInfoSummary43184">[\s\S]*?(?=<div class="fin4310Head)/,compact);
+    h=h.replace(/<div class="finInfoSummary43184">[\s\S]*?(?=<div class="fin4310Head)/,'');
     // Older finance summary layer fallback.
-    h=h.replace(/<div class="platinumFinanceSummary43182">[\s\S]*?(?=<div class="fin4310Head)/,compact);
+    h=h.replace(/<div class="platinumFinanceSummary43182">[\s\S]*?(?=<div class="fin4310Head)/,'');
   }
   return h;
 };
@@ -122,7 +117,7 @@ window.render=function(){
   if(grid){
     const visible=[...grid.querySelectorAll('.v43166CategoryCard')].filter(x=>!x.hidden);
     grid.classList.toggle('empty43186',visible.length===0);
-    if(!visible.length&&!grid.querySelector('.emptyCategories43186')) grid.insertAdjacentHTML('beforeend','<div class="notice emptyCategories43186">BU AY HARCAMA KATEGORİSİ YOK. HAREKET EKLENDİĞİNDE OTOMATİK GÖRÜNÜR.</div>');
+    grid.querySelectorAll('.emptyCategories43186').forEach(x=>x.remove());
   }
 
   // Daily main-job forms use the automatically calculated daily wage.
@@ -150,9 +145,9 @@ st.textContent=`
 /* Selected finance tab is visibly transparent/glass, not a solid block. */
 .financeTabs4310 button{transition:.18s ease;background:#070809!important;border:1px solid rgba(215,220,224,.16)!important;color:#b8bdc1!important;box-shadow:none!important}.financeTabs4310 button.active{background:rgba(255,255,255,.055)!important;border-color:rgba(235,238,240,.48)!important;color:#f4f5f6!important;box-shadow:inset 0 0 0 1px rgba(255,255,255,.045)!important;backdrop-filter:blur(12px)}.financeTabs4310 button.active span{color:#fff!important}.financeTabs4310 button[aria-pressed="true"]{transform:translateY(-1px)}
 /* Unused categories take no room at all. */
-.v43166CategoryCard[hidden]{display:none!important}.v43166CategoryGrid.empty43186{display:block!important}.emptyCategories43186{margin:0!important}
+.v43166CategoryCard[hidden]{display:none!important}.v43166CategoryGrid.empty43186{display:none!important}.emptyCategories43186{display:none!important}
 /* Profile salary auto calculation */
-.profileInfoRow small{display:block;margin-top:3px;font-size:7px;letter-spacing:.6px;color:#7d8388}.field input[readonly][name="dailyRate"]{opacity:.82;background:rgba(255,255,255,.025)!important;border-style:dashed!important}
+.profileInfoRow small{display:block;margin-top:3px;font-size:7px;letter-spacing:.6px;color:#7d8388}.salaryCompact43187 span{display:flex;flex-direction:column;gap:2px}.field input[readonly][name="dailyRate"]{opacity:.82;background:rgba(255,255,255,.025)!important;border-style:dashed!important}
 `;
 document.head.appendChild(st);
 

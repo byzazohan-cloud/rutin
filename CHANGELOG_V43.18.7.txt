@@ -1,0 +1,9 @@
+RUTİN V43.18.7 — PREMIUM CLEANUP
+
+- Existing features and workflows preserved.
+- Finance top summary boxes removed to reduce clutter.
+- Unused/empty category area now occupies no space.
+- Profile salary information compacted; automatic daily rate remains visible.
+- Legacy daily work record amounts are no longer rewritten by the current salary migration.
+- Existing card statement, flexible account, calendar, reports, backup/restore and editing flows preserved.
+- PWA cache bumped to V43.18.7.
