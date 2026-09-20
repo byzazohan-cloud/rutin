@@ -1,9 +1,14 @@
-RUTİN V43.18.9 — HEX CALENDAR FIX
+RUTİN V43.18.9 — AUDIT FIX
 
-- Takvim veri ve işleyişi değiştirilmedi.
-- Gün kutuları gerçek altıgen forma ve daha büyük görünüme geçirildi.
-- Aynı gün içindeki 2/3/4/5 kayıt rengi mevcut segment mantığıyla altıgenin tamamında büyük bölümler halinde görünür.
-- 7 sütun hizalaması sabitlendi; sağ/sol kayma ve taşma engellendi.
-- Gün numaralarının koyu iç kutusu kaldırıldı; numara renklerin üzerinde ortalandı.
-- Ay özeti aynı 6 aksiyon korunarak 3x2 görsel düzene geçirildi.
-- Başka veri, özellik veya ekran mantığı değiştirilmedi.
+- Tema Stüdyosu vurgu rengi artık merkezi --rt-accent değişkenini gerçekten kontrol eder.
+- Kart/panel rengi merkezi yüzeylere bağlandı; önizleme ve kaydetme aynı sonucu verir.
+- Renk seçicide görünen HEX değer anlık güncellenir.
+- Para gösterimi kuruşları kaybetmez (2 ondalık).
+- Genel number alanları 0,01 adım destekler.
+- Veri dizileri uygulama açılışında savunmalı olarak normalize edilir.
+- Boş/yeni kurulumda gereksiz eski-veri taşıma bildirimleri gösterilmez.
+- appDataVersion son katmanda 43.18.9 olarak sabitlenir.
+- Service worker SKIP_WAITING mesajını destekler.
+- Offline fallback, eksik JS/CSS/resim isteğine index.html döndürmez; yalnız navigation isteğinde HTML fallback kullanır.
+- Cache ve PWA sürüm etiketleri yenilendi.
+- İş mantığı, kayıt yapıları ve mevcut özellik sırası korunmuştur.

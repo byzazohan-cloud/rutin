@@ -1,0 +1,11 @@
+RUTİN V43.18.9 — HANE ORTAK TASARIM + KONSOLİDASYON
+
+- Önceki JS dosya sayısı: 33
+- Yeni JS dosya sayısı: 9
+- 24 eski V43 patch/tasarım dosyası, yüklenme sırası korunarak rutin-runtime.js içinde birleştirildi.
+- Ana işlev dosyaları ayrı tutuldu: app, legacy, calendar, records, work, finance, ui, accounting.
+- Görsel tema tek merkezde: theme-system.css.
+- HANE ortak tasarım dili: koyu metalik/füme yüzey, kontrollü cyan vurgu, pasif ikonlarda gri-mavi, gelir yeşil, gider kırmızı, takvim/not mor.
+- RUTİN logosu ve marka kimliği korundu. HANE markası eklenmedi.
+- Form/select okunabilirliği ortak tema içinde merkezileştirildi.
+- Veri yapısı ve iş mantığına elle müdahale edilmedi; patch kodları mekanik olarak aynı sırayla birleştirildi.

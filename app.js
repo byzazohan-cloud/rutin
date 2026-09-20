@@ -8,7 +8,7 @@ window.esc = window.esc || function(value){
 
 
 const $=s=>document.querySelector(s);
-const money=n=>new Intl.NumberFormat('tr-TR',{style:'currency',currency:'TRY',maximumFractionDigits:0}).format(+n||0);
+const money=n=>new Intl.NumberFormat('tr-TR',{style:'currency',currency:'TRY',minimumFractionDigits:2,maximumFractionDigits:2}).format(+n||0);
 const iso=(d=new Date())=>{let z=new Date(d.getTime()-d.getTimezoneOffset()*60000);return z.toISOString().slice(0,10)};
 const ym=(d=new Date())=>iso(d).slice(0,7);
 const uid=()=>crypto.randomUUID?.()||Date.now()+Math.random().toString(16).slice(2);
@@ -16,7 +16,7 @@ const upper=s=>String(s||'').toLocaleUpperCase('tr-TR');
 
 const defaults={
  profile:{name:'ZAZOHAN',motto:'KÜÇÜK ADIMLAR, BÜYÜK ÖZGÜRLÜKLER GETİRİR.',photo:''},
- settings:{dailyRate:1250,hourlyRate:200,overtimeRate:250,pin:'',lock:true,securityVersion:2,reminders:true,reminderDays:2,morningReminder:true,morningReminderTime:'07:00',nightReminder:true,nightReminderTime:'22:00',appearance:'dark',theme:{bg:'#000000',panel:'#000000',gold:'#d7b45c',green:'#22c55e',red:'#ff4d5a',blue:'#3b82f6'}},
+ settings:{dailyRate:1250,hourlyRate:200,overtimeRate:250,pin:'',lock:true,securityVersion:2,reminders:true,reminderDays:2,morningReminder:true,morningReminderTime:'07:00',nightReminder:true,nightReminderTime:'22:00',appearance:'dark',theme:{bg:'#000000',panel:'#000000',gold:'#35c9ff',green:'#22c55e',red:'#ff4d5a',blue:'#3b82f6'}},
  work:[],expenses:[],incomes:[],notes:[],investments:[],
  cards:[],
  flexAccounts:[],
@@ -40,6 +40,11 @@ let state=loadRutinState();
 state.profile={...defaults.profile,...(state.profile||{})};
 
 state.settings={...defaults.settings,...(state.settings||{}),theme:{...defaults.settings.theme,...(state.settings?.theme||{})}};
+// V43.18.9: defensive state normalization before any feature module runs.
+for(const k of ['work','expenses','incomes','notes','investments','cards','flexAccounts']) state[k]=Array.isArray(state[k])?state[k]:[];
+state.categories=Array.isArray(state.categories)&&state.categories.length?state.categories.slice():defaults.categories.slice();
+state.meta=state.meta&&typeof state.meta==='object'?state.meta:{};
+state.categoryMeta=state.categoryMeta&&typeof state.categoryMeta==='object'?state.categoryMeta:{};
 if((state.settings.securityBootstrapVersion||0)<1){
   state.settings.lock=true;
   state.settings.securityBootstrapVersion=1;
@@ -59,7 +64,12 @@ let screen='home', modal=null, reportPeriod='month', unlocked=false, calendarCur
 
 
 function save(){localStorage.setItem(STORAGE_KEY,JSON.stringify(state))}
-function applyTheme(){const t=state.settings.theme||defaults.settings.theme,r=document.documentElement.style;r.setProperty('--bg',t.bg);r.setProperty('--panel',t.panel);r.setProperty('--gold',t.gold);r.setProperty('--gold2',t.gold);r.setProperty('--green',t.green);r.setProperty('--red',t.red);r.setProperty('--blue',t.blue)}
+function applyTheme(){
+ const t=state.settings.theme||defaults.settings.theme,r=document.documentElement.style;
+ r.setProperty('--rt-bg',t.bg);r.setProperty('--rt-panel',t.panel);
+ r.setProperty('--rt-surface',t.panel);r.setProperty('--rt-surface-2',`color-mix(in srgb, ${t.panel} 82%, #1b2a36)`);
+ r.setProperty('--rt-accent',t.gold);r.setProperty('--rt-income',t.green);r.setProperty('--rt-expense',t.red);r.setProperty('--rt-blue',t.blue);
+}
 function monthItems(a){return a.filter(x=>x.date?.startsWith(ym()))}
 function dateRangeForPeriod(period=reportPeriod){
  const now=new Date();
@@ -436,13 +446,13 @@ function settings(){
  <div class="setting clickable premiumSetting" onclick="toggleAppearance()"><div class="settingIcon">◐</div><b>GÖRÜNÜM</b><span>${(state.settings.appearance||'dark')==='dark'?'KARANLIK MOD':'AÇIK MOD'} ›</span></div>
  <div class="setting clickable premiumSetting" onclick="openModal('reminders')"><div class="settingIcon">◔</div><b>HATIRLATICILAR</b><span>›</span></div>
  <div class="setting clickable premiumSetting" onclick="openModal('security')"><div class="settingIcon">⌾</div><b>UYGULAMA KİLİDİ</b><span>${state.settings.lock?'AÇIK':'KAPALI'} ›</span></div>
- <div class="setting premiumSetting"><div class="settingIcon">i</div><b>HAKKINDA</b><span>RUTİN V43.18.6</span></div>
+ <div class="setting premiumSetting"><div class="settingIcon">i</div><b>HAKKINDA</b><span>RUTİN V43.18.9</span></div>
  </div>`;
 }
 function setting(a,b){return `<div class="setting"><div>•</div><b>${a}</b><span>${b}</span></div>`}
 function sumRow(a,b){return `<div class="summaryRow"><div><b>${a}</b></div><strong>${b}</strong></div>`}
 function colorField(n,l,v){return `<div class="field colorField"><label>${l}</label><div class="colorRow"><input name="${n}" type="color" value="${v}" oninput="previewTheme(event)"><span>${v}</span></div></div>`}
-function field(n,l,v='',t='text'){return `<div class="field"><label>${l}</label><input name="${n}" type="${t}" value="${v}"></div>`}
+function field(n,l,v='',t='text'){const extra=t==='number'?' inputmode="decimal" step="0.01"':'';return `<div class="field"><label>${l}</label><input name="${n}" type="${t}"${extra} value="${v}"></div>`}
 function textarea(n,l){return `<div class="field"><label>${l}</label><textarea name="${n}"></textarea></div>`}
 function expenseScreen(){
  return `${header('KAYIT EKLE',true)}
@@ -794,7 +804,7 @@ function modalHtml(k){
       <button class="primary">KAYDET</button></form>`}
  if(k==='backup'){title='YEDEKLEME';body=`<button class="primary" onclick="downloadBackup()">YEDEK DOSYASI OLUŞTUR</button><div class="notice">RUTİN VERİLERİNİ CİHAZIN DIŞINA YEDEKLEMEN ÖNERİLİR. YEDEK DOSYASI TÜM MEVCUT VERİLERİ VE AYARLARI İÇERİR.</div>`}
  if(k==='categories'){title='KATEGORİLER';body=`<div class="card list">${state.categories.map(c=>`<div class="item"><div class="ico">•</div><div><b>${c}</b></div></div>`).join('')}</div>`}
- if(k==='theme'){const t=state.settings.theme||defaults.settings.theme;title='TEMA STÜDYOSU';body=`<form onsubmit="submitTheme(event)"><div class="themePreview"><div class="themePreviewTop">RUTİN</div><div class="themePreviewCard"><b>ÖNİZLEME</b><span>RENKLERİ KAYDETMEDEN DEĞİŞTİR</span></div></div><div class="themeGrid">${colorField('bg','ARKA PLAN',t.bg)}${colorField('panel','KART / PANEL',t.panel)}${colorField('gold','VURGU / GOLD',t.gold)}${colorField('green','GELİR',t.green)}${colorField('red','HARCAMA',t.red)}${colorField('blue','SAATLİK',t.blue)}</div><div class="appearanceSwitch">
+ if(k==='theme'){const t=state.settings.theme||defaults.settings.theme;title='TEMA STÜDYOSU';body=`<form onsubmit="submitTheme(event)"><div class="themePreview"><div class="themePreviewTop">RUTİN</div><div class="themePreviewCard"><b>ÖNİZLEME</b><span>RENKLERİ KAYDETMEDEN DEĞİŞTİR</span></div></div><div class="themeGrid">${colorField('bg','ARKA PLAN',t.bg)}${colorField('panel','KART / PANEL',t.panel)}${colorField('gold','VURGU RENGİ',t.gold)}${colorField('green','GELİR',t.green)}${colorField('red','HARCAMA',t.red)}${colorField('blue','SAATLİK',t.blue)}</div><div class="appearanceSwitch">
      <button type="button" class="${(state.settings.appearance||'dark')==='dark'?'active':''}" onclick="setAppearance('dark')">KARANLIK MOD</button>
      <button type="button" class="${(state.settings.appearance||'dark')==='light'?'active':''}" onclick="setAppearance('light')">AÇIK MOD</button>
    </div>
@@ -964,7 +974,7 @@ function drawCrop(){
 
  ctx.beginPath();
  ctx.arc(g.c/2,g.c/2,g.c*.40,0,Math.PI*2);
- ctx.strokeStyle='#d7b45c';
+ ctx.strokeStyle=getComputedStyle(document.documentElement).getPropertyValue('--rt-accent').trim()||'#35c9ff';
  ctx.lineWidth=3;
  ctx.stroke();
 }
@@ -1022,7 +1032,13 @@ function submitEditWork(e,id,oldDs){e.preventDefault();const d=Object.fromEntrie
 function submitEditExpense(e,id,oldDs){e.preventDefault();const d=Object.fromEntries(new FormData(e.currentTarget).entries()),x=state.expenses.find(z=>z.id===id);if(!x)return;x.amount=+d.amount||0;x.category=upper(d.category||x.category||'DİĞER');x.title=x.category;x.method=upper(d.method||x.method||'NAKİT');x.person=d.person||'';x.date=d.date;x.note=d.note||'';save();modal='day:'+x.date;render()}
 function deleteExpense(id,ds){state.expenses=state.expenses.filter(x=>x.id!==id);save();modal='day:'+ds;render()}
 function deleteWork(id,ds){state.work=state.work.filter(x=>x.id!==id);save();modal=`day:${ds}`;render()}
-function previewTheme(e){const f=e.currentTarget.form;if(!f)return;const d=Object.fromEntries(new FormData(f).entries()),r=document.documentElement.style;for(const k of ['bg','panel','gold','green','red','blue'])if(d[k])r.setProperty(`--${k}`,d[k]);r.setProperty('--gold2',d.gold||state.settings.theme.gold)}
+function previewTheme(e){
+ const f=e.currentTarget.form;if(!f)return;const d=Object.fromEntries(new FormData(f).entries()),r=document.documentElement.style;
+ if(d.bg)r.setProperty('--rt-bg',d.bg);
+ if(d.panel){r.setProperty('--rt-panel',d.panel);r.setProperty('--rt-surface',d.panel);r.setProperty('--rt-surface-2',`color-mix(in srgb, ${d.panel} 82%, #1b2a36)`);}
+ if(d.gold)r.setProperty('--rt-accent',d.gold);if(d.green)r.setProperty('--rt-income',d.green);if(d.red)r.setProperty('--rt-expense',d.red);if(d.blue)r.setProperty('--rt-blue',d.blue);
+ const label=e.currentTarget.closest('.colorRow')?.querySelector('span');if(label)label.textContent=e.currentTarget.value;
+}
 function setAppearance(mode){
  state.settings.appearance=mode==='light'?'light':'dark';
  save();applyAppearance();render();
@@ -1161,7 +1177,7 @@ if('serviceWorker' in navigator){
     location.reload();
   });
   window.addEventListener('load',()=>{
-    navigator.serviceWorker.register('./sw.js?v=43.18.11-glass-active-fix',{updateViaCache:'none'}).then(reg=>{
+    navigator.serviceWorker.register('./sw.js?v=43.18.9-audit-fix',{updateViaCache:'none'}).then(reg=>{
       const activateWaiting=()=>{
         if(reg.waiting) reg.waiting.postMessage({type:'SKIP_WAITING'});
       };

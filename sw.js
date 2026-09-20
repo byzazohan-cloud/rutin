@@ -1,20 +1,6 @@
-const CACHE='rutin-v43.18.12-neutral-glass-fix';
-const CORE=['./','./index.html','./styles.css','./app.js','./legacy.js','./calendar.js','./records.js','./work.js','./finance.js','./ui.js','./accounting.js','./v43165_cards_allowance.js','./v431651_integrity_fix.js','./v43166_calendar_categories.js','./v43167_report_quickfix.js','./v43168_navigation_interaction.js','./v43169_report_road_fix.js','./v431691_stable_fix.js','./v4317_standard_migration.js','./v43171_quick_calendar_fix.js','./v43172_real_quick_calendar_fix.js','./v43173_calendar_restore.js','./v43174_integrity_reports.js','./v43175_finance_edit_reminders.js','./v43176_finance_details_reports.js','./manifest.json','./icon-180.png','./icon-512.png','./rutin-logo.png','./rutin-mark.png','./lock-mountain.jpg',
-  'v43177_card_statement_design.js',
-  "v43178_flex_finance_standard.js",
-  "v43179_final_integrity.js",
-  "v43182_finance_platinum_cards.js",
-  "v43183_vertical_card_statement_fix.js",
-  "v43184_card_info_design.js",
-  "v43185_backup_restore.js",
-  "v43186_salary_compact_ui.js",
-  "v43187_premium_cleanup.js",
-  "v43188_design_only.js",
-  "v43189_hex_calendar_fix.js",
-  "v43190_lock_boot_fix.js",
-  "v43191_glass_active_fix.js",
-  "v43192_neutral_glass_fix.js"
-];
+const CACHE='rutin-v43-18-9-audit-fix';
+const CORE=["./","./index.html","./styles.css","./theme-system.css","./app.js","./legacy.js","./calendar.js","./records.js","./work.js","./finance.js","./ui.js","./accounting.js","./rutin-runtime.js","./manifest.json","./icon-180.png","./icon-512.png","./rutin-logo.png","./rutin-mark.png","./lock-mountain.jpg"];
 self.addEventListener('install',event=>{event.waitUntil((async()=>{const cache=await caches.open(CACHE);await Promise.allSettled(CORE.map(url=>cache.add(url)));await self.skipWaiting();})());});
+self.addEventListener('message',event=>{if(event.data&&event.data.type==='SKIP_WAITING')self.skipWaiting();});
 self.addEventListener('activate',event=>{event.waitUntil((async()=>{const keys=await caches.keys();await Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)));await self.clients.claim();})());});
-self.addEventListener('fetch',event=>{if(event.request.method!=='GET')return;const url=new URL(event.request.url);if(url.origin!==self.location.origin)return;event.respondWith((async()=>{try{const fresh=await fetch(event.request,{cache:'no-store'});if(fresh&&fresh.ok){const cache=await caches.open(CACHE);cache.put(event.request,fresh.clone()).catch(()=>{});}return fresh;}catch(_){return(await caches.match(event.request))||(await caches.match('./index.html'));}})());});
+self.addEventListener('fetch',event=>{if(event.request.method!=='GET')return;const url=new URL(event.request.url);if(url.origin!==self.location.origin)return;event.respondWith((async()=>{try{const fresh=await fetch(event.request,{cache:'no-store'});if(fresh&&fresh.ok){const cache=await caches.open(CACHE);cache.put(event.request,fresh.clone()).catch(()=>{});}return fresh;}catch(_){const cached=await caches.match(event.request);if(cached)return cached;if(event.request.mode==='navigate')return(await caches.match('./index.html'))||new Response('RUTİN çevrimdışı.',{status:503,headers:{'Content-Type':'text/plain; charset=utf-8'}});return new Response('',{status:504});}})());});

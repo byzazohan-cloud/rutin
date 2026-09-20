@@ -131,7 +131,7 @@ window.nav=function(){const items=[['home','⌂','ANA SAYFA','navHome'],['work',
       ? `<button class="iconBtn luxuryIconBtn" onclick="goBackRutin()" aria-label="Geri">‹</button>`
       : `<button class="iconBtn luxuryIconBtn" onclick="openModal('menu')" aria-label="Menü">☰</button>`;
     const center=title==='RUTİN'&&window.rutinLogo?`${rutinLogo(30)}<span>RUTİN</span>`:title;
-    return `<div class="topbar topbar43112">${left}<div class="title brandTitle">${center}</div><div class="topActions43112"><button class="headerBigAction reminderBig43112" onclick="openModal('reminderCenter')" aria-label="Hatırlatmalar"><span>🔔</span></button><button class="headerBigAction settingsBig43112" onclick="go('settings')" aria-label="Ayarlar"><span>⚙</span></button></div></div>`;
+    return `<div class="topbar topbar43112">${left}<div class="title brandTitle">${center}</div><div class="topActions43112"><button class="headerBigAction reminderBig43112" onclick="openModal('reminderCenter')" aria-label="Hatırlatmalar"><span class="bellGlyphV31" aria-hidden="true"></span></button><button class="headerBigAction settingsBig43112" onclick="go('settings')" aria-label="Ayarlar"><span>⚙</span></button></div></div>`;
   };
 })();
 
