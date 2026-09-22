@@ -1,0 +1,5 @@
+S7 VERİ GÜVENLİĞİ SÖZLEŞMESİ
+- Mevcut localStorage anahtarları yeniden adlandırılmayacak.
+- Mevcut kayıt nesneleri otomatik migrate edilmeyecek.
+- İş/harcama/yol/kart/ekstre/takvim/rapor sonuçları kilit sürümle karşılaştırılmadan veri dönüşümü yapılmayacak.
+- Geri yükleme/yedek uyumluluğu korunacak.
