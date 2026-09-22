@@ -2434,3 +2434,39 @@ window.finance=function(){
   if(typeof save==='function')save();
  }catch(_){ }
 })();
+
+/* RUTIN V43.18.9 S8 FIX2 — card expense -> statement/current period visibility */
+(function(){
+'use strict';
+const A=x=>Array.isArray(x)?x:[];
+const N=x=>Number(x)||0;
+const E=x=>typeof esc==='function'?esc(String(x??'')):String(x??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+const M=x=>typeof money==='function'?money(N(x)):N(x).toLocaleString('tr-TR',{minimumFractionDigits:2,maximumFractionDigits:2})+' ₺';
+const pad=n=>String(n).padStart(2,'0');
+const isoDate=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+const at=(y,m,d)=>{const last=new Date(y,m+1,0).getDate();return new Date(y,m,Math.min(Math.max(1,N(d)||1),last));};
+const add=(s,n)=>{const [y,m,d]=String(s).split('-').map(Number),x=new Date(y,m-1,d);x.setDate(x.getDate()+n);return isoDate(x)};
+function period(card,offset=0){const day=Math.min(31,Math.max(1,N(card.statementDay)||1)),now=new Date();let end=at(now.getFullYear(),now.getMonth(),day);if(now<end)end=at(now.getFullYear(),now.getMonth()-1,day);if(offset)end=at(end.getFullYear(),end.getMonth()+offset,day);const prev=at(end.getFullYear(),end.getMonth()-1,day);return{start:add(isoDate(prev),1),end:isoDate(end)}}
+function fmt(s){if(typeof fmtDate==='function')return fmtDate(s);const [y,m,d]=String(s).split('-');return `${d}.${m}.${y}`}
+function repairLinks(card){
+ card.transactions=A(card.transactions);
+ A(state.expenses).forEach(x=>{
+  if(String(x.method||'').toLocaleUpperCase('tr-TR')!=='KREDİ KARTI'||String(x.cardId||'')!==String(card.id))return;
+  let t=card.transactions.find(z=>String(z.expenseId||'')===String(x.id)||String(z.id||'')===String(x.sourceId||''));
+  if(t){t.expenseId=x.id;t.type=t.type==='payment'?'payment':'spend';if(!x.sourceId)x.sourceId=t.id;if(!x.sourceType)x.sourceType='card';return;}
+  // Link historical orphan expenses without changing balance: the expense was already counted when saved.
+  t={id:(typeof uid==='function'?uid():'tx_'+Date.now()+'_'+Math.random().toString(36).slice(2)),expenseId:x.id,title:x.title||x.category||'KART HARCAMASI',category:x.category||'DİĞER',amount:Math.abs(N(x.amount)),date:x.date||isoDate(new Date()),type:'spend',sourceType:'expenseRepair'};
+  card.transactions.push(t);x.sourceId=t.id;x.sourceType='card';x.cardName=x.cardName||card.name||'KREDİ KARTI';
+ });
+}
+window.cardDetailV43163=function(){
+ const c=A(state.cards).find(x=>String(x.id)===String(window.cardDetailIdV43163));if(!c){screen='finance';return typeof finance==='function'?finance():''}
+ repairLinks(c);try{if(typeof save==='function')save()}catch(_){}
+ const off=window.rutinStatementOffset43174||0,p=period(c,off),tx=[...A(c.transactions)].sort((a,b)=>String(b.date||'').localeCompare(String(a.date||'')));
+ const closed=tx.filter(t=>t.type!=='payment'&&String(t.date||'')>=p.start&&String(t.date||'')<=p.end),closedTotal=closed.reduce((s,t)=>s+Math.abs(N(t.amount)),0);
+ const currentStart=add(p.end,1),today=isoDate(new Date()),current=off===0?tx.filter(t=>t.type!=='payment'&&String(t.date||'')>=currentStart&&String(t.date||'')<=today):[],currentTotal=current.reduce((s,t)=>s+Math.abs(N(t.amount)),0);
+ const nextEnd=period(c,off+1).end,pays=tx.filter(t=>t.type==='payment'&&String(t.date||'')>=currentStart&&String(t.date||'')<=nextEnd),paid=pays.reduce((s,t)=>s+Math.abs(N(t.amount)),0);
+ const rows=list=>list.map(t=>`<div class="item"><div><b>${E(t.title||'HAREKET')}</b><small>${E(t.date||'')} · ${E(t.category||'')}</small></div><strong class="red">${M(Math.abs(N(t.amount)))}</strong></div>`).join('');
+ return `${header('KART EKSTRESİ',true)}<div class="cardDetailHeroV13"><small>${E(c.name)}</small><strong>${M(c.balance)}</strong><span>GÜNCEL BORÇ</span></div><div class="statementNav43174"><button onclick="changeCardStatement43174(-1)">‹ ÖNCEKİ</button><div><small>EKSTRE DÖNEMİ</small><b>${fmt(p.start)} — ${fmt(p.end)}</b></div><button ${off>=0?'disabled':''} onclick="changeCardStatement43174(1)">SONRAKİ ›</button></div><div class="v43163CardStats"><div><small>KAPANAN DÖNEM</small><b>${M(closedTotal)}</b></div><div><small>${off===0?'GÜNCEL DÖNEM':'SONRAKİ ÖDEMELER'}</small><b>${off===0?M(currentTotal):M(paid)}</b></div></div><div class="card v43163Dates"><span>HESAP KESİM <b>HER AY ${E(c.statementDay||'-')}</b></span><span>SON ÖDEME <b>${E(c.paymentDay||c.dueDate||'-')}</b></span></div><button class="primary" onclick="openModal('cardPay4310:${E(c.id)}')">NE KADAR ÖDEDİM?</button><div class="section"><b>KAPANAN EKSTRE HAREKETLERİ</b><span>${closed.length} İŞLEM</span></div><div class="card list">${rows(closed)||'<div class="notice">BU DÖNEMDE HAREKET YOK.</div>'}</div>${off===0?`<div class="section"><b>GÜNCEL DÖNEM / BEKLEYEN HARCAMALAR</b><span>${current.length} İŞLEM</span></div><div class="card list">${rows(current)||'<div class="notice">YENİ HARCAMA YOK.</div>'}</div>`:''}<div class="section"><b>DÖNEM SONRASI ÖDEMELER</b><span>${pays.length}</span></div><div class="card list">${pays.map(t=>`<div class="item"><div><b>${E(t.title||'KART ÖDEMESİ')}</b><small>${E(t.date||'')}</small></div><strong class="green">-${M(Math.abs(N(t.amount)))}</strong></div>`).join('')||'<div class="notice">KAYITLI ÖDEME YOK.</div>'}</div>`;
+};
+})();
