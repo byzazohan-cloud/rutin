@@ -1,0 +1,19 @@
+RUTİN V43.18.9 — S8 FINAL FIX3 AUDIT
+
+Tarama:
+- Tüm JavaScript dosyaları sözdizimi kontrolünden geçirildi.
+- index.html yerel dosya referansları kontrol edildi.
+- Service Worker önbellek sürümü yenilendi.
+- ZIP bütünlüğü kontrol edildi.
+
+Düzeltilenler:
+1) Kart harcamasının yanlışlıkla bir "payment" hareketine bağlanması engellendi.
+2) Harcama ile ekstre hareketi bağlıysa tutar/tarih/başlık senkronize ediliyor; kart borcu ikinci kez artırılmıyor.
+3) Aynı harcamaya ait FIX2 kaynaklı mükerrer onarım satırları güvenli biçimde tekilleştiriliyor; ödeme hareketlerine dokunulmuyor.
+4) Service Worker kayıt/cache sürümü S8 FIX3 ile eşitlendi; GitHub/PWA güncellemesinde eski cache'in kalma riski azaltıldı.
+
+Korunanlar:
+- localStorage anahtarları ve veri şeması değiştirilmedi.
+- Kart bakiyesi topluca yeniden hesaplanmadı.
+- Eski kayıtlar silinmedi.
+- İş/Gelir/Harcama/Takvim/Rapor akışlarının formatı değiştirilmedi.

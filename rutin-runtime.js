@@ -2452,8 +2452,17 @@ function repairLinks(card){
  card.transactions=A(card.transactions);
  A(state.expenses).forEach(x=>{
   if(String(x.method||'').toLocaleUpperCase('tr-TR')!=='KREDİ KARTI'||String(x.cardId||'')!==String(card.id))return;
-  let t=card.transactions.find(z=>String(z.expenseId||'')===String(x.id)||String(z.id||'')===String(x.sourceId||''));
-  if(t){t.expenseId=x.id;t.type=t.type==='payment'?'payment':'spend';if(!x.sourceId)x.sourceId=t.id;if(!x.sourceType)x.sourceType='card';return;}
+  // An expense must never be attached to a payment transaction. Prefer a spend transaction with the same expenseId/sourceId.
+  let t=card.transactions.find(z=>z.type!=='payment'&&(String(z.expenseId||'')===String(x.id)||String(z.id||'')===String(x.sourceId||'')));
+  if(t){
+   t.expenseId=x.id;t.type='spend';
+   // Keep the statement row synchronized with the expense record without touching the card balance.
+   t.title=x.title||x.category||t.title||'KART HARCAMASI';t.category=x.category||t.category||'DİĞER';t.amount=Math.abs(N(x.amount));t.date=x.date||t.date||isoDate(new Date());
+   x.sourceId=t.id;x.sourceType='card';x.cardName=x.cardName||card.name||'KREDİ KARTI';
+   // Remove only duplicate repaired spend rows for this same expense; never remove payments or unrelated legacy rows.
+   let kept=false;card.transactions=card.transactions.filter(z=>{if(z.type==='payment'||String(z.expenseId||'')!==String(x.id))return true;if(String(z.id)===String(t.id)){if(kept)return false;kept=true;return true;}return false;});
+   return;
+  }
   // Link historical orphan expenses without changing balance: the expense was already counted when saved.
   t={id:(typeof uid==='function'?uid():'tx_'+Date.now()+'_'+Math.random().toString(36).slice(2)),expenseId:x.id,title:x.title||x.category||'KART HARCAMASI',category:x.category||'DİĞER',amount:Math.abs(N(x.amount)),date:x.date||isoDate(new Date()),type:'spend',sourceType:'expenseRepair'};
   card.transactions.push(t);x.sourceId=t.id;x.sourceType='card';x.cardName=x.cardName||card.name||'KREDİ KARTI';
