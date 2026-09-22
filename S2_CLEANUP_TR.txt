@@ -1,0 +1,3 @@
+S2 PAKET TEMİZLİĞİ
+- Eski sürümlere ait tarihsel changelog dosyaları çalışma paketinden çıkarıldı.
+- Uygulama JS/CSS, veri anahtarları ve iş hesaplamaları değiştirilmedi.
