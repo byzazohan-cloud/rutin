@@ -12,3 +12,8 @@ RUTİN V43.18.9 — AUDIT FIX
 - Offline fallback, eksik JS/CSS/resim isteğine index.html döndürmez; yalnız navigation isteğinde HTML fallback kullanır.
 - Cache ve PWA sürüm etiketleri yenilendi.
 - İş mantığı, kayıt yapıları ve mevcut özellik sırası korunmuştur.
+
+S8 FINAL TEST
+- Base: S7 FIX1 verified
+- Purpose: cumulative final validation candidate; no data schema changes.
+- Includes calendar quick-income visibility and monthly income detail fixes.
