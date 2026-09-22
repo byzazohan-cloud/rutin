@@ -1,28 +1,6 @@
 
-/* ===== v436_work_premium.js ===== */
-(function(){
- const upper=s=>String(s||'').toLocaleUpperCase('tr-TR');
- const remembered=(k,d)=>state.settings[k]!==undefined?state.settings[k]:d;
- const lastDate=()=>state.settings.lastWorkDate||iso();
- const textarea=(n,l)=>`<div class="field"><label>${l}</label><textarea name="${n}" placeholder="İSTEĞE BAĞLI"></textarea></div>`;
- const payField=(v='unpaid')=>`<div class="field v436Pay"><label>ANA İŞ ÖDEME DURUMU</label><div class="v436PayChoice"><label><input type="radio" name="paymentStatus" value="paid" ${v==='paid'?'checked':''}><span>✓ ÖDEME ALDIM</span></label><label><input type="radio" name="paymentStatus" value="unpaid" ${v!=='paid'?'checked':''}><span>◷ ÖDEME ALMADIM</span></label></div></div>`;
- const roadFields=()=>`<div class="field"><label>YOL PARASI <small>(OPSİYONEL)</small></label><div class="choiceRow"><label><input type="radio" name="road" value="yes" onchange="window.v436RoadToggle&&v436RoadToggle(this.form)">YOL GİDERİ VAR</label><label><input type="radio" name="road" value="no" checked onchange="window.v436RoadToggle&&v436RoadToggle(this.form)">YOK</label></div></div><div class="v436RoadExtra" style="display:none">${field('roadAmount','YOL TUTARI',remembered('lastRoadAmount',0),'number')}<div class="field"><label>YOL ÖDEME ŞEKLİ</label><select name="roadMethod" onchange="window.v436RoadMethod&&v436RoadMethod(this.form)"><option value="NAKİT">NAKİT</option><option value="KREDİ KARTI">KREDİ KARTI</option></select></div><div class="field v436RoadCard" style="display:none"><label>HANGİ KART?</label><select name="roadCardId"><option value="">KART SEÇ</option>${(state.cards||[]).map(c=>`<option value="${c.id}">${c.name}</option>`).join('')}</select></div></div>`;
- window.v436RoadToggle=function(f){const box=f.querySelector('.v436RoadExtra');if(box)box.style.display=(f.road?.value==='yes')?'block':'none'};
- window.v436RoadMethod=function(f){const box=f.querySelector('.v436RoadCard');if(box)box.style.display=(f.roadMethod?.value==='KREDİ KARTI')?'block':'none'};
- window.dailyForm=function(){return `<form class="v436WorkForm" onsubmit="submitDaily(event)">${field('date','TARİH',lastDate(),'date')}${field('title','İŞ / PROJE',remembered('lastDailyTitle','ANA İŞ'))}${field('amount','GÜNLÜK ÜCRET',remembered('lastDailyRate',state.settings.dailyRate),'number')}${payField('unpaid')}${roadFields()}${textarea('note','NOT')}<button class="primary">GÜNLÜK KAYDI EKLE</button></form>`};
- window.hourlyForm=function(){return `<form class="v436WorkForm" onsubmit="submitHourly(event)">${field('date','TARİH',lastDate(),'date')}${field('title','İŞ / PROJE',remembered('lastHourlyTitle','EK İŞ'))}${field('hours','ÇALIŞILAN SAAT',remembered('lastHourlyHours',0),'number')}${field('rate','SAATLİK ÜCRET',remembered('lastHourlyRate',state.settings.hourlyRate),'number')}${payField('unpaid')}${roadFields()}${textarea('note','NOT')}<button class="primary">SAATLİK KAYDI EKLE</button></form>`};
- window.overtimeForm=function(){return `<form class="v436WorkForm" onsubmit="submitOvertime(event)">${field('date','TARİH',lastDate(),'date')}${field('title','İŞ / PROJE',remembered('lastOvertimeTitle','ANA İŞ'))}${field('hours','MESAİ SÜRESİ',remembered('lastOvertimeHours',0),'number')}${field('rate','MESAİ SAATLİK ÜCRET',remembered('lastOvertimeRate',state.settings.overtimeRate),'number')}${payField('unpaid')}${textarea('note','NOT')}<button class="primary">MESAİ KAYDI EKLE</button></form>`};
- function remember(d,type){state.settings.lastWorkDate=d.date||lastDate();if(type==='daily'){state.settings.lastDailyTitle=d.title||'ANA İŞ';state.settings.lastDailyRate=+d.amount||0}else if(type==='hourly'){state.settings.lastHourlyTitle=d.title||'EK İŞ';state.settings.lastHourlyHours=+d.hours||0;state.settings.lastHourlyRate=+d.rate||0}else{state.settings.lastOvertimeTitle=d.title||'ANA İŞ';state.settings.lastOvertimeHours=+d.hours||0;state.settings.lastOvertimeRate=+d.rate||0}if(d.roadAmount!==undefined)state.settings.lastRoadAmount=+d.roadAmount||0;}
- function addRoad(d,workId){if(d.road!=='yes'||!(+d.roadAmount>0))return true;const method=d.roadMethod||'NAKİT';let card=null;if(method==='KREDİ KARTI'){card=(state.cards||[]).find(c=>c.id===d.roadCardId);if(!card){alert('Yol gideri için kredi kartı seçmelisiniz.');return false;}}
-  const exp={id:uid(),date:d.date,title:'YOL',amount:+d.roadAmount,category:'YOL',method,cardId:card?.id||'',cardName:card?.name||'',sourceType:'workRoad',workId,note:'ÇALIŞMA YOL MASRAFI'};state.expenses.push(exp);
-  if(card){card.balance=(+card.balance||0)+(+d.roadAmount||0);card.transactions=Array.isArray(card.transactions)?card.transactions:[];card.transactions.push({id:uid(),expenseId:exp.id,title:'YOL',amount:+d.roadAmount,date:d.date,type:'expense',category:'YOL'});}return true;}
- function addWork(type,d){const id=uid(),amount=type==='daily'?(+d.amount||0):(+d.hours||0)*(+d.rate||0);const w={id,type,date:d.date,title:upper(d.title||(type==='hourly'?'EK İŞ':'ANA İŞ')),amount,paymentStatus:d.paymentStatus||'unpaid',note:d.note||''};if(type!=='daily'){w.hours=+d.hours||0;w.rate=+d.rate||0;}state.work.push(w);if(type!=='overtime'&&!addRoad(d,id)){state.work=state.work.filter(x=>x.id!==id);return false;}return true;}
- window.submitDaily=function(e){e.preventDefault();const d=Object.fromEntries(new FormData(e.currentTarget).entries());remember(d,'daily');if(!addWork('daily',d))return;save();closeModal();render()};
- window.submitHourly=function(e){e.preventDefault();const d=Object.fromEntries(new FormData(e.currentTarget).entries());remember(d,'hourly');if(!addWork('hourly',d))return;save();closeModal();render()};
- window.submitOvertime=function(e){e.preventDefault();const d=Object.fromEntries(new FormData(e.currentTarget).entries());remember(d,'overtime');if(!addWork('overtime',d))return;save();closeModal();render()};
-})();
-
-;
+/* v436_work_premium legacy block removed in SAFE REFACTOR P3.
+   Its exported forms/submits were superseded before use by v437/accounting. */
 
 /* ===== v437_work_roads.js ===== */
 /* RUTIN V43.7 — work income is earned immediately; multiple road expenses per work record */

@@ -1,0 +1,17 @@
+RUTİN V43.18.9 — SAFE REFACTOR P1
+
+Amaç: Veri ve iş mantığına dokunmadan ilk güvenli sadeleştirme.
+
+Yapılanlar:
+- styles.css içindeki eski hover otoritesi kaldırıldı.
+- theme-system.css içindeki üç çakışan hover katmanı tek otoriteye indirildi.
+- Son hover seçici kapsamı korunarak menu/finance/home/calendar hedefleri tek blokta toplandı.
+- Cache-busting ve service worker cache adı yenilendi.
+
+Dokunulmayanlar:
+- localStorage anahtarları
+- state veri şeması
+- çalışma/gelir/harcama/yol hesapları
+- kart/ekstre/hesap mantığı
+- takvim/rapor veri mantığı
+- rutin-runtime patch zinciri (davranış bağımlılıkları nedeniyle bu aşamada korunmuştur)

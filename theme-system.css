@@ -430,10 +430,6 @@ body{background:linear-gradient(180deg,#07090a 0%,#020303 58%,#050708 100%)!impo
   border-color:#31414b!important;
   box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 4px 12px rgba(0,0,0,.28)!important;
 }
-:where(button,.quick button,.workChoice button,.tabs button,.fullMenuList button,.v4317Menu button,.menu4311List button,.v43Actions button):hover{
-  border-color:rgba(126,194,221,.58)!important;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 0 10px rgba(69,155,193,.12)!important;
-}
 :where(.primary,.detailBtnV33,.miniLuxBtnV33,.headerBigAction,.iconBtn,.calendarArrow){
   background:linear-gradient(180deg,#17303b 0%,#0c1b22 55%,#081116 100%)!important;
   border-color:var(--rt-accent)!important;
@@ -460,10 +456,6 @@ body{background:linear-gradient(180deg,#07090a 0%,#020303 58%,#050708 100%)!impo
   background:linear-gradient(145deg,#182229 0%,#10171c 48%,#0a0f12 100%)!important;
   border:1px solid #344650!important;
   box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 7px 18px rgba(0,0,0,.30)!important;
-}
-.stats .stat:hover,.v18Stats .stat:hover,.quick.quickPremium button:hover{
-  border-color:rgba(126,194,221,.58)!important;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 0 10px rgba(69,155,193,.12)!important;
 }
 .quick.quickPremium button>i,.quickSix button>i,.qv32{
   background:linear-gradient(145deg,#1b2c34,#0d171c)!important;
@@ -535,42 +527,6 @@ body{background:#000!important;color:#f5f6f7!important}.app,.screen,.content{bac
 .lockQuoteTop43181:after,.lockQuoteBottom43181:after{background:rgba(53,201,255,.55)!important}
 
 
-/* === V6 TARGETED HOVER REPLACEMENT ===
-   Only replaces legacy hover paint. Normal, active and selected design stays untouched. */
-@media (hover:hover) and (pointer:fine){
-  :where(button,.clickable,.premiumSetting,.catChip,.payIcons label,.choiceRow label,.stat,.summaryBox,.clickableSummary,.financeCard,.fin4310Card,.inv4310Row,.hpVerticalCard):hover{
-    border-color:rgba(126,194,221,.58)!important;
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.14),inset 0 0 0 1px rgba(205,235,247,.025),0 0 10px rgba(69,155,193,.12),0 7px 18px rgba(0,0,0,.20)!important;
-    filter:brightness(1.025)!important;
-  }
-  .calendarArrow:hover,.day:hover,.miniEdit:hover{
-    border-color:rgba(126,194,221,.58)!important;
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 0 10px rgba(69,155,193,.12)!important;
-    filter:brightness(1.025)!important;
-  }
-  .premiumSetting:hover .settingIcon,.quick button:hover .quickLux{
-    border-color:rgba(126,194,221,.52)!important;
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 0 9px rgba(69,155,193,.10)!important;
-    filter:brightness(1.025)!important;
-  }
-}
-
-
-/* V43.18.9 FINAL HOVER AUTHORITY — preserve component surfaces; edge/glass only */
-@media (hover:hover) and (pointer:fine){
-  :where(button,.clickable,.premiumSetting,.catChip,.payIcons label,.choiceRow label,.stat,.summaryBox,.clickableSummary,.financeCard,.fin4310Card,.inv4310Row,.hpVerticalCard,.hpSummary button,.hpQuick button,.hpFlow button,.menu4311List button,.financeReportGrid43176 button,.homeFinanceGrid43176 button):hover{
-    border-color:rgba(139,184,205,.62)!important;
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.12),inset 0 0 0 1px rgba(190,226,240,.035),0 0 10px rgba(69,155,193,.12)!important;
-    filter:none!important;
-  }
-  :where(.calendarArrow,.day,.miniEdit):hover{
-    border-color:rgba(139,184,205,.62)!important;
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.10),0 0 9px rgba(69,155,193,.11)!important;
-    filter:none!important;
-  }
-}
-
-
 /* RUTIN V43.18.9 — HANE SHARED DESIGN AUTHORITY
    One visual source. No functional or layout rewrites. */
 :root{
@@ -622,6 +578,8 @@ select option:checked{color:#0b1220!important;background:#b9d9ff!important}
 .hpCardPattern:before,.hpCardPattern:after{border-color:rgba(95,198,255,.18)!important}
 .hpFinHead button,.hpTabs button.active{border-color:var(--rt-border-strong)!important;color:var(--rt-icon-active)!important;background:linear-gradient(180deg,#111a24,#0a1016)!important}
 .brandStripV31 img,.headerAppLogoV32,.rutinLogoImage,.lockLogoV31{filter:saturate(.58) contrast(1.04) brightness(.96)!important;border-color:var(--rt-border)!important;box-shadow:0 8px 18px rgba(0,0,0,.26),0 0 12px rgba(71,191,255,.08)!important}
+/* Single hover authority: visual only; no data/business behavior. */
 @media (hover:hover) and (pointer:fine){
- :where(button,.clickable,.premiumSetting,.catChip,.payIcons label,.choiceRow label,.stat,.summaryBox,.clickableSummary,.financeCard,.fin4310Card,.inv4310Row,.hpVerticalCard,.hpSummary button,.hpQuick button,.hpFlow button):hover{border-color:var(--rt-border-strong)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 0 10px rgba(71,191,255,.10)!important;filter:none!important}
+ :where(button,.clickable,.premiumSetting,.catChip,.payIcons label,.choiceRow label,.stat,.summaryBox,.clickableSummary,.financeCard,.fin4310Card,.inv4310Row,.hpVerticalCard,.hpSummary button,.hpQuick button,.hpFlow button,.menu4311List button,.financeReportGrid43176 button,.homeFinanceGrid43176 button):hover{border-color:var(--rt-border-strong)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 0 10px rgba(71,191,255,.10)!important;filter:none!important}
+ :where(.calendarArrow,.day,.miniEdit):hover{border-color:var(--rt-border-strong)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 0 9px rgba(71,191,255,.10)!important;filter:none!important}
 }

@@ -1945,7 +1945,7 @@ img,svg,canvas{max-width:100%;height:auto}
 :root{--v3-glass:rgba(255,255,255,.055);--v3-glass-active:color-mix(in srgb,var(--rt-accent) 10%,transparent);--v3-line:rgba(255,255,255,.10);--v3-accent:color-mix(in srgb,var(--rt-accent) 52%,transparent)}
 /* Shared state language: normal / hover / pressed / active-selected. */
 button,.clickable,.premiumSetting,.catChip,.payIcons label,.choiceRow label{-webkit-tap-highlight-color:transparent;transition:transform .12s ease,background-color .15s ease,border-color .15s ease,box-shadow .15s ease,filter .15s ease}
-@media(hover:hover) and (pointer:fine){button:hover,.clickable:hover,.premiumSetting:hover,.catChip:hover,.payIcons label:hover,.choiceRow label:hover{border-color:rgba(126,194,221,.58)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.12),inset 0 0 0 1px rgba(190,226,240,.035),0 0 10px rgba(69,155,193,.12)!important}}
+/* Hover visuals are centralized in theme-system.css. */
 button:active,.clickable:active,.premiumSetting:active,.catChip:active,.payIcons label:active,.choiceRow label:active{transform:scale(.975);filter:brightness(.94)}
 button.active,.tabs button.active,.workChoice button.active,.nav button.active,.nav4311Fixed button.active,.catChip:has(input:checked),.payIcons label:has(input:checked),.choiceRow label:has(input:checked){background:linear-gradient(145deg,rgba(255,255,255,.075),var(--v3-glass-active));border-color:var(--v3-accent);box-shadow:inset 0 1px 0 rgba(255,255,255,.13),0 7px 20px rgba(0,0,0,.20);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
 button:focus-visible,.clickable:focus-visible,.catChip:focus-within,.payIcons label:focus-within{outline:2px solid color-mix(in srgb,var(--rt-accent) 48%,transparent);outline-offset:2px}
