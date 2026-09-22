@@ -1,0 +1,3 @@
+S3 TEKNİK DOKÜMAN KONSOLİDASYONU
+- Dağınık teknik raporlar tek arşiv metninde birleştirildi.
+- Runtime davranışı ve veri yapısı değiştirilmedi.

@@ -1,0 +1,41 @@
+RUTİN V43.18.9 — TARAYIP DÜZELTİLENLER
+
+1) Tema Stüdyosu: vurgu seçimi kaydediliyor fakat ortak HANE/RUTİN tasarımının --rt-accent kaynağı değişmiyordu. Düzeltildi.
+2) Panel rengi: ayar kaydoluyor fakat --rt-surface sabit kaldığı için kartların çoğu değişmiyordu. Düzeltildi.
+3) Para hassasiyeti: ana money() fonksiyonu kuruşları yuvarlıyordu. 2 ondalık gösterime geçirildi.
+4) Sayısal giriş: ortak number field step=1 kaldığı için küsuratlı para girişleri tarayıcı doğrulamasına takılabiliyordu. step=0.01 eklendi.
+5) Sürüm meta bilgisi: konsolide pakette son çalışan patch appDataVersion değerini 43.18.7 bırakıyordu. 43.18.9 final stamp eklendi.
+6) İlk kurulum bildirimi: boş veriyle bile eski veri migrasyonu bildirimi çıkabiliyordu. Yalnız gerçek kayıt varsa gösterilecek şekilde düzeltildi.
+7) PWA service worker: uygulama SKIP_WAITING mesajı gönderiyor fakat sw.js mesajı dinlemiyordu. Dinleyici eklendi.
+8) Offline fallback: eksik asset isteğinde index.html dönme riski vardı. HTML fallback yalnız sayfa navigasyonu için sınırlandı.
+9) Veri savunması: bozuk/eksik eski yedekte temel diziler yoksa modüller başlamadan önce güvenli boş dizilere normalize edilir.
+
+Kontrol kapsamı: JS syntax, asset referansları, ana ekranlar, finans, takvim, raporlar, harcamalar, profil, ayarlar, temel modal akışları, örnek kart/esnek hesap/harcama/veri ile sistem bütünlüğü.
+RUTİN V43.18.9 — HANE ORTAK TASARIM + KONSOLİDASYON
+
+- Önceki JS dosya sayısı: 33
+- Yeni JS dosya sayısı: 9
+- 24 eski V43 patch/tasarım dosyası, yüklenme sırası korunarak rutin-runtime.js içinde birleştirildi.
+- Ana işlev dosyaları ayrı tutuldu: app, legacy, calendar, records, work, finance, ui, accounting.
+- Görsel tema tek merkezde: theme-system.css.
+- HANE ortak tasarım dili: koyu metalik/füme yüzey, kontrollü cyan vurgu, pasif ikonlarda gri-mavi, gelir yeşil, gider kırmızı, takvim/not mor.
+- RUTİN logosu ve marka kimliği korundu. HANE markası eklenmedi.
+- Form/select okunabilirliği ortak tema içinde merkezileştirildi.
+- Veri yapısı ve iş mantığına elle müdahale edilmedi; patch kodları mekanik olarak aynı sırayla birleştirildi.
+RUTİN V43.18.9 — SAFE REFACTOR P1
+
+Amaç: Veri ve iş mantığına dokunmadan ilk güvenli sadeleştirme.
+
+Yapılanlar:
+- styles.css içindeki eski hover otoritesi kaldırıldı.
+- theme-system.css içindeki üç çakışan hover katmanı tek otoriteye indirildi.
+- Son hover seçici kapsamı korunarak menu/finance/home/calendar hedefleri tek blokta toplandı.
+- Cache-busting ve service worker cache adı yenilendi.
+
+Dokunulmayanlar:
+- localStorage anahtarları
+- state veri şeması
+- çalışma/gelir/harcama/yol hesapları
+- kart/ekstre/hesap mantığı
+- takvim/rapor veri mantığı
+- rutin-runtime patch zinciri (davranış bağımlılıkları nedeniyle bu aşamada korunmuştur)
