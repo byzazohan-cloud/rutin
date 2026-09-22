@@ -1,4 +1,4 @@
-const CACHE='rutin-v43-18-9-s7-calendar-income-fix-1';
+const CACHE='rutin-v43-18-9-s8-safe-series';
 const CORE=["./","./index.html","./styles.css","./theme-system.css","./app.js","./legacy.js","./calendar.js","./records.js","./work.js","./finance.js","./ui.js","./accounting.js","./rutin-runtime.js","./manifest.json","./icon-180.png","./icon-512.png","./rutin-logo.png","./rutin-mark.png","./lock-mountain.jpg"];
 self.addEventListener('install',event=>{event.waitUntil((async()=>{const cache=await caches.open(CACHE);await Promise.allSettled(CORE.map(url=>cache.add(url)));await self.skipWaiting();})());});
 self.addEventListener('message',event=>{if(event.data&&event.data.type==='SKIP_WAITING')self.skipWaiting();});

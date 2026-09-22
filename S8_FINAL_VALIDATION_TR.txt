@@ -1,0 +1,3 @@
+S8 FINAL DOĞRULAMA ADAYI
+Bu paket kümülatif S1-S8 test zincirinin final adayıdır.
+Runtime iş mantığına agresif refactor uygulanmamıştır; veri güvenliği önceliği korunmuştur.
