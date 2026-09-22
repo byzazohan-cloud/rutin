@@ -1,0 +1,3 @@
+S4 KAYNAK NORMALİZASYONU
+- JS/CSS/HTML sonu boşlukları temizlendi ve kaynak biçimi normalize edildi.
+- Kod ifadeleri ve çalışma sırası değiştirilmedi.
