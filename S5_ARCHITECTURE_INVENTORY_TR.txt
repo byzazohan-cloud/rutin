@@ -1,0 +1,10 @@
+accounting.js: lines=434, functions=18, repeated_names={}
+app.js: lines=1198, functions=106, repeated_names={}
+calendar.js: lines=78, functions=11, repeated_names={}
+finance.js: lines=55, functions=2, repeated_names={}
+legacy.js: lines=566, functions=41, repeated_names={}
+records.js: lines=76, functions=8, repeated_names={}
+rutin-runtime.js: lines=2436, functions=162, repeated_names={'fmtDate': 3, 'addDays': 2, 'statementPeriod': 3, 'desiredDay': 2, 'dateAt': 3, 'roadGroups': 2, 'expenseRow': 2, 'range': 2, 'inRange': 2, 'isoD': 2, 'txType': 2, 'day': 2, 'dateLine': 2, 'summaryHtml': 3, 'itemHtml': 2}
+sw.js: lines=7, functions=0, repeated_names={}
+ui.js: lines=302, functions=14, repeated_names={}
+work.js: lines=59, functions=7, repeated_names={}
