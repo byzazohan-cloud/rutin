@@ -1,0 +1,4 @@
+RUTIN V43.18.9 SAFE REFACTOR
+Kilit taban: V43.18.9 AUDIT FIX HANE SHARED
+Zincir: S1 -> S2 -> S3 -> S4 -> S5 -> S6
+Veri şeması ve iş hesapları bu güvenli paket temizliği aşamalarında korunmuştur.
